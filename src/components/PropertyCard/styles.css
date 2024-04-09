@@ -1,0 +1,21 @@
+figure.property-card.root{
+  border: 1px solid black;
+  border-radius: 6px;
+  width: 240px;
+  height: 420px;
+
+  img{
+    width: 100%;
+  }
+  /* container of icons depicting common features */
+
+  div.detail-icons{
+    border: 1px solid blue;
+    margin: 4px;
+  }
+
+  figcaption.property-details{
+    padding: 1rem;
+    border: 1px solid orange;
+  }
+}

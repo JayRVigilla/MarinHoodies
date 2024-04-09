@@ -2,9 +2,7 @@
  */
 
 import {FontAwesomeIcon}  from "@fortawesome/react-fontawesome";
-import clsx from "clsx";
 
-// import styles from "./styles.module.css";
 import "./styles.css";
 import { IconDefinition } from "@fortawesome/fontawesome-common-types";
 
