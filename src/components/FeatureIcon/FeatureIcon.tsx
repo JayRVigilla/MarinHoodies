@@ -7,19 +7,28 @@ import {FontAwesomeIcon}  from "@fortawesome/react-fontawesome";
 
 import { faBed, faBathtub, faSwimmingPool, faFan, faCar } from "@fortawesome/free-solid-svg-icons";
 
+
 export interface FeatureIconProps {
-"data-test-id"?: string;
+  "data-test-id"?: string;
+  variant: "bed" | "bath" | "pool"
 }
 
-export const FeatureIcon = () => {
-
-  return <span className="feature-icon">
+export const FeatureIcon = ({variant}: FeatureIconProps) => {
+  const variantToIcon = {
+    bed: faBed,
+    bath: faBathtub,
+    pool: faSwimmingPool
+}
+  return (
+    <span className="feature-icon-container">
+  <span className="feature-icon">
     <FontAwesomeIcon
       size="lg"
-      icon={faCar}
-      // icon={faSwimmingPool}
-      // icon={faBed}
-      // icon={faBathtub}
-    />
-  </span>;
+      icon={variantToIcon[variant]}
+      color="blue"
+      />
+    </span>
+    <span>2</span>
+    </span>
+  )
 };
