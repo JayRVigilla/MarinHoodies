@@ -1,7 +1,8 @@
 import { walkDOMChildren } from "./dom";
 
+export const WORDPRESS_PUBLIC_API_BASE_URL = `https://public-api.wordpress.com/wp/v2/sites`
 // use .env to generate WordPress API base url
-export const WORDPRESS_PUBLIC_API_BASE_URL = `https://public-api.wordpress.com/wp/v2/sites/${process.env.REACT_APP_WORDPRESS_URL}/sites/`
+export const WORDPRESS_SITE_API = `${WORDPRESS_PUBLIC_API_BASE_URL}/${process.env.REACT_APP_WORDPRESS_URL}`
 
 
 // Posts and Pages have content.rendered as strings of the HTML
@@ -45,3 +46,4 @@ export const initContentObject = (contentRendered: string) => {
   walkDOMChildren(contentDOM, handleContentNode)
   return content
 }
+
