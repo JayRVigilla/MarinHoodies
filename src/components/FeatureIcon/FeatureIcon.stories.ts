@@ -27,6 +27,7 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     // * args go here
-    variant: "bed"
+    variant: "bed",
+    label: "2"
   }
 };
