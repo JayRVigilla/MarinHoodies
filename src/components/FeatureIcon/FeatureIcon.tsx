@@ -11,7 +11,7 @@ import { faBed, faBathtub, faSwimmingPool, faFan, faCar } from "@fortawesome/fre
 export interface FeatureIconProps {
   "data-test-id"?: string;
   variant: "bed" | "bath" | "pool";
-  label: string;
+  label?: string;
 }
 
 export const FeatureIcon = ({variant,label}: FeatureIconProps) => {
@@ -20,7 +20,7 @@ export const FeatureIcon = ({variant,label}: FeatureIconProps) => {
     bath: faBathtub,
     pool: faSwimmingPool
   }
-  
+
   return (
     <span className="feature-icon-container">
   <span className="feature-icon">
@@ -30,7 +30,7 @@ export const FeatureIcon = ({variant,label}: FeatureIconProps) => {
       color="blue"
       />
     </span>
-      <span className="label">{label}</span>
+      {label && <span className="label">{label}</span>}
     </span>
   )
 };
