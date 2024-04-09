@@ -10,7 +10,12 @@ span.feature-icon-container {
   position: relative;
   padding: 16px;
 
-  /* span.feature-icon {} */
+  span.feature-icon {
+    svg {
+      color: blue;
+      
+    }
+  }
 
   span.label {
     position: absolute;
