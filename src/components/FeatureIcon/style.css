@@ -5,15 +5,15 @@ span.feature-icon-container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 24px;
-  height: 24px;
+  width: 16px;
+  height: 16px;
   position: relative;
-  padding: 16px;
+  padding: 8px;
+  margin-right: 4px;
 
   span.feature-icon {
     svg {
       color: blue;
-
     }
   }
 
@@ -21,9 +21,8 @@ span.feature-icon-container {
     position: absolute;
     bottom: -4px;
     right: 0px;
-    font-size: 1.5rem;
+    font-size: 1rem;
     color: blue;
     font-weight: 800;
-
   }
 }

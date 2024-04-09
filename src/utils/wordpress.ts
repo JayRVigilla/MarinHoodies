@@ -1,3 +1,4 @@
+import { tContentObject, tImage } from "../types";
 import { walkDOMChildren } from "./dom";
 
 export const WORDPRESS_PUBLIC_API_BASE_URL = `https://public-api.wordpress.com/wp/v2/sites`
@@ -12,16 +13,6 @@ const stringToHTML = (str: string) : HTMLElement => {
   var doc = parser.parseFromString(str, 'text/html');
 	return doc.body;
 };
-
-
-type tImage = {
-  src: string;
-  alt: string;
-}
-type tContentObject = {
-  text: string[];
-  img: tImage[];
-}
 
 // turns WP content.rendered into Node representation then
 // into an Object
