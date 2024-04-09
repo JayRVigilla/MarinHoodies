@@ -10,16 +10,15 @@ span.feature-icon-container {
   position: relative;
   padding: 16px;
 
-  span.feature-icon {
+  /* span.feature-icon {} */
 
-    ~ span {
-      position: absolute;
-      bottom: -4px;
-      right:4px;
-      font-size: 1.4rem;
-      color: blue;
-      font-weight: 800;
+  span.label {
+    position: absolute;
+    bottom: -4px;
+    right:4px;
+    font-size: 1.4rem;
+    color: blue;
+    font-weight: 800;
 
-    }
   }
 }

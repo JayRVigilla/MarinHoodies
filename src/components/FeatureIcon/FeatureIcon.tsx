@@ -19,7 +19,8 @@ export const FeatureIcon = ({variant,label}: FeatureIconProps) => {
     bed: faBed,
     bath: faBathtub,
     pool: faSwimmingPool
-}
+  }
+  
   return (
     <span className="feature-icon-container">
   <span className="feature-icon">
@@ -29,7 +30,7 @@ export const FeatureIcon = ({variant,label}: FeatureIconProps) => {
       color="blue"
       />
     </span>
-      <span>{label}</span>
+      <span className="label">{label}</span>
     </span>
   )
 };
