@@ -1,11 +1,9 @@
 /** FeatureIcon documentation
  * displays the appropriate FontAwesome svg given the prop
  */
-import React, { ReactNode, useEffect, useState } from "react";
+import React from "react";
 import "./style.css";
-// import {FontAwesomeIcon}  from "@fortawesome/react-fontawesome";
 
-// import { faBed, faBathtub, faSwimmingPool, faFan, faCar, faHouse } from "@fortawesome/free-solid-svg-icons";
 import { BedOutlined, BathtubOutlined, PoolOutlined, GarageOutlined } from "@mui/icons-material";
 
 export interface FeatureIconProps {
@@ -15,9 +13,6 @@ export interface FeatureIconProps {
 }
 
 export const FeatureIcon = ({ variant, label }: FeatureIconProps) => {
-  const iconProps = {
-    fontSize: "large"
-  }
   const variantToIcon = {
     bed: <BedOutlined fontSize="large"   />,
     bath: <BathtubOutlined fontSize="large" />,
