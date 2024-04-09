@@ -13,15 +13,17 @@ span.feature-icon-container {
   span.feature-icon {
     svg {
       color: blue;
-      
+
     }
   }
 
   span.label {
     position: absolute;
-    bottom: -4px;
-    right:4px;
-    font-size: 1.4rem;
+    /* bottom: -4px; */
+    /* right: 4px; */
+    bottom: 0px;
+    right: 0px;
+    font-size: 1.5rem;
     color: blue;
     font-weight: 800;
 
