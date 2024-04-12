@@ -1,10 +1,6 @@
-import { tPropertyResponse } from "../attomTypes";
 import { ATTOM_API_BASE_URL } from "../constants";
 import { BASE_REQUEST } from "../utils/api";
-// import type { InferGetServerSidePropsType, GetServerSideProps } from 'next'
-type Property = {
 
-}
 
 const BASE_HEADERS: HeadersInit = {
   "ApiKey": `${process.env.NEXT_PUBLIC_ATTOM_KEY}`,
@@ -28,8 +24,7 @@ export const getPropertyById = (houseId: string) => {
   try {
     const data = fetch(`${ATTOM_API_BASE_URL}/detail?attomid=${houseId}`, options)
       .then(res => res.json())
-      // data = {status, property}
-      .then(data => { return data.property })
+      .then(data => { return data.property[0] })
     return data
   } catch (error) {
     console.error(`ERROR getPropertyById(${houseId}): ${error}`)
@@ -53,7 +48,7 @@ export const getPropertyPermits = (houseId: string) => {
       .then(res => res.json())
 
       // data = {status, property}
-      .then(data => { return data.property })
+      .then(data => { return data.property[0] })
     return data
   } catch (error) {
     console.error(`ERROR getPropertyPermits(${houseId}): ${error}`)

@@ -19,8 +19,8 @@ span.feature-icon-container {
 
   span.label {
     position: absolute;
-    bottom: -4px;
-    right: 0px;
+    bottom: -6px;
+    right: -3px;
     font-size: 1rem;
     color: blue;
     font-weight: 800;

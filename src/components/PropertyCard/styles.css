@@ -1,13 +1,17 @@
-figure.property-card.root{
+div.property-card.root{
   border: 1px solid gray;
   border-radius: 8px;
-
   width: 240px;
-  height: 360px;
+  height: 320px;
   overflow: hidden;
 
-  img {
+  .img {
+    background-color: lightgrey;
+  }
+
+  img, .img{
     width: 100%;
+    height: 60%;
   }
 
   /* container of icons depicting common features */
@@ -16,12 +20,12 @@ figure.property-card.root{
     margin: 4px;
   }
 
-  figcaption.property-details{
+  .property-details{
     padding: 0 1rem;
-    height: 100%;
 
-    p.property-price {
-        font-weight: 800;
-      }
+    p {
+      &.property-address, &.property-city-state {
+        text-transform: capitalize;
+      }}
     }
 }

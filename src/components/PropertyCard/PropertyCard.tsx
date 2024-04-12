@@ -3,47 +3,45 @@
 import { tImage } from "@/src/types";
 import { FeatureIcon } from "../FeatureIcon";
 import "./styles.css";
-
+import HouseIcon from '@mui/icons-material/House';
 export interface PropertyCardProps {
   "data-test-id"?: string;
-  price: string;
-  image: tImage;
+  image?: tImage;
   address: string;
   city: string;
-  state: string;
   bedrooms: string;
   bathrooms: string;
 }
 
 export const PropertyCard = ({
-  price,
   image,
   address,
   city,
-  state,
   bedrooms,
   bathrooms
 }: PropertyCardProps) => {
 
-  return <figure className="property-card root">
-    <a>
-      <img
+  return (
+    <div className="property-card root">
+      {image?.src ?
+        <img
         src={image.src}
-        alt={image.alt} />
+          alt={image.alt} /> :
 
-      {/* container of icons depicting common features */}
+      <HouseIcon className="img" fontSize="large" />}
+    {/* container of icons depicting common features */}
+
       <div className="detail-icons">
         <FeatureIcon variant="bed" label={bedrooms} />
         <FeatureIcon variant="bath" label={bathrooms} />
         {/* // TODO: dynamically generate other icons */}
       </div>
 
-      <figcaption className="property-details">
-        <p className="property-price">${ price }</p>
-        <p className="property-address">{ address }</p>
-        <p className="property-city-state">{ `${city}, ${state}` }</p>
-      </figcaption>
+      <div className="property-details">
+        <p className="property-address">{ address.toLowerCase() }</p>
+        <p className="property-city-state">{ city.toLowerCase() }</p>
+      </div>
 
-    </a>
-  </figure>;
+  </div>
+  );
 };

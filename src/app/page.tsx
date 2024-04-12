@@ -1,24 +1,19 @@
-"use client"
-// import Image from "next/image";
-import { useEffect, useState } from "react";
 import styles from "./page.module.css";
-import { getPropertyById, getPropertyPermits } from "../lib/attom";
+import { getPropertyById } from "../lib/attom";
+import { PropertyCard } from "../components/PropertyCard";
 
-export default function Home() {
-  const [data, setData] = useState({})
-  useEffect(() => {
-    const getData = async() => {
-      const datum = await getPropertyById('156707266')
-      console.log("pages useEffect", data)
-      setData(datum)
-    }
-    getData()
-  }, [])
+export default async function Home() {
+  const data = await getPropertyById('156707266')
 
   return (
     <div className={styles.home}>
       <h1>Lauren Ipsom Realty Empty</h1>
-    <p>{JSON.stringify(data)}</p>
+      <PropertyCard
+        address={data.address?.line1}
+        city={data.address?.line2}
+        bedrooms={data.building?.rooms?.beds}
+        bathrooms={data.building?.rooms?.bathstotal}
+      />
     </div>
   );
 }
