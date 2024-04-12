@@ -1,3 +1,8 @@
+# Lauren Ipsom Realty
+The original intent behind this app was to create a mock Realtor app to get freelance clients. Today, I'm considering changing the app into a property search app.
+
+Using Attom public records, there is plenty of knowledge that a person should have about their home or a home they are considering. 
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
