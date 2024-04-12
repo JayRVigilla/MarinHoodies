@@ -7,7 +7,7 @@ type Property = {
 }
 
 const BASE_HEADERS: HeadersInit = {
-  "ApiKey": `${process.env.REACT_APP_ATTOM_KEY}`,
+  "ApiKey": `${process.env.NEXT_PUBLIC_ATTOM_KEY}`,
   "Content-Type": "application/json"
 }
 
