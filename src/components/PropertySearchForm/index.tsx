@@ -1,3 +1,3 @@
 import { PropertySearchForm } from "./PropertySearchForm"
-
-export {PropertySearchForm}
+import { TextInput } from "../TextInput/TextInput"
+export {PropertySearchForm, TextInput}

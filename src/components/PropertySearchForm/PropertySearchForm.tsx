@@ -17,10 +17,10 @@ export const PropertySearchForm = () => {
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [minBeds, setMinBeds] = useState("");
-  const [maxBeds, setMaxBeds] = useState("");
-  const [minBaths, setMinBaths] = useState("");
-  const [maxBaths, setMaxBaths] = useState("");
+  const [minBeds, setMinBeds] = useState(""); // make inputs some sort of increment/decrement selector
+  const [maxBeds, setMaxBeds] = useState(""); // make inputs some sort of increment/decrement selector
+  const [minBaths, setMinBaths] = useState(""); // make inputs some sort of increment/decrement selector
+  const [maxBaths, setMaxBaths] = useState(""); // make inputs some sort of increment/decrement selector
 
   // * useEffects
   // useEffect(() => {

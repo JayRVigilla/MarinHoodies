@@ -1,0 +1,15 @@
+span.text-input{
+  display: flex;
+  flex-direction: column;
+
+  label{
+    margin-right: 4px;
+  }
+
+  input{
+    padding: 2px;
+    background-color: white;
+    /* width: 100%; */
+  }
+
+}
