@@ -1,3 +1,4 @@
+import { tAddressRequestBody } from "../attomTypes";
 import { ATTOM_API_BASE_URL } from "../constants";
 import { BASE_REQUEST } from "../utils/api";
 
@@ -24,10 +25,27 @@ export const getPropertyById = (houseId: string) => {
   try {
     const data = fetch(`${ATTOM_API_BASE_URL}/detail?attomid=${houseId}`, options)
       .then(res => res.json())
-      .then(data => { return data.property[0] })
+      .then(data => {
+        return data.property?.[0]
+      })
     return data
   } catch (error) {
     console.error(`ERROR getPropertyById(${houseId}): ${error}`)
+  }
+}
+
+
+export const getPropertyByAddress = ({address1, address2}:tAddressRequestBody) => {
+  // "use server"
+  try {
+    const data = fetch(`${ATTOM_API_BASE_URL}/basicprofile?address1=50 Elda Dr&address2=San Rafael, CA`, options)
+      .then(res => res.json())
+      .then(data => {
+        return data.property[0]
+      })
+    return data
+  } catch (error) {
+    console.error(`ERROR getPropertyByAddress(${address1}): ${error}`)
   }
 }
 

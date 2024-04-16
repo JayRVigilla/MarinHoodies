@@ -1,6 +1,6 @@
 /** PropertySearchForm documentation
  */
-
+"use client"
 import {useState} from 'react'
 import "./styles.css";
 import { TextInput } from '../TextInput';

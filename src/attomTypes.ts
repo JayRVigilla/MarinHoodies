@@ -161,3 +161,8 @@ export type tPropertyResponse = {
   building: tBuilding;
   vintage: tVintage;
 }
+
+export type tAddressRequestBody = {
+  address1: string;
+  address2: string;
+}

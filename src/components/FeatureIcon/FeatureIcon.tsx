@@ -8,7 +8,7 @@ import { BedOutlined, BathtubOutlined, PoolOutlined, GarageOutlined } from "@mui
 export interface FeatureIconProps {
   "data-test-id"?: string;
   variant: "bed" | "bath" | "pool" | "garage";
-  label?: string;
+  label?: string | number;
 }
 
 export const FeatureIcon = ({ variant, label }: FeatureIconProps) => {

@@ -9,8 +9,8 @@ export interface PropertyCardProps {
   image?: tImage;
   address: string;
   city: string;
-  bedrooms: string;
-  bathrooms: string;
+  bedrooms: number;
+  bathrooms: number;
 }
 
 export const PropertyCard = ({
