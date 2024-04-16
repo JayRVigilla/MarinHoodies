@@ -3,6 +3,7 @@
 import React, { Dispatch } from "react";
 import "./styles.css";
 import camelCase from "lodash/camelCase"
+import startCase from "lodash/startCase"
 
 export interface NumberSelectorProps {
   "data-test-id"?: string;
@@ -11,6 +12,7 @@ export interface NumberSelectorProps {
   label: string;
   setValue: Dispatch<number>;
   darkMode?: boolean;
+  minValue?: number;
   maxValue?: number;
 }
 
@@ -19,6 +21,7 @@ export const NumberSelector = ({
   value,
   setValue,
   label,
+  minValue=0,
   maxValue,
   darkMode = false
 }: NumberSelectorProps) => {
@@ -26,9 +29,11 @@ export const NumberSelector = ({
 
   return (
     <div className={`number-selector ${darkMode ? "dark-mode" : '' }`}>
-      <label htmlFor={camelLabel}>{label}</label>
+      <label htmlFor={camelLabel}>{startCase(label)}</label>
       <span className="button-box">
-        <button onClick={() => {setValue( (value ?? 0 ) -1 )}}>-</button>
+        <button onClick={(event) => {
+          event.preventDefault()
+          setValue( (value ?? 0 ) -1 )}}>-</button>
         <input
           aria-label={`${label} field`}
           type="number"
@@ -37,10 +42,12 @@ export const NumberSelector = ({
 
           name={camelLabel}
           id={camelLabel}
-          min="0"
+          min={minValue}
           max={maxValue ?? ""}
           />
-        <button onClick={() => {setValue( (value ?? 0) + 1 )}}>+</button>
+        <button onClick={(event) => {
+          event.preventDefault()
+          setValue( (value ?? 0) + 1 )}}>+</button>
 
       </span>
     </div>

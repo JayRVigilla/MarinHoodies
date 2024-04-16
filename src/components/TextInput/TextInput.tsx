@@ -4,6 +4,7 @@ import React, { Dispatch } from "react";
 import "./styles.css";
 
 import camelCase from "lodash/camelCase"
+import startCase from "lodash/startCase"
 
 export interface TextInputProps {
   "data-test-id"?: string;
@@ -19,7 +20,7 @@ export const TextInput = ({placeholder, value, setValue, label, darkMode = false
 
   return (
     <span className={`text-input ${darkMode ? "dark-mode" : '' }`}>
-      <label htmlFor={camelLabel}>{label}</label>
+      <label htmlFor={camelLabel}>{startCase(label)}</label>
       <input
         aria-label={`${label} field`}
         type="text"

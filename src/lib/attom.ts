@@ -1,4 +1,4 @@
-import { tAddressRequestBody } from "../attomTypes";
+import { tAddressRequestBody, tPropertyResponse } from "../attomTypes";
 import { ATTOM_API_BASE_URL } from "../constants";
 import { BASE_REQUEST } from "../utils/api";
 
@@ -35,13 +35,13 @@ export const getPropertyById = (houseId: string) => {
 }
 
 
-export const getPropertyByAddress = ({address1, address2}:tAddressRequestBody) => {
-  // "use server"
+export const getPropertyByAddress = async ({address1, address2}:tAddressRequestBody): Promise<undefined | tPropertyResponse[]> => {
+  "use server"
   try {
     const data = fetch(`${ATTOM_API_BASE_URL}/basicprofile?address1=50 Elda Dr&address2=San Rafael, CA`, options)
       .then(res => res.json())
-      .then(data => {
-        return data.property[0]
+      .then(res => {
+        return res.property
       })
     return data
   } catch (error) {
