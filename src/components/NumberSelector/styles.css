@@ -1,4 +1,4 @@
-span.text-input{
+.number-selector{
   display: flex;
   flex-direction: column;
 
@@ -6,10 +6,15 @@ span.text-input{
     margin-right: 4px;
     font-size: large;
   }
-
-  input[type=text]{
+  span.button-box{
+  input[type=number]{
     padding: 4px 6px;
     background-color: white;
+    width: 2em;
+
+    &::-webkit-inner-spin-button {
+      visibility: hidden;
+    }
   }
 
   &.dark-mode{
@@ -17,11 +22,11 @@ span.text-input{
       color: white;
     }
 
-    input[type=text]{
+    input[type=number]{
       color: white;
       background-color: transparent;
       border-color: white;
     }
   }
-
+}
 }

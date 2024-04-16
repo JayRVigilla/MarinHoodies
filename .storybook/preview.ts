@@ -8,6 +8,27 @@ const preview: Preview = {
         date: /Date$/i,
       },
     },
+    backgrounds: {
+      default: 'twitter',
+      values: [
+        {
+          name: 'twitter',
+          value: '#00aced',
+        },
+        {
+          name: 'facebook',
+          value: '#3b5998',
+        },
+        {
+          name: 'dark',
+          value: '#43404f',
+        },
+        {
+          name: 'light',
+          value: '#f0e9e9',
+        },
+      ],
+    },
   },
 };
 
