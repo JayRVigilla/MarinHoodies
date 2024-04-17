@@ -24,6 +24,17 @@ export const PropertySearchForm = () => {
   const [minBaths, setMinBaths] = useState<number | undefined>(0); // make inputs some sort of increment/decrement selector
   const [maxBaths, setMaxBaths] = useState<number | undefined>(undefined); // make inputs some sort of increment/decrement selector
 
+  const clearForm = () => {
+    setAddress("")
+    setCity("")
+    setState("")
+    setZipCode("")
+    setMinBeds(0)
+    setMaxBeds(undefined)
+    setMinBaths(0)
+    setMaxBaths(undefined)
+  }
+
   return <form className='property-search-form'>
 
     <TextInput value={address} placeholder='' setValue={setAddress} label="address" />
@@ -67,6 +78,7 @@ export const PropertySearchForm = () => {
         minValue={minBaths ?? 0 + 1}
         />
     </span>
-
+    <button onClick={() => { }}>Search</button>
+  <button onClick={() => clearForm()}>Clear</button>
   </form>;
 };

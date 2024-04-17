@@ -4,6 +4,7 @@ import React, { Dispatch } from "react";
 import "./styles.css";
 import camelCase from "lodash/camelCase"
 import startCase from "lodash/startCase"
+import { Add, Remove } from "@mui/icons-material";
 
 export interface NumberSelectorProps {
   "data-test-id"?: string;
@@ -33,7 +34,10 @@ export const NumberSelector = ({
       <span className="button-box">
         <button onClick={(event) => {
           event.preventDefault()
-          setValue( (value ?? 0 ) -1 )}}>-</button>
+          setValue((value ?? 0) - 1)
+        }}>
+          <Remove />
+        </button>
         <input
           aria-label={`${label} field`}
           type="number"
@@ -47,7 +51,10 @@ export const NumberSelector = ({
           />
         <button onClick={(event) => {
           event.preventDefault()
-          setValue( (value ?? 0) + 1 )}}>+</button>
+          setValue((value ?? 0) + 1)
+        }}>
+          <Add />
+        </button>
 
       </span>
     </div>
