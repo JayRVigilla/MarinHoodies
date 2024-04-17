@@ -38,7 +38,7 @@ export const getPropertyById = (houseId: string) => {
 export const getPropertyByAddress = async ({address1, address2}:tAddressRequestBody): Promise<undefined | tPropertyResponse[]> => {
   "use server"
   try {
-    const data = fetch(`${ATTOM_API_BASE_URL}/basicprofile?address1=50 Elda Dr&address2=San Rafael, CA`, options)
+    const data = fetch(`${ATTOM_API_BASE_URL}/basicprofile?address1=${address1}&address2=${address2}`, options)
       .then(res => res.json())
       .then(res => {
         return res.property

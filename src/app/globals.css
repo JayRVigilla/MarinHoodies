@@ -1,3 +1,7 @@
 :root {
   display: flex;
 }
+body{
+  width: 100%;
+  border: 1px dotted orange;
+}

@@ -3,7 +3,6 @@ form.property-search-form{
   padding: 2rem;
   background-color: teal;
   border-radius: 4px;
-  width: 100%;
 
   span.input-group{
     display: flex;

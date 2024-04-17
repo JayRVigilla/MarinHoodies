@@ -15,7 +15,7 @@ export default async function Home() {
         address={property?.address?.line1}
         city={property?.address?.line2}
         bedrooms={property?.building?.rooms?.beds}
-        bathrooms={property?.building?.rooms?.bathsTotal}
+        bathrooms={property?.building?.rooms?.bathstotal}
         />)
       })}
     </div>
