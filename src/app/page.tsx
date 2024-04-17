@@ -9,15 +9,7 @@ export default async function Home() {
     <div className={styles.home}>
       <h1>Lauren Ipsom Realty</h1>
       <PropertySearchForm />
-      {data?.map((property) => {
-        return(
-        <PropertyCard
-        address={property?.address?.line1}
-        city={property?.address?.line2}
-        bedrooms={property?.building?.rooms?.beds}
-        bathrooms={property?.building?.rooms?.bathstotal}
-        />)
-      })}
+
     </div>
   );
 }
