@@ -78,7 +78,10 @@ export const PropertySearchForm = () => {
         minValue={minBaths ?? 0 + 1}
         />
     </span>
-    <button onClick={() => { }}>Search</button>
-  <button onClick={() => clearForm()}>Clear</button>
+
+    <div className='action-buttons'>
+      <button onClick={() => { }}>Search</button>
+      <button onClick={() => clearForm()}>Clear</button>
+    </div>
   </form>;
 };
