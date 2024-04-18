@@ -8,15 +8,18 @@ export interface ButtonProps {
   "data-test-id"?: string;
   child?: ReactNode;
   label?: string;
+  onClick: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-export const Button = ({child, label}: ButtonProps) => {
+export const Button = ({child, label, onClick}: ButtonProps) => {
 
   return (
     <button className="button root"
-      onClick={() => { }}>
-          {child}
-          {label}
+      aria-label={label}
+      tabIndex={0}
+      onClick={onClick}>
+        {child}
+        {label}
         </button>
   );
 };

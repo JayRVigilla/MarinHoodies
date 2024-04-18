@@ -29,6 +29,7 @@ export const TextInput = ({placeholder, value, setValue, label, darkMode = false
         onChange={(e) => setValue(e.target.value)}
         name={camelLabel}
         id={camelLabel}
+        tabIndex={0}
       />
     </span>
   );

@@ -1,39 +1,51 @@
 /** PropertySearchForm documentation
  */
 "use client"
-import {useState} from 'react'
+import {useCallback, useState} from 'react'
 import "./styles.css";
 import { TextInput } from '../TextInput';
-import { NumberSelector } from '../NumberSelector';
+import { getPropertyByAddress } from '@/src/lib/attom';
+import { Button } from '../Button';
+import { add } from 'date-fns';
+// import { NumberSelector } from '../NumberSelector';
 
 export interface PropertySearchFormProps {
 "data-test-id"?: string;
 }
 
 export const PropertySearchForm = () => {
-  // * hooks
-  // const hook = () => {};
-
   // * state
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [zipCode, setZipCode] = useState("");
-  const [minBeds, setMinBeds] = useState<number | undefined>(0); // make inputs some sort of increment/decrement selector
-  const [maxBeds, setMaxBeds] = useState<number | undefined>(undefined); // make inputs some sort of increment/decrement selector
-  const [minBaths, setMinBaths] = useState<number | undefined>(0); // make inputs some sort of increment/decrement selector
-  const [maxBaths, setMaxBaths] = useState<number | undefined>(undefined); // make inputs some sort of increment/decrement selector
+  // const [minBeds, setMinBeds] = useState<number | undefined>(0); // make inputs some sort of increment/decrement selector
+  // const [maxBeds, setMaxBeds] = useState<number | undefined>(undefined); // make inputs some sort of increment/decrement selector
+  // const [minBaths, setMinBaths] = useState<number | undefined>(0); // make inputs some sort of increment/decrement selector
+  // const [maxBaths, setMaxBaths] = useState<number | undefined>(undefined); // make inputs some sort of increment/decrement selector
 
-  const clearForm = () => {
+  const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    console.log("CLICK Clear")
+    if(!address && !city && !state && !zipCode)return
     setAddress("")
     setCity("")
     setState("")
     setZipCode("")
-    setMinBeds(0)
-    setMaxBeds(undefined)
-    setMinBaths(0)
-    setMaxBaths(undefined)
+    // setMinBeds(0)
+    // setMaxBeds(undefined)
+    // setMinBaths(0)
+    // setMaxBaths(undefined)
   }
+
+  const submitSearch = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.preventDefault()
+    console.log("SEARCH CLICKED")
+    if(!address && !city && !state && !zipCode)return
+    const address2 = `${city}, ${state} ${zipCode}`
+        const data = await getPropertyByAddress({ address1: address, address2 })
+        console.log("SEARCH Click", {data, address, address2})
+  }, [address, city, state, zipCode])
 
   return <form className='property-search-form'>
 
@@ -45,7 +57,7 @@ export const PropertySearchForm = () => {
       <TextInput value={zipCode} placeholder='' setValue={setZipCode} label="zip code" />
     </span>
 
-    <span className='input-group'>
+    {/* <span className='input-group bedroom-selectors'>
       <NumberSelector
         value={minBeds}
         placeholder=''
@@ -62,7 +74,7 @@ export const PropertySearchForm = () => {
         />
     </span>
 
-    <span className='input-group'>
+    <span className='input-group bathroom-selectors'>
       <NumberSelector
         value={minBaths}
         placeholder=''
@@ -77,11 +89,19 @@ export const PropertySearchForm = () => {
         label="maxBaths"
         minValue={minBaths ?? 0 + 1}
         />
-    </span>
+    </span> */}
 
     <div className='action-buttons'>
-      <button onClick={() => { }}>Search</button>
-      <button onClick={() => clearForm()}>Clear</button>
+      {/* <button onClick={() => submitSearch}>Search</button> */}
+      <Button
+        label='Search'
+        onClick={(event)=>submitSearch(event)}
+      />
+      {/* <button onClick={() => clearForm()}>Clear</button> */}
+      <Button
+        label='Clear'
+        onClick={(event)=>clearForm(event)}
+      />
     </div>
   </form>;
 };

@@ -30,7 +30,7 @@
     margin: 4px;
     padding-block: 0px;
     padding-inline: 0px;
-    box-shadow: 0px 0px 6px gray;
+    box-shadow: 0px 0px 6px black;
 
     &:hover{
       background-color: steelblue;

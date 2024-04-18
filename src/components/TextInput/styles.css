@@ -10,6 +10,11 @@ span.text-input{
   input[type=text]{
     padding: 4px 6px;
     background-color: white;
+
+    &:focus{
+      outline: orange solid 2px;
+  outline-offset: 2px;
+     }
   }
 
   &.dark-mode{
