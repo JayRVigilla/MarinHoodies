@@ -42,10 +42,10 @@ export const PropertySearchForm = () => {
     event.preventDefault()
     console.log("SEARCH CLICKED")
     if(!address && !city && !state && !zipCode)return
-    const address2 = `${city}, ${state} ${zipCode}`
+    const address2 = `${city}, ${state}`
         const data = await getPropertyByAddress({ address1: address, address2 })
         console.log("SEARCH Click", {data, address, address2})
-  }, [address, city, state, zipCode])
+  }, [address, city, state])
 
   return <form className='property-search-form'>
 
