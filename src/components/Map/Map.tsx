@@ -34,18 +34,13 @@ export interface MapProps {
 }
 
 export const Map = () => {
-  // const data = await getCrimes({})
-  // console.log("Map", data)
-  // * hooks
-  // const hook = () => {};
-
   // * state
   const [crimes, setCrimes] = useState<tCrime[]>([]);
 
   // * useEffects
   useEffect(() => {
     const fetchCrimes = async () => {
-      const data = await getCrimes({})
+      const data = await getCrimes({$where:"incident_date_time between '2024-04-01T12:00:00' and '2024-04-18T14:00:00'"})
       setCrimes(data)
       console.log("*Map*", data)
     }
