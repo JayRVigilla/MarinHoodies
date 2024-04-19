@@ -7,10 +7,13 @@ import "leaflet/dist/leaflet.css" // !! leaflet CSS: REQUIRED.
 import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
 
+import { LocalPolice } from "@mui/icons-material";
+
 import { getCrimes } from "@/src/lib/marinCrime";
 import startCase from "lodash/startCase"
 import "./styles.css";
 import { CRIME_ABBREVIATION_TO_DESCRIPTION, TOWN_ABBREVIATION_TO_NAME, tCrime } from "@/src/utils/marinCrimeAPI";
+import { DivIcon } from "leaflet";
 
 type tCrimeLocationMarker = {
   longitude: string;
@@ -22,21 +25,32 @@ type tCrimeLocationMarker = {
 }
 
 const CrimeMarker = ({ longitude, latitude, incident_street_address, incident_city_town, crime, incident_date_time }: tCrimeLocationMarker) => {
-  
-  return(
-  <Marker position={[parseFloat(latitude), parseFloat(longitude)]}>
-    <Popup>
-        {CRIME_ABBREVIATION_TO_DESCRIPTION[crime] ?
-          startCase(CRIME_ABBREVIATION_TO_DESCRIPTION[crime].toLowerCase()) :
-          startCase(crime.toLowerCase())}
-        <br />
-        {incident_date_time ? new Date(incident_date_time).toLocaleString() : "No Timestamp"}
-        <br />
-        {startCase(incident_street_address.toLowerCase())}, {TOWN_ABBREVIATION_TO_NAME[incident_city_town] ?
-          startCase(TOWN_ABBREVIATION_TO_NAME[incident_city_town].toLowerCase()) :
-          startCase(incident_city_town.toLowerCase())}
-    </Popup>
-    </Marker>
+
+  const divIconOptions = new DivIcon({
+    className: "marker-crime",
+  })
+
+  return (
+      <Marker
+        icon={divIconOptions}
+      position={[parseFloat(latitude), parseFloat(longitude)]}>
+      {/*
+      <LocalPolice/>
+      Doesn't work. Consider:
+      https://github.com/ilyankou/Leaflet.IconMaterial
+      */}
+      <Popup>
+          {CRIME_ABBREVIATION_TO_DESCRIPTION[crime] ?
+            startCase(CRIME_ABBREVIATION_TO_DESCRIPTION[crime].toLowerCase()) :
+            startCase(crime.toLowerCase())}
+          <br />
+          {incident_date_time ? new Date(incident_date_time).toLocaleString() : "No Timestamp"}
+          <br />
+          {startCase(incident_street_address.toLowerCase())}, {TOWN_ABBREVIATION_TO_NAME[incident_city_town] ?
+            startCase(TOWN_ABBREVIATION_TO_NAME[incident_city_town].toLowerCase()) :
+            startCase(incident_city_town.toLowerCase())}
+      </Popup>
+      </Marker>
   )
 }
 export interface MapProps {
