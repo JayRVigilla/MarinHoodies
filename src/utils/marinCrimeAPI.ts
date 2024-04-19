@@ -1,3 +1,4 @@
+export const MARIN_CRIME_BASE_URL = "https://data.marincounty.org/resource/ahxi-5nsc.json"
 
 const CRIME_CLASSES_TO_CRIMES = {
   "THEFT": ["THEFT", "SHOPLIFTNG"],
@@ -105,4 +106,24 @@ const TOWN_ABBREVIATION_TO_NAME = {
   "PT REYES": "POINT REYES",
 }
 
-const getCrimes = async()=>{}
+export type tCrime =     {
+        "im_dr":string;
+        "crime":string;
+        "crime_class":string;
+        "incident_date_time":string;
+        "incident_street_address":string;
+        "incident_city_town":string;
+        "incident_city_town_mapping":string;
+        "jurisdiction":string;
+        "latitude"?: string;
+        "longitude"?:string;
+        "location"?: {
+            "latitude": string;
+            "longitude":string;
+        },
+        "unique_id": string;
+        ":@computed_region_6s5y_serh": string;
+        ":@computed_region_bgqc_3apt": string;
+        ":@computed_region_nyxm_p3bi": string;
+        ":@computed_region_3c6h_y28d": string;
+    }

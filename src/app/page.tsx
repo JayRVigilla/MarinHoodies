@@ -1,6 +1,6 @@
 import styles from "./page.module.css";
 import { getPropertyByAddress } from "../lib/attom";
-import { PropertyCard } from "../components/PropertyCard";
+import { Map } from "../components/Map";
 import { PropertySearchForm } from "../components/PropertySearchForm";
 
 export default async function Home() {
@@ -9,7 +9,9 @@ export default async function Home() {
     <div className={styles.home}>
       <h1>Lauren Ipsom Realty</h1>
       <PropertySearchForm />
-
+      <div className={styles.mapContainer}>
+      <Map />
+      </div>
     </div>
   );
 }
