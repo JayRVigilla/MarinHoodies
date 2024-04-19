@@ -1,6 +1,8 @@
+import { tObjectStringToString } from "../types"
+
 export const MARIN_CRIME_BASE_URL = "https://data.marincounty.org/resource/ahxi-5nsc.json"
 
-const CRIME_CLASSES_TO_CRIMES = {
+export const CRIME_CLASSES_TO_CRIMES = {
   "THEFT": ["THEFT", "SHOPLIFTNG"],
   "TRAFFIC INCIDENT": ["VTOW", "VEH CODE", "PARK", "PURSUIT"],
   "FRAUD": ["IDENT THEF", "FRAUD"],
@@ -21,7 +23,7 @@ const CRIME_CLASSES_TO_CRIMES = {
   "DEATH INVESTIGATION": ["SUICIDE"]
 }
 
-const CRIME_ABBREVIATION_TO_DESCRIPTION = {
+export const CRIME_ABBREVIATION_TO_DESCRIPTION: tObjectStringToString = {
   "SHOPLIFTNG": "SHOP LIFTING",
   "VTOW": "VEHICLE TOW",
   "VEH CODE": "VEHICULAR CODE",
@@ -95,7 +97,7 @@ const MAPPING_TO_TOWNS = {
     "MARSHALL": ["MARSHALL"]
 }
 
-const TOWN_ABBREVIATION_TO_NAME = {
+export const TOWN_ABBREVIATION_TO_NAME: tObjectStringToString = {
   "MUIR WOODS PK": "MUIR WOODS PARK",
   "GG RECRE AREA": "GOLDEN GATE RECREATION AREA",
   "SAN GERON VLY": "SAN GERONIMO VALLEY",

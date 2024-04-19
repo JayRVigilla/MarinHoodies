@@ -8,9 +8,9 @@ import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
 
 import { getCrimes } from "@/src/lib/marinCrime";
-
+import startCase from "lodash/startCase"
 import "./styles.css";
-import { tCrime } from "@/src/utils/marinCrimeAPI";
+import { CRIME_ABBREVIATION_TO_DESCRIPTION, TOWN_ABBREVIATION_TO_NAME, tCrime } from "@/src/utils/marinCrimeAPI";
 
 type tCrimeLocationMarker = {
   longitude: string;
@@ -18,13 +18,23 @@ type tCrimeLocationMarker = {
   incident_street_address: string;
   incident_city_town: string;
   crime: string;
+  incident_date_time: string;
 }
 
-const CrimeMarker = ({ longitude, latitude, incident_street_address, incident_city_town, crime }: tCrimeLocationMarker) => {
+const CrimeMarker = ({ longitude, latitude, incident_street_address, incident_city_town, crime, incident_date_time }: tCrimeLocationMarker) => {
+  
   return(
   <Marker position={[parseFloat(latitude), parseFloat(longitude)]}>
     <Popup>
-      {crime} <br /> { incident_street_address} <br/> {incident_city_town}
+        {CRIME_ABBREVIATION_TO_DESCRIPTION[crime] ?
+          startCase(CRIME_ABBREVIATION_TO_DESCRIPTION[crime].toLowerCase()) :
+          startCase(crime.toLowerCase())}
+        <br />
+        {incident_date_time ? new Date(incident_date_time).toLocaleString() : "No Timestamp"}
+        <br />
+        {startCase(incident_street_address.toLowerCase())}, {TOWN_ABBREVIATION_TO_NAME[incident_city_town] ?
+          startCase(TOWN_ABBREVIATION_TO_NAME[incident_city_town].toLowerCase()) :
+          startCase(incident_city_town.toLowerCase())}
     </Popup>
     </Marker>
   )
@@ -42,7 +52,7 @@ export const Map = () => {
     const fetchCrimes = async () => {
       const data = await getCrimes({$where:"incident_date_time between '2024-04-01T12:00:00' and '2024-04-18T14:00:00'"})
       setCrimes(data)
-      console.log("*Map*", data)
+      // console.log("*Map*", data)
     }
   fetchCrimes()
   }, [])
@@ -71,6 +81,7 @@ export const Map = () => {
             incident_street_address={c.incident_street_address}
             incident_city_town={c.incident_city_town}
             crime={c.crime}
+            incident_date_time={c.incident_date_time}
           />
     )
   })}

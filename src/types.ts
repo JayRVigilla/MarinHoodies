@@ -7,3 +7,7 @@ export type tContentObject = {
   text: string[];
   img: tImage[];
 }
+
+export type tObjectStringToString = {
+  [key: string]: string;
+}
