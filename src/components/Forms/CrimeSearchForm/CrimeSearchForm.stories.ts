@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from '@storybook/react';
-import { DropdownSelector } from "./DropdownSelector"
+import { CrimeSearchForm } from './CrimeSearchForm';
 
 // * More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
-  title: 'components/DropdownSelector',
-  component: DropdownSelector,
+  title: 'components/CrimeSearchForm',
+  component: CrimeSearchForm,
   parameters: {
     // * Optional parameter to center the component in the Canvas. More info: https://storybook.js.org/docs/configure/story-layout
     layout: 'centered',
@@ -17,7 +17,7 @@ const meta = {
   },
   args: {
   },
-} satisfies Meta<typeof DropdownSelector>;
+} satisfies Meta<typeof CrimeSearchForm>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -26,7 +26,5 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     // * args go here
-    label: "test",
-    options: ["Betty", "Veronica", "Jughead"]
   }
 };

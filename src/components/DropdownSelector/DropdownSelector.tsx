@@ -13,17 +13,17 @@ export interface DropdownSelectorProps {
 export const DropdownSelector = ({ label, options}: DropdownSelectorProps) => {
 
   return (
-    <>
-    <label>{label}</label>
-    <select className="DropdownSelector root"
-      aria-label={label}
-      tabIndex={0}
-      >
+    <span className="dropdown-selector root">
+      <label>{label}</label>
+      <select
+        aria-label={label}
+        tabIndex={0}
+        >
 
-        {options.map(option => {
-          return <option value={option} key={option}>{startCase(option)}</option>
-        })}
-      </select>
-    </>
+          {options.map(option => {
+            return <option value={option} key={option}>{startCase(option)}</option>
+          })}
+        </select>
+    </span>
   );
 };

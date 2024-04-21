@@ -3,9 +3,9 @@
 "use client"
 import {useCallback, useState} from 'react'
 import "./styles.css";
-import { TextInput } from '../TextInput';
+import { TextInput } from '../../TextInput';
 import { getPropertyByAddress } from '@/src/lib/attom';
-import { Button } from '../Button';
+import { Button } from '../../Button';
 import { add } from 'date-fns';
 // import { NumberSelector } from '../NumberSelector';
 

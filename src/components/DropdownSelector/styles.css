@@ -1,18 +1,32 @@
-button.root{
-  margin: 4px;
-  padding: 4px 8px;
-  border-radius: 4px;
-  background-color: white;
-  border: none;
-  box-shadow: 0px 0px 6px black;
+span.dropdown-selector.root{
+  display: flex;
+  flex-direction: column;
 
-  &:hover{
-      background-color: steelblue;
-      color: white;
-      box-shadow: 0px 0px 6px white;
-    }
-  &:focus{
-  outline: orange solid 2px;
-  outline-offset: 2px;
+  label{
+    margin-right: 4px;
+    font-size: large;
   }
+
+  select {
+    padding: 4px 6px;
+    background-color: white;
+
+    &:focus{
+      outline: orange solid 2px;
+  outline-offset: 2px;
+     }
+  }
+
+  &.dark-mode{
+    label{
+      color: white;
+    }
+
+    select{
+      color: white;
+      background-color: transparent;
+      border-color: white;
+    }
+  }
+
 }
