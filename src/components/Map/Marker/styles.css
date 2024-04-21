@@ -1,0 +1,11 @@
+div.leaflet-marker-icon{
+  &.marker-icon-crime {
+
+      svg.MuiSvgIcon-root {
+      /* fill: #000080; */
+      fill: blue;
+    }
+  }
+}
+
+

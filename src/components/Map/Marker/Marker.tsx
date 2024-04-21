@@ -7,26 +7,28 @@ import { renderToStaticMarkup } from "react-dom/server";
 import startCase from "lodash/startCase"
 import { CRIME_ABBREVIATION_TO_DESCRIPTION, TOWN_ABBREVIATION_TO_NAME } from "@/src/utils/marinCrimeAPI";
 import { DivIcon } from "leaflet";
+import "./styles.css"
+import { tCrimeLocationMarker } from "./types";
 
-export interface MarkerProps {
+export interface iMarkerProps {
 "data-test-id"?: string;
 }
 
-export type tCrimeLocationMarker = {
-  longitude: string;
-  latitude: string;
-  incident_street_address: string;
-  incident_city_town: string;
-  crime: string;
-  incident_date_time: string;
-}
-
+/**
+ * TODO:
+ * - CrimeMarker goes Navy
+ * - CommuteMarker - change color as the time increases, stop light colors
+ * - InspectionMarker - find Icon for Restaurant Health
+ * - EMSMarker - Red Hospital Cross on a white field
+ * - ParkRangerMarker -
+ */
 
 export const CrimeMarker = ({ longitude, latitude, incident_street_address, incident_city_town, crime, incident_date_time }: tCrimeLocationMarker) => {
 
   const crimeMarkerIcon = new DivIcon({
-    html: renderToStaticMarkup(<LocalPolice />),
-    iconSize: [14, 14]
+    html: renderToStaticMarkup(<LocalPolice/>),
+    iconSize: [14, 14],
+    className: "marker-icon-crime"
     });
 
 
@@ -45,6 +47,6 @@ export const CrimeMarker = ({ longitude, latitude, incident_street_address, inci
             startCase(TOWN_ABBREVIATION_TO_NAME[incident_city_town].toLowerCase()) :
             startCase(incident_city_town.toLowerCase())}
       </Popup>
-      </Marker>
+    </Marker>
   )
 }
