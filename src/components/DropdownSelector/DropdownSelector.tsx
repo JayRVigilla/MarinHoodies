@@ -1,6 +1,6 @@
 /** DropdownSelector documentation
  */
-import { ReactNode } from "react";
+import { ChangeEvent, Dispatch, ReactNode } from "react";
 import "./styles.css";
 import startCase from "lodash/startCase"
 
@@ -8,9 +8,12 @@ export interface DropdownSelectorProps {
   "data-test-id"?: string;
   label?: string;
   options: string[];
+  value: string | undefined;
+  onChange: (val: ChangeEvent<HTMLSelectElement>) => void;
+
 }
 
-export const DropdownSelector = ({ label, options}: DropdownSelectorProps) => {
+export const DropdownSelector = ({ value, onChange, label, options}: DropdownSelectorProps) => {
 
   return (
     <span className="dropdown-selector root">
@@ -18,10 +21,12 @@ export const DropdownSelector = ({ label, options}: DropdownSelectorProps) => {
       <select
         aria-label={label}
         tabIndex={0}
+        onChange={(val) => onChange(val)}
+        value={value}
         >
 
-          {options.map(option => {
-            return <option value={option} key={option}>{startCase(option)}</option>
+          {[undefined, ...options].map(option => {
+            return <option value={option} key={option}>{startCase(option?.toLowerCase())}</option>
           })}
         </select>
     </span>

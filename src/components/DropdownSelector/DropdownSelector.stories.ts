@@ -27,6 +27,8 @@ export const Primary: Story = {
   args: {
     // * args go here
     label: "test",
-    options: ["Betty", "Veronica", "Jughead"]
+    options: [ "Betty", "Veronica", "Jughead"],
+    value: undefined,
+    onChange: ()=>{}
   }
 };

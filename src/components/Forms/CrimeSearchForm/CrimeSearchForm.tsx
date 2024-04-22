@@ -7,6 +7,7 @@ import { TextInput } from '../../TextInput';
 import { Button } from '../../Button';
 import { getCrimes } from '@/src/lib/marinCrime';
 import { tCrime } from '@/src/utils/marinCrimeAPI';
+import { DropdownSelector } from '../../DropdownSelector';
 
 export interface iCrimeSearchFormProps {
   "data-test-id"?: string;
@@ -47,13 +48,31 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
 
   return <form className='property-search-form'>
 
-    <TextInput value={address} placeholder='' setValue={setAddress} label="address" />
+    <div className='inputs'>
+      <DropdownSelector
+      value={formState.crime}
+      onChange={(event)=> {
+        setFormState({...formState, crime: event.target.value})
+      }}
+      options={[]}
+      />
 
-    <span className='input-group'>
-      <TextInput value={city } placeholder='' setValue={setCity } label="city" />
-      <TextInput value={state } placeholder='' setValue={setState } label="state" />
-      <TextInput value={zipCode} placeholder='' setValue={setZipCode} label="zip code" />
-    </span>
+      <DropdownSelector
+      value={formState.incident_city_town}
+      onChange={(event)=> {
+        setFormState({...formState, incident_city_town: event.target.value})
+      }}
+      options={[]}
+      />
+
+      <DropdownSelector
+      value={formState.$where}
+      onChange={(event)=> {
+        setFormState({...formState, $where: event.target.value})
+      }}
+      options={[]}
+      />
+    </div>
 
 
     <div className='action-buttons'>
