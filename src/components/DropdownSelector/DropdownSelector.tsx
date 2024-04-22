@@ -25,7 +25,7 @@ export const DropdownSelector = ({ value, onChange, label, options}: DropdownSel
         value={value}
         >
 
-          {[undefined, ...options].map(option => {
+          {options && [undefined, ...options].map(option => {
             return <option value={option} key={option}>{startCase(option?.toLowerCase())}</option>
           })}
         </select>

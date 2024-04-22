@@ -6,7 +6,7 @@ export type tCrimeQueries = {
   crime_class?: string;
   incident_city_town?: string;
   incident_city_town_mapping?: string;
-  $where?: string;
+  // $where?: string;
 }
 
 /**
@@ -18,6 +18,7 @@ export type tCrimeQueries = {
 export const getCrimes = async (queries: tCrimeQueries) => {
   try {
     const url = `${MARIN_CRIME_BASE_URL}?${new URLSearchParams(queries)}`
+    console.log("getCrimes: ", url)
     const data = fetch(url)
       .then(res => res.json())
       .then(res => {

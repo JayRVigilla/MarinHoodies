@@ -11,3 +11,7 @@ export type tContentObject = {
 export type tObjectStringToString = {
   [key: string]: string;
 }
+
+export type tObjectStringToStringArray = {
+  [key: string]: string[];
+}

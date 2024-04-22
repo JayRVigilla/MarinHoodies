@@ -1,8 +1,10 @@
-import { tObjectStringToString } from "../types"
+import { tObjectStringToString, tObjectStringToStringArray } from "../types"
 
 export const MARIN_CRIME_BASE_URL = "https://data.marincounty.org/resource/ahxi-5nsc.json"
 
-export const CRIME_CLASSES_TO_CRIMES = {
+
+
+export const CRIME_CLASSES_TO_CRIMES: tObjectStringToStringArray = {
   "THEFT": ["THEFT", "SHOPLIFTNG"],
   "TRAFFIC INCIDENT": ["VTOW", "VEH CODE", "PARK", "PURSUIT"],
   "FRAUD": ["IDENT THEF", "FRAUD"],
@@ -107,6 +109,8 @@ export const TOWN_ABBREVIATION_TO_NAME: tObjectStringToString = {
   "PT REYES STN": "POINT REYES STATION",
   "PT REYES": "POINT REYES",
 }
+
+export const MARIN_TOWNS = ['ALMONTE', 'ALTO', 'BELVEDERE', 'BOLINAS', 'CHILENO VLY', 'CORTE MADERA', 'DILLON BEACH', 'FAIRFAX', 'FOREST KNOLLS', 'GG RECRE AREA', 'GREENBRAE', 'HICKS VALLEY', 'HOMESTEAD', 'INVERNESS', 'INVERNESS PK', 'KENTFIELD', 'LAGUNITAS', 'LARKSPUR', 'LUCAS VALLEY', 'MARIN CITY', 'MARINWOOD', 'MARSHALL', 'MILL VALLEY', 'MOUNT TAM', 'MUIR BEACH', 'MUIR WOODS PK', 'NICASIO', 'NOVATO', 'OLEMA', 'POINT REYES', 'PT REYES', 'PT REYES STN', 'SAN ANSELMO', 'SAN GERON VLY', 'SAN GERONIMO', 'SAN QUENTIN V', 'SAN RAFAEL', 'SANTA VENETIA', 'SAUSALITO', 'SLEEPY HOLLOW', 'STINSON BEACH', 'STRAWBERRY', 'TAM VALLEY', 'TIBURON', 'TOMALES', 'WOODACRE']
 
 export type tCrime =     {
         "im_dr":string;

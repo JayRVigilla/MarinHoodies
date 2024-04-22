@@ -1,6 +1,6 @@
 /** Map documentation
  */
-"use client"
+// "use client"
 import React, { useEffect, useState } from "react";
 
 import { MapContainer, TileLayer } from 'react-leaflet'
@@ -15,21 +15,14 @@ import { tCrime } from "@/src/utils/marinCrimeAPI";
 import "./styles.css";
 
 export interface MapProps {
-"data-test-id"?: string;
+  "data-test-id"?: string;
+  crimes: tCrime[];
 }
 
-export const Map = () => {
+export const Map = ({ crimes }: MapProps) => {
   // * state
-  const [crimes, setCrimes] = useState<tCrime[]>([]);
+  // const [crimes, setCrimes] = useState<tCrime[]>([]);
 
-  // * useEffects
-  useEffect(() => {
-    const fetchCrimes = async () => {
-      const data = await getCrimes({$where:"incident_date_time between '2024-04-01T12:00:00' and '2024-04-18T14:00:00'"})
-      setCrimes(data)
-    }
-  fetchCrimes()
-  }, [])
 
   return (
     <MapContainer
@@ -45,12 +38,14 @@ export const Map = () => {
         if(c?.longitude && c?.latitude)
         return (
           <CrimeMarker
+            type="crime"
             longitude={c.longitude}
             latitude={c.latitude}
             incident_street_address={c.incident_street_address}
             incident_city_town={c.incident_city_town}
             crime={c.crime}
             incident_date_time={c.incident_date_time}
+            key={c.unique_id}
           />
     )
   })}
