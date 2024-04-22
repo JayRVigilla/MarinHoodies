@@ -1,7 +1,7 @@
 /** Map documentation
  */
 // "use client"
-import React, { useEffect, useState } from "react";
+import React from "react";
 
 import { MapContainer, TileLayer } from 'react-leaflet'
 import "leaflet/dist/leaflet.css" // !! leaflet CSS: REQUIRED.
@@ -9,7 +9,6 @@ import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
 import { CrimeMarker } from "./Marker/Marker";
 
-import { getCrimes } from "@/src/lib/marinCrime";
 import { tCrime } from "@/src/utils/marinCrimeAPI";
 
 import "./styles.css";
@@ -20,9 +19,6 @@ export interface MapProps {
 }
 
 export const Map = ({ crimes }: MapProps) => {
-  // * state
-  // const [crimes, setCrimes] = useState<tCrime[]>([]);
-
 
   return (
     <MapContainer
