@@ -50,26 +50,29 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
   }, [formState])
 
   return (
-    <form className='property-search-form'>
+    <form className='crime-search-form'>
 
-    <div className='inputs'>
-      <DropdownSelector
-        label='crime class'
-      value={formState.crime_class}
-      onChange={(event)=> {
-        setFormState({...formState, crime_class: event.target.value})
-      }}
-      options={Object.keys(CRIME_CLASSES_TO_CRIMES)}
-      />
+      <div className='inputs'>
+        <span className='input-group'>
 
-     {formState.crime_class && <DropdownSelector
-        label='crime'
-      value={formState.crime}
-      onChange={(event)=> {
-        setFormState({...formState, crime: event.target.value})
-      }}
-      options={CRIME_CLASSES_TO_CRIMES[formState.crime_class]}
-      />}
+          <DropdownSelector
+            label='crime class'
+            value={formState.crime_class}
+            onChange={(event)=> {
+              setFormState({...formState, crime_class: event.target.value})
+            }}
+            options={Object.keys(CRIME_CLASSES_TO_CRIMES)}
+            />
+
+          {formState.crime_class && <DropdownSelector
+            label='crime'
+            value={formState.crime}
+            onChange={(event)=> {
+              setFormState({...formState, crime: event.target.value})
+            }}
+            options={CRIME_CLASSES_TO_CRIMES[formState.crime_class]}
+            />}
+        </span>
 
       <DropdownSelector
         label='City/Town'

@@ -1,4 +1,4 @@
-form.property-search-form{
+form.crime-search-form{
   margin: 1rem;
   padding: 2rem;
   background-color: teal;
@@ -6,9 +6,14 @@ form.property-search-form{
   justify-content: center;
 
   span.input-group{
+    border: 1px solid red;
     display: flex;
-    justify-content: space-evenly;
-    margin: .5rem 0;
+    justify-content: flex-start;
+    margin-top: .5rem;
+
+    *{
+      width: 100%;
+    }
   }
 
   div.action-buttons{
