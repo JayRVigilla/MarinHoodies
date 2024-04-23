@@ -45,10 +45,12 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
     event.preventDefault()
     console.log("SEARCH CLICKED", formState)
     const data = await getCrimes(formState)
+    console.log("page/.submitSearch data length ", data.length)
     setCrimes(data)
   }, [formState])
 
-  return <form className='property-search-form'>
+  return (
+    <form className='property-search-form'>
 
     <div className='inputs'>
       <DropdownSelector
@@ -60,14 +62,14 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
       options={Object.keys(CRIME_CLASSES_TO_CRIMES)}
       />
 
-      <DropdownSelector
+     {formState.crime_class && <DropdownSelector
         label='crime'
       value={formState.crime}
       onChange={(event)=> {
         setFormState({...formState, crime: event.target.value})
       }}
       options={CRIME_CLASSES_TO_CRIMES[formState.crime_class]}
-      />
+      />}
 
       <DropdownSelector
         label='City/Town'
@@ -98,5 +100,5 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
         onClick={(event)=>clearForm(event)}
       />
     </div>
-  </form>;
+  </form>);
 };
