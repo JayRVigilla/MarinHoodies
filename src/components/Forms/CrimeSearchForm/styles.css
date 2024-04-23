@@ -6,7 +6,6 @@ form.crime-search-form{
   justify-content: center;
 
   span.input-group{
-    border: 1px solid red;
     display: flex;
     justify-content: flex-start;
     margin-top: .5rem;

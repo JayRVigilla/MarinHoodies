@@ -17,7 +17,7 @@ type tFormState = {
   crime_class: string;
   crime: string;
   incident_city_town: string;
-  // $where: string;
+  $where: string;
   limit?: string | number;
   offset?: string | number;
 }
@@ -26,7 +26,7 @@ const INITIAL_FORM_STATE = {
   crime_class: "",
   crime: "",
   incident_city_town: "",
-  // $where: "",
+  $where: "",
   // limit: 1000,
   // offset: 0,
 }
@@ -61,7 +61,7 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
             onChange={(event)=> {
               setFormState({...formState, crime_class: event.target.value})
             }}
-            options={Object.keys(CRIME_CLASSES_TO_CRIMES)}
+            options={Object.keys(CRIME_CLASSES_TO_CRIMES).sort()}
             />
 
           {formState.crime_class && <DropdownSelector
@@ -70,7 +70,7 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
             onChange={(event)=> {
               setFormState({...formState, crime: event.target.value})
             }}
-            options={CRIME_CLASSES_TO_CRIMES[formState.crime_class]}
+            options={CRIME_CLASSES_TO_CRIMES[formState.crime_class].sort()}
             />}
         </span>
 
@@ -83,13 +83,13 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
       options={MARIN_TOWNS}
       />
 
-      {/* <DropdownSelector
+      <DropdownSelector
       value={formState.$where}
       onChange={(event)=> {
         setFormState({...formState, "$where": event.target.value})
       }}
       options={[]}
-      /> */}
+      />
     </div>
 
 

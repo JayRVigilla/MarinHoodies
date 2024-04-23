@@ -1,3 +1,4 @@
+import { ISOStringFormat } from "date-fns"
 import { tObjectStringToString, tObjectStringToStringArray } from "../types"
 
 export const MARIN_CRIME_BASE_URL = "https://data.marincounty.org/resource/ahxi-5nsc.json"
@@ -132,4 +133,13 @@ export type tCrime =     {
         ":@computed_region_bgqc_3apt": string;
         ":@computed_region_nyxm_p3bi": string;
         ":@computed_region_3c6h_y28d": string;
-    }
+}
+
+type tWhereStringProps = {
+  from?: Date;
+  to?: Date;
+}
+
+export const whereString = ({ }) => {
+
+}
