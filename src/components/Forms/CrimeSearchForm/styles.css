@@ -5,15 +5,20 @@ form.crime-search-form{
   border-radius: 4px;
   justify-content: center;
 
-  span.input-group{
-    display: flex;
-    justify-content: flex-start;
-    /* margin-top: .5rem; */
-
+  div.inputs{
     *{
-      width: 100%;
+      margin-bottom: 0.25rem;
     }
-  }
+    span.input-group{
+      display: flex;
+      justify-content: flex-start;
+      /* margin-top: .5rem; */
+
+      *{
+        width: 100%;
+      }
+    }
+}
 
   div.action-buttons{
     margin: 1rem;
