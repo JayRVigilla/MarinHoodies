@@ -1,0 +1,33 @@
+span.date-picker.root{
+  display: flex;
+  flex-direction: column;
+  margin: 0 1rem;
+
+  label{
+    margin-right: 4px;
+    font-size: large;
+  }
+
+  input[type="date"] {
+    padding: 4px 6px;
+    background-color: white;
+
+    &:focus{
+      outline: orange solid 2px;
+  outline-offset: 2px;
+     }
+  }
+
+  &.dark-mode{
+    label{
+      color: white;
+    }
+
+    select{
+      color: white;
+      background-color: transparent;
+      border-color: white;
+    }
+  }
+
+}
