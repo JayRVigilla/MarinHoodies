@@ -8,7 +8,7 @@ export type tCrimeQueries = {
   crime_class?: string;
   incident_city_town?: string;
   incident_city_town_mapping?: string;
-  // $where?: string;
+  $where?: string;
 }
 
 /**

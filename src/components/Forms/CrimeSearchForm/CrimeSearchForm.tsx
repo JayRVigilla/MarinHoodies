@@ -7,6 +7,7 @@ import { Button } from '../../Button';
 import { getCrimes } from '@/src/lib/marinCrime';
 import { CRIME_CLASSES_TO_CRIMES, MARIN_TOWNS, tCrime } from '@/src/utils/marinCrimeAPI';
 import { DropdownSelector } from '../../DropdownSelector';
+import { DatePicker } from '../../DatePicker';
 
 export interface iCrimeSearchFormProps {
   "data-test-id"?: string;
@@ -63,15 +64,18 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
   const submitSearch = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
     console.log("SEARCH CLICKED", formState)
-    let [from, to] = [undefined, undefined]
+    let $where = ''
     // handle Date Range selection
     if (whereFilter === DATE_RANGE_OPTIONS_LABELS.CUSTOM) {
       // $where becomes a string using toFrom values
+      $where = `incident_date_time between
+      '${new Date(where.from).toISOString().slice(0, -1)}' and
+      '${new Date(where.to).toISOString().slice(0, -1)}'`
     } else {
       // $where becomes a string of the given amount of days in the past
     }
 
-    const data = await getCrimes(formState)
+    const data = await getCrimes({...formState,  "$where": $where})
     console.log("page/.submitSearch data length ", data.length)
     setCrimes(data)
   }, [formState, where, whereFilter])
@@ -122,21 +126,19 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
           {whereFilter === DATE_RANGE_OPTIONS_LABELS.CUSTOM &&
             <span className='input-group'>
 
-          <DropdownSelector
+          <DatePicker
             label="from"
             value={where.from}
             onChange={(event)=> {
               setWhere({...where, from: event.target.value})
             }}
-            options={[""]}
             />
-          <DropdownSelector
+          <DatePicker
             label="to"
             value={where.to}
             onChange={(event)=> {
               setWhere({...where, to: event.target.value})
             }}
-            options={[""]}
             />
             </span>
           }
