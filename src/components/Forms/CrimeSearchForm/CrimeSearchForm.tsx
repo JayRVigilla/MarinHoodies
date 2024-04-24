@@ -18,6 +18,7 @@ type tFormState = {
   crime: string;
   incident_city_town: string;
   $where: string;
+  whereFilter: string,
   limit?: string | number;
   offset?: string | number;
 }
@@ -27,6 +28,7 @@ const INITIAL_FORM_STATE = {
   crime: "",
   incident_city_town: "",
   $where: "",
+  whereFilter: "",
   // limit: 1000,
   // offset: 0,
 }
@@ -53,7 +55,7 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
     <form className='crime-search-form'>
 
       <div className='inputs'>
-        <span className='input-group'>
+        <span className='input-group crime'>
 
           <DropdownSelector
             label='crime class'
@@ -74,23 +76,48 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
             />}
         </span>
 
-      <DropdownSelector
-        label='City/Town'
-      value={formState.incident_city_town}
-      onChange={(event)=> {
-        setFormState({...formState, incident_city_town: event.target.value})
-      }}
-      options={MARIN_TOWNS}
-      />
+        <DropdownSelector
+          label='City/Town'
+          value={formState.incident_city_town}
+          onChange={(event)=> {
+            setFormState({...formState, incident_city_town: event.target.value})
+          }}
+          options={MARIN_TOWNS}
+        />
+        <span className='input-group'>
+          <DropdownSelector
+            label="date range"
+            value={formState.$where}
+            onChange={(event)=> {
+              setFormState({...formState, whereFilter: event.target.value})
+            }}
+            options={["30 days", "60 days", "90 days", "custom"]}
+          />
 
-      <DropdownSelector
-      value={formState.$where}
-      onChange={(event)=> {
-        setFormState({...formState, "$where": event.target.value})
-      }}
-      options={[]}
-      />
-    </div>
+          {formState.whereFilter === "custom" &&
+            <span className='input-group'>
+
+          <DropdownSelector
+            label="from"
+            value={formState.$where}
+            onChange={(event)=> {
+              setFormState({...formState, "$where": event.target.value})
+            }}
+            options={[""]}
+            />
+          <DropdownSelector
+            label="to"
+            value={formState.$where}
+            onChange={(event)=> {
+              setFormState({...formState, "$where": event.target.value})
+            }}
+            options={[""]}
+            />
+            </span>
+          }
+
+        </span>
+      </div>
 
 
     <div className='action-buttons'>
