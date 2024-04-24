@@ -9,6 +9,7 @@ import { CRIME_CLASSES_TO_CRIMES, MARIN_TOWNS, tCrime } from '@/src/utils/marinC
 import { DropdownSelector } from '../../DropdownSelector';
 import { DatePicker } from '../../DatePicker';
 import { subDays } from 'date-fns';
+import isEqual from "lodash/isEqual"
 
 export interface iCrimeSearchFormProps {
   "data-test-id"?: string;
@@ -29,10 +30,6 @@ const INITIAL_FORM_STATE = {
   crime_class: "",
   crime: "",
   incident_city_town: "",
-  // $where: "",
-  // whereFilter: "",
-  // limit: 1000,
-  // offset: 0,
 }
 
 const DATE_RANGE_OPTIONS_LABELS = {
@@ -55,7 +52,8 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
   // * state
   const [formState, setFormState] = useState<tFormState>(INITIAL_FORM_STATE);
   const [whereFilter, setWhereFilter] = useState<string|undefined>(undefined);
-  const [where, setWhere] = useState<tWhereObject>({from:"", to: ""});
+  const [where, setWhere] = useState<tWhereObject>({ from: "", to: "" });
+  const [results, setResults] = useState<number | undefined>(undefined)
 
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -65,7 +63,8 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
 
   const submitSearch = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    console.log("SEARCH CLICKED", formState)
+    // if (isEqual(INITIAL_FORM_STATE, formState) && whereFilter === undefined) return
+
     let $where = ''
     // handle Date Range selection
     if (whereFilter === DATE_RANGE_OPTIONS_LABELS.CUSTOM) {
@@ -82,7 +81,7 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
     }
 
     const data = await getCrimes({...formState,  "$where": $where})
-    console.log("page/.submitSearch data length ", data.length)
+    setResults(data.length)
     setCrimes(data)
   }, [formState, where, whereFilter])
 
@@ -156,6 +155,7 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
     <div className='action-buttons'>
       <Button
         label='Search'
+        disabled={isEqual(INITIAL_FORM_STATE, formState) && whereFilter === undefined}
         onClick={(event)=>submitSearch(event)}
       />
       <Button
@@ -163,5 +163,7 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
         onClick={(event)=>clearForm(event)}
       />
     </div>
+
+    {typeof results === "number" && <p>{`Found ${results} results`}</p> }
   </form>);
 };

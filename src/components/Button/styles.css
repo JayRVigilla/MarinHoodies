@@ -11,6 +11,12 @@ button.root{
       color: white;
       box-shadow: 0px 0px 6px white;
     }
+    &:disabled{
+      background-color: darkgray;
+      color: white;
+      box-shadow: none;
+      cursor: not-allowed;
+    }
   &:focus{
   outline: orange solid 2px;
   outline-offset: 2px;

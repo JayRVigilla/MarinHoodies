@@ -9,17 +9,24 @@ export interface ButtonProps {
   child?: ReactNode;
   label?: string;
   onClick: React.MouseEventHandler<HTMLButtonElement>;
+  disabled?: boolean;
 }
 
-export const Button = ({child, label, onClick}: ButtonProps) => {
+export const Button = ({
+  child,
+  label,
+  onClick,
+  disabled = false
+}: ButtonProps) => {
 
   return (
     <button className="button root"
       aria-label={label}
       tabIndex={0}
+      disabled={disabled}
       onClick={onClick}>
         {child}
         {label}
-        </button>
+    </button>
   );
 };
