@@ -8,6 +8,7 @@ import { getCrimes } from '@/src/lib/marinCrime';
 import { CRIME_CLASSES_TO_CRIMES, MARIN_TOWNS, tCrime } from '@/src/utils/marinCrimeAPI';
 import { DropdownSelector } from '../../DropdownSelector';
 import { DatePicker } from '../../DatePicker';
+import { subDays } from 'date-fns';
 
 export interface iCrimeSearchFormProps {
   "data-test-id"?: string;
@@ -48,12 +49,13 @@ const DATE_RANGE_OPTIONS = {
   [DATE_RANGE_OPTIONS_LABELS.CUSTOM]: "CUSTOM",
 }
 
+type tWhereObject = { from: string, to: string }
 
 export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
   // * state
   const [formState, setFormState] = useState<tFormState>(INITIAL_FORM_STATE);
   const [whereFilter, setWhereFilter] = useState<string|undefined>(undefined);
-  const [where, setWhere] = useState<{ from: string, to: string }>({from:"", to: ""});
+  const [where, setWhere] = useState<tWhereObject>({from:"", to: ""});
 
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -71,8 +73,12 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
       $where = `incident_date_time between
       '${new Date(where.from).toISOString().slice(0, -1)}' and
       '${new Date(where.to).toISOString().slice(0, -1)}'`
-    } else {
+    } else if (whereFilter && typeof DATE_RANGE_OPTIONS[whereFilter] !== "string"){
       // $where becomes a string of the given amount of days in the past
+      $where = `incident_date_time between
+        '${subDays(Date.now(), DATE_RANGE_OPTIONS[whereFilter] as number).toISOString().slice(0, -1)}' and
+        '${new Date(Date.now()).toISOString().slice(0, -1)}'`
+
     }
 
     const data = await getCrimes({...formState,  "$where": $where})
