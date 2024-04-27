@@ -118,7 +118,8 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
           }}
           options={MARIN_TOWNS}
         />
-        <span className='input-group'>
+
+        <span className='input-group date-range'>
           <DropdownSelector
             label="date range"
             value={whereFilter}
