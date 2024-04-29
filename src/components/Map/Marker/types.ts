@@ -13,12 +13,12 @@ export interface iCrimeLocationMarker extends iLocationMarker {
 export interface iFoodInspectionMarker extends iLocationMarker {
   business_name: string;
   formatted_address: string;
-  business_city: string;
+  // business_city: string;
   latitude: string, // floats as strings
   longitude: string, // floats as strings
   inspection_date: string;
   inspection_type: "Routine" | "Follow-up";
-  inspection_results: "Food Semi-yearly Inspection"|"Food Yearly Inspection"|"Food Additional Inspection" | "Food Initial Inspection";
+  // inspection_results: "Food Semi-yearly Inspection"|"Food Yearly Inspection"|"Food Additional Inspection" | "Food Initial Inspection";
   inspector: string;
   inspector_comments: string;
   inspector_freqeuncy: "Food Semi-yearly Inspection" |"Food Yearly Inspection" | "Food Additional Inspection" | "Food Initial Inspection";
@@ -27,7 +27,7 @@ export interface iFoodInspectionMarker extends iLocationMarker {
   correct_by_date: string;
   corrected_on_site: "No" | "Yes";
   violation_description: string;
-  violation_code: string;
+  // violation_code: string;
   placard: "GREEN" | "YELLOW" | "RED" | "NA" | " ";
 
 }

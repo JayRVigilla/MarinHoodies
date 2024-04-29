@@ -10,8 +10,10 @@ export default function Home() {
   return (
     <div className="home root">
       <h1>Lauren Ipsom Realty</h1>
-      <CrimeSearchForm setCrimes={setCrimes}/>
-      <Map crimes={crimes}/>
+      <CrimeSearchForm setCrimes={setCrimes} />
+      <div className="map-container">
+        <Map crimes={crimes}/>
+      </div>
     </div>
   );
 }

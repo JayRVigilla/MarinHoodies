@@ -20,11 +20,11 @@ export type tCrimeQueries = {
 export const getCrimes = async (queries: tCrimeQueries) => {
   try {
     const url = `${MARIN_CRIME_BASE_URL}?${validQueries(queries)}`
-    console.log("getCrimes: ", {url})
+    // console.log("getCrimes: ", {url})
     const data = fetch(url)
-    .then(res => res.json())
-    .then(res => {
-      return res
+    .then(response => response.json())
+    .then(result => {
+      return result
     })
     return data
   } catch (error) {

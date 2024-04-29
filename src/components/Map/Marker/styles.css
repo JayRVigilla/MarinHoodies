@@ -1,10 +1,28 @@
 div.leaflet-marker-icon{
   &.marker-icon-crime {
-
       svg.MuiSvgIcon-root {
-      /* fill: #000080; */
       fill: blue;
     }
+  }
+
+  /* food inspection marker color depends on report status */
+  &.marker-icon-food-inspection {
+    &.green{
+      svg.MuiSvgIcon-root {
+      fill: green;
+      }
+    }
+    &.yellow{
+      svg.MuiSvgIcon-root {
+      fill: yellow;
+      }
+    }
+    &.red{
+      svg.MuiSvgIcon-root {
+      fill: red;
+      }
+    }
+
   }
 }
 

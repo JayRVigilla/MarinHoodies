@@ -1,6 +1,6 @@
 form.crime-search-form{
   margin: 1rem;
-  padding: 2rem;
+  padding: 0.5rem;
   background-color: teal;
   border-radius: 4px;
   justify-content: center;
@@ -12,7 +12,6 @@ form.crime-search-form{
     span.input-group{
       display: flex;
       justify-content: flex-start;
-      /* margin-top: .5rem; */
 
       *{
         width: 100%;
