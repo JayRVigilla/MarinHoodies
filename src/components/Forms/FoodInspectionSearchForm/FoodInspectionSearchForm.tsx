@@ -1,4 +1,4 @@
-/** CrimeSearchForm documentation
+/** FoodInspectionSearchForm documentation
  */
 "use client"
 import {Dispatch, useCallback, useState} from 'react'
@@ -12,30 +12,24 @@ import { subDays } from 'date-fns';
 import isEqual from "lodash/isEqual"
 import { DATE_RANGE_OPTIONS, DATE_RANGE_OPTIONS_LABELS } from '@/src/constants';
 
-export interface iCrimeSearchFormProps {
+export interface iFoodInspectionSearchFormProps {
   "data-test-id"?: string;
   setCrimes: Dispatch<tCrime[]>
 }
 
 type tFormState = {
-  crime_class: string;
-  crime: string;
-  incident_city_town: string;
-  // $where: string;
-  // whereFilter: string,
+  business_city: string;
   limit?: string | number;
   offset?: string | number;
 }
 
 const INITIAL_FORM_STATE = {
-  crime_class: "",
-  crime: "",
-  incident_city_town: "",
+  business_city: "",
 }
 
 type tWhereObject = { from: string, to: string }
 
-export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
+export const FoodInspectionSearchForm = ({setCrimes}: iFoodInspectionSearchFormProps) => {
   // * state
   const [formState, setFormState] = useState<tFormState>(INITIAL_FORM_STATE);
   const [whereFilter, setWhereFilter] = useState<string|undefined>(undefined);
@@ -50,6 +44,7 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
 
   const submitSearch = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
+    // if (isEqual(INITIAL_FORM_STATE, formState) && whereFilter === undefined) return
 
     let $where = ''
     // handle Date Range selection
