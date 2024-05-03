@@ -1,4 +1,4 @@
-import { iFoodInspectionAPIInspection } from "../components/Map/Marker/types";
+import { iFoodInspectionAPIInspection, iFoodInspectionMarker } from "../components/Map/Marker/types";
 import { MARIN_FOOD_INSPECTION_BASE_URL } from "../utils/marinFoodInspectionAPI";
 
 export type tFoodInspectionQueries = string
@@ -10,7 +10,6 @@ export const getFoodInspections = async (queries: tFoodInspectionQueries) => {
     /**
      * TODO:
      * cityName used in 'upper(business_city) = cityName.toUppercase()
-     * ? convert latitude & longitude to floats?
      * default date range set to 90 days
      *
      */
@@ -18,14 +17,15 @@ export const getFoodInspections = async (queries: tFoodInspectionQueries) => {
     const data = fetch(url)
       .then(response => response.json())
       .then(res => {
-        const result = []
-        
+        const result: iFoodInspectionMarker[] = []
+
         for (let inspection of res) {
-          result.push({
+          const newMarkerData: iFoodInspectionMarker = {
+            type: "food-inspection",
             business_name: inspection.business_name,
             formatted_address: inspection.formatted_address,
             latitude: inspection.businessaddress.latitude,
-            longitude: inspection.businessaddress.longitude,
+            longitude:inspection.businessaddress.longitude,
             inspection_date: inspection.inspection_date,
             inspection_type: inspection.inspection_type,
             inspector: inspection.inspector,
@@ -37,13 +37,12 @@ export const getFoodInspections = async (queries: tFoodInspectionQueries) => {
             corrected_on_site: inspection.corrected_on_site,
             violation_description: inspection.violation_description,
             placard: inspection.placard,
-          })
+          }
+          result.push(newMarkerData)
         }
 
         return result
       })
-    console.log("getFoodInspections", data)
-
 
     return data
   } catch (error) {

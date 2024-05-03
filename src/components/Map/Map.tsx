@@ -7,15 +7,17 @@ import { MapContainer, TileLayer } from 'react-leaflet'
 import "leaflet/dist/leaflet.css" // !! leaflet CSS: REQUIRED.
 import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
-import { CrimeMarker } from "./Marker/Marker";
+import { CrimeMarker, RestaurantMarker } from "./Marker/Marker";
 
 import { tCrime } from "@/src/utils/marinCrimeAPI";
 
 import "./styles.css";
+import { iFoodInspectionMarker } from "./Marker/types";
 
 export interface MapProps {
   "data-test-id"?: string;
   crimes: tCrime[];
+  foodInspections: iFoodInspectionMarker[]
 }
 
 type tCoordsObject = {
@@ -39,7 +41,7 @@ const coordsObjToLatLngExp = (coords: tCoordsObject) => {
 const homeCords: tCoordsObject = {lat: "38.0067892", lon: "-122.5599277"}
 // const homeCords: LatLngExpression = [38.0067892, -122.5599277]
 
-export const Map = ({ crimes }: MapProps) => {
+export const Map = ({ crimes, foodInspections }: MapProps) => {
   return (
     <MapContainer
       className="map root"
@@ -68,8 +70,31 @@ export const Map = ({ crimes }: MapProps) => {
             incident_date_time={c.incident_date_time}
             key={c.unique_id}
           />
-    )
-  })}
+        )
+      })}
+      {foodInspections.length && foodInspections.map(fi => {
+        if(fi?.longitude && fi?.latitude)
+        return (
+          < RestaurantMarker
+            type="food-inspection"
+            business_name={fi.business_name}
+            formatted_address={fi.formatted_address}
+            latitude={fi.latitude}
+            longitude={fi.longitude}
+            inspection_date={fi.inspection_date}
+            inspection_type={fi.inspection_type}
+            inspector={fi.inspector}
+            inspector_comments={fi.inspector_comments}
+            inspector_freqeuncy={fi.inspector_freqeuncy}
+            inspection_description={fi.inspection_description}
+            is_major_violation={fi.is_major_violation}
+            correct_by_date={fi.correct_by_date}
+            corrected_on_site={fi.corrected_on_site}
+            violation_description={fi.violation_description}
+            placard={fi.placard}
+          />
+        )
+      })}
 </MapContainer>
   );
 };

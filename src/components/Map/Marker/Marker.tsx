@@ -51,14 +51,14 @@ export const CrimeMarker = ({ longitude, latitude, incident_street_address, inci
   )
 }
 export const RestaurantMarker = ({
-  business_name,
+  // business_city,
+  // inspection_results,
+business_name,
 formatted_address,
-// business_city,
-  latitude,
+latitude,
 longitude,
 inspection_date,
 inspection_type,
-// inspection_results,
 inspector,
 inspector_comments,
 inspector_freqeuncy,
@@ -84,7 +84,7 @@ placard
       icon={markerIcon(placard)}
       position={[parseFloat(latitude), parseFloat(longitude)]}>
       <Popup>
-        {startCase(business_name.toLowerCase())}
+        {startCase(business_name?.toLowerCase())}
         <br />
         {startCase(formatted_address.toLowerCase()) }
         <hr />

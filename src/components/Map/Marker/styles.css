@@ -6,21 +6,31 @@ div.leaflet-marker-icon{
   }
 
   /* food inspection marker color depends on report status */
-  &.marker-icon-food-inspection {
+  &.marker-icon-health-inspection {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 1px;
+    border-radius: 4px;
+
+
     &.green{
       svg.MuiSvgIcon-root {
       fill: green;
-      }
     }
+      border: 1px solid green;
+    }
+
     &.yellow{
       svg.MuiSvgIcon-root {
-      fill: yellow;
+        fill: gold;
       }
+      border: 1px solid gold;
     }
+
     &.red{
       svg.MuiSvgIcon-root {
-      fill: red;
+        fill: red;
       }
+      border: 1px solid red;
     }
 
   }

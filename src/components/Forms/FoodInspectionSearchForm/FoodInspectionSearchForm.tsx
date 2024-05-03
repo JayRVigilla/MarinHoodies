@@ -80,15 +80,6 @@ export const FoodInspectionSearchForm = ({setCrimes}: iFoodInspectionSearchFormP
             }}
             options={Object.keys(CRIME_CLASSES_TO_CRIMES).sort()}
             />
-
-          {formState.crime_class && <DropdownSelector
-            label='crime'
-            value={formState.crime}
-            onChange={(event)=> {
-              setFormState({...formState, crime: event.target.value})
-            }}
-            options={CRIME_CLASSES_TO_CRIMES[formState.crime_class].sort()}
-            />}
         </span>
 
         <DropdownSelector
