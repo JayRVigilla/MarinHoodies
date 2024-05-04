@@ -1,36 +1,49 @@
+
 div.leaflet-marker-icon{
+  --yellow: rgb(255, 192, 0);
+  --green: green;
+  --red: red;
+  --blue: blue;
+  --white-bg: rgba(255, 255, 255, 1);
+  --black-bg: rgba(1, 1, 1, 0.1);
+
+    background-color: var(--white-bg);
+    padding: 1px;
+    border-radius: 4px;
+
+    &:hover{
+      background-color: var(--black-bg);
+    }
+
   &.marker-icon-crime {
       svg.MuiSvgIcon-root {
-      fill: blue;
+      fill: var(--blue);
     }
+      border: 1px solid var(--blue);
+
   }
 
   /* food inspection marker color depends on report status */
   &.marker-icon-health-inspection {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 1px;
-    border-radius: 4px;
-
-
     &.green{
       svg.MuiSvgIcon-root {
-      fill: green;
+      fill: var(--green);
     }
-      border: 1px solid green;
+      border: 2px solid var(--green);
     }
 
     &.yellow{
       svg.MuiSvgIcon-root {
-        fill: gold;
+        fill: var(--yellow);
       }
-      border: 1px solid gold;
+      border: 2px solid var(--yellow);
     }
 
     &.red{
       svg.MuiSvgIcon-root {
-        fill: red;
+        fill: var(--red);
       }
-      border: 1px solid red;
+      border: 2px solid var(--red);
     }
 
   }

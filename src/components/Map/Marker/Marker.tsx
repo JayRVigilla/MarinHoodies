@@ -27,7 +27,7 @@ export const CrimeMarker = ({ longitude, latitude, incident_street_address, inci
 
   const crimeMarkerIcon = new DivIcon({
     html: renderToStaticMarkup(<LocalPolice/>),
-    iconSize: [14, 14],
+    iconSize: [18, 18],
     className: "marker-icon-crime"
     });
 
@@ -74,7 +74,7 @@ placard
   const markerIcon = (placard: string): DivIcon => {
     return (new DivIcon({
     html: renderToStaticMarkup(<LocalDiningOutlined/>),
-    iconSize: [14, 14],
+    iconSize: [18, 18],
     className: `marker-icon-health-inspection ${placard.toLowerCase()}`
     }))};
 

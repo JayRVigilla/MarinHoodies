@@ -13,6 +13,8 @@ import { tCrime } from "@/src/utils/marinCrimeAPI";
 
 import "./styles.css";
 import { iFoodInspectionMarker } from "./Marker/types";
+import { Marker } from 'react-leaflet'
+
 
 export interface MapProps {
   "data-test-id"?: string;
@@ -38,8 +40,33 @@ const coordsObjToLatLngExp = (coords: tCoordsObject) => {
 }
 
 
-const homeCords: tCoordsObject = {lat: "38.0067892", lon: "-122.5599277"}
+const homeCords: tCoordsObject = {
+  lat: "38.0067892",
+  lon: "-122.5599277"
+}
 // const homeCords: LatLngExpression = [38.0067892, -122.5599277]
+
+const roundStringToFloat = (floatString: string, places: number) => {
+  return parseFloat(parseFloat(floatString).toFixed(places))
+}
+
+interface iMaxMinObj { max: tCoordsObject, min: tCoordsObject }
+
+const calcMaxMinLatLong = (coords: tCoordsObject): iMaxMinObj => {
+  const result: iMaxMinObj = {
+    max: { lat: "", lon: "" },
+    min: { lat: "", lon: "" },
+  }
+
+/**
+ * TODO:
+ * max is +.1
+ * min is -.1
+ */
+
+  return result
+}
+
 
 export const Map = ({ crimes, foodInspections }: MapProps) => {
   return (
@@ -57,6 +84,14 @@ export const Map = ({ crimes, foodInspections }: MapProps) => {
     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
+
+    <Marker
+      // icon={crimeMarkerIcon}
+        position={[
+          roundStringToFloat(homeCords.lat, 1),
+          roundStringToFloat(homeCords.lon, 1)]}>
+    </Marker>
+
       {crimes.length && crimes.map(c => {
         if(c?.longitude && c?.latitude)
         return (
