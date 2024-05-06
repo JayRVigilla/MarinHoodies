@@ -7,13 +7,15 @@ import { MapContainer, TileLayer } from 'react-leaflet'
 import "leaflet/dist/leaflet.css" // !! leaflet CSS: REQUIRED.
 import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
-import { CrimeMarker, RestaurantMarker } from "./Marker/Marker";
+import { CrimeMarker, MaxMinMarker, RestaurantMarker } from "./Marker/Marker";
 
 import { tCrime } from "@/src/utils/marinCrimeAPI";
 
 import "./styles.css";
 import { iFoodInspectionMarker } from "./Marker/types";
 import { Marker } from 'react-leaflet'
+import { calcMaxMinLatLong, coordsObjToLatLngExp } from "@/src/utils";
+import { homeCords, kinrossCords } from "@/src/constants";
 
 
 export interface MapProps {
@@ -22,75 +24,34 @@ export interface MapProps {
   foodInspections: iFoodInspectionMarker[]
 }
 
-type tCoordsObject = {
-  lat: string;
-  lon: string;
-}
-
-const kinrossCords:tCoordsObject = {
-  lat: "37.9765779",
-  lon: "-122.4893974",
-}
-const millerCords: tCoordsObject = {
-  lat: "37.3009732",
-  lon: "-122.01531605",
-}
-const coordsObjToLatLngExp = (coords: tCoordsObject) => {
-  return [parseFloat(coords.lat), parseFloat(coords.lon)] as LatLngExpression
-}
-
-
-const homeCords: tCoordsObject = {
-  lat: "38.0067892",
-  lon: "-122.5599277"
-}
-// const homeCords: LatLngExpression = [38.0067892, -122.5599277]
-
-const roundStringToFloat = (floatString: string, places: number) => {
-  return parseFloat(parseFloat(floatString).toFixed(places))
-}
-
-interface iMaxMinObj { max: tCoordsObject, min: tCoordsObject }
-
-const calcMaxMinLatLong = (coords: tCoordsObject): iMaxMinObj => {
-  const result: iMaxMinObj = {
-    max: { lat: "", lon: "" },
-    min: { lat: "", lon: "" },
-  }
-
-/**
- * TODO:
- * max is +.1
- * min is -.1
- */
-
-  return result
-}
+const maxMins = calcMaxMinLatLong(homeCords)
+const target = coordsObjToLatLngExp(homeCords)
 
 
 export const Map = ({ crimes, foodInspections }: MapProps) => {
   return (
     <MapContainer
       className="map root"
-      // centered on "Marin County center"
-      // center={[37.97, -122.60]}
-      // zoom={11}
 
       // centered on address, without marker
-      center={coordsObjToLatLngExp(homeCords)}
+      center={target}
       zoom={15}
       scrollWheelZoom={false}>
   <TileLayer
     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-
     <Marker
-      // icon={crimeMarkerIcon}
-        position={[
-          roundStringToFloat(homeCords.lat, 1),
-          roundStringToFloat(homeCords.lon, 1)]}>
+        position={target}>
     </Marker>
+      {maxMins.length && maxMins.map(coord => {
+        return <MaxMinMarker
+          longitude={coord.lon}
+          latitude={coord.lat}
+          type="max-min"
+        />
+      })}
+
 
       {crimes.length && crimes.map(c => {
         if(c?.longitude && c?.latitude)

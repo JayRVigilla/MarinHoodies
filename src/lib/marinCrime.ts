@@ -9,6 +9,8 @@ export type tCrimeQueries = {
   incident_city_town?: string;
   incident_city_town_mapping?: string;
   $where?: string;
+  dateRange: [string, string]; // [MinISOString, ISOString]
+  focalLatLong: [number, number]; // [lat,long]
 }
 
 /**
@@ -19,8 +21,15 @@ export type tCrimeQueries = {
 
 export const getCrimes = async (queries: tCrimeQueries) => {
   try {
-    const url = `${MARIN_CRIME_BASE_URL}?${validQueries(queries)}`
+    // const url = `${MARIN_CRIME_BASE_URL}?${validQueries(queries)}`
+
+    const qStrings: string[] = []
+    const url = `${MARIN_CRIME_BASE_URL}?$where${""}`
     // console.log("getCrimes: ", {url})
+
+// latitude > 38 AND latitude < 38.1
+// latitude > 38 AND latitude < 38.1
+
     const data = fetch(url)
     .then(response => response.json())
     .then(result => {

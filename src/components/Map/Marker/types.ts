@@ -1,5 +1,5 @@
 export interface iLocationMarker {
-  type: "crime"| "ems" | "food-inspection" | "park-ranger"
+  type: "crime"| "ems" | "food-inspection" | "park-ranger" | "max-min"
   longitude: string;
   latitude: string;
 }

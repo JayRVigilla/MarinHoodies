@@ -18,3 +18,27 @@ export const DATE_RANGE_OPTIONS = {
   [DATE_RANGE_OPTIONS_LABELS.NINETY_DAYS]: 90,
   [DATE_RANGE_OPTIONS_LABELS.CUSTOM]: "CUSTOM",
 }
+
+type tCoordsObject = {
+  lat: string;
+  lon: string;
+}
+
+export const kinrossCords:tCoordsObject = {
+  lat: "37.97659",
+  lon: "-122.49066",
+}
+export const millerCords: tCoordsObject = {
+  lat: "37.3009732",
+  lon: "-122.01531605",
+}
+
+export const homeCords: tCoordsObject = {
+  // * Sourced from positionstack.com API 
+  lat: "38.004357",
+  lon: "-122.561161"
+
+  // * sourced from Google Maps
+  // lat: "38.00442",
+  // lon: "-122.56117"
+}

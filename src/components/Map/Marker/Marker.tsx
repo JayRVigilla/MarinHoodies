@@ -8,7 +8,7 @@ import startCase from "lodash/startCase"
 import { CRIME_ABBREVIATION_TO_DESCRIPTION, TOWN_ABBREVIATION_TO_NAME } from "@/src/utils/marinCrimeAPI";
 import { DivIcon } from "leaflet";
 import "./styles.css"
-import { iCrimeLocationMarker, iFoodInspectionMarker } from "./types";
+import { iCrimeLocationMarker, iFoodInspectionMarker, iLocationMarker } from "./types";
 
 export interface iMarkerProps {
 "data-test-id"?: string;
@@ -50,6 +50,7 @@ export const CrimeMarker = ({ longitude, latitude, incident_street_address, inci
     </Marker>
   )
 }
+
 export const RestaurantMarker = ({
   // business_city,
   // inspection_results,
@@ -99,6 +100,15 @@ placard
 
         <br />
       </Popup>
+    </Marker>
+  )
+}
+
+export const MaxMinMarker = ({latitude, longitude, type="max-min"}: iLocationMarker) => {
+  return (
+      <Marker
+      // icon={crimeMarkerIcon}
+        position={[parseFloat(latitude),parseFloat(longitude)]}>
     </Marker>
   )
 }
