@@ -5,7 +5,7 @@ import { LocalDiningOutlined, LocalPolice, RestaurantOutlined } from "@mui/icons
 import { Marker, Popup } from 'react-leaflet'
 import { renderToStaticMarkup } from "react-dom/server";
 import startCase from "lodash/startCase"
-import { CRIME_ABBREVIATION_TO_DESCRIPTION, TOWN_ABBREVIATION_TO_NAME } from "@/src/utils/marinCrimeAPI";
+import { CRIME_ABBREVIATION_TO_DESCRIPTION, TOWN_ABBREVIATION_TO_NAME } from "@/src/utils/marinAPI/marinCrimeAPI";
 import { DivIcon } from "leaflet";
 import "./styles.css"
 import { iCrimeLocationMarker, iFoodInspectionMarker, iLocationMarker } from "./types";
@@ -106,7 +106,8 @@ placard
 
 export const MaxMinMarker = ({latitude, longitude, type="max-min"}: iLocationMarker) => {
   return (
-      <Marker
+    <Marker
+      opacity={0.4}
       // icon={crimeMarkerIcon}
         position={[parseFloat(latitude),parseFloat(longitude)]}>
     </Marker>

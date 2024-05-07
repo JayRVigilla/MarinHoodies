@@ -1,5 +1,5 @@
 import { ISOStringFormat } from "date-fns"
-import { tObjectStringToString, tObjectStringToStringArray } from "../types"
+import { tObjectStringToString, tObjectStringToStringArray } from "../../types"
 
 export const MARIN_CRIME_BASE_URL = "https://data.marincounty.org/resource/ahxi-5nsc.json"
 

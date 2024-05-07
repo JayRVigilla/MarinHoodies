@@ -5,7 +5,7 @@ import {Dispatch, useCallback, useState} from 'react'
 import "./styles.css";
 import { Button } from '../../Button';
 import { getCrimes } from '@/src/lib/marinCrime';
-import { CRIME_CLASSES_TO_CRIMES, MARIN_TOWNS, tCrime } from '@/src/utils/marinCrimeAPI';
+import { CRIME_CLASSES_TO_CRIMES, MARIN_TOWNS, tCrime } from '@/src/utils/marinAPI/marinCrimeAPI';
 import { DropdownSelector } from '../../DropdownSelector';
 import { DatePicker } from '../../DatePicker';
 import { subDays } from 'date-fns';

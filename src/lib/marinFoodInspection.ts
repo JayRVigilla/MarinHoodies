@@ -1,5 +1,5 @@
 import { iFoodInspectionAPIInspection, iFoodInspectionMarker } from "../components/Map/Marker/types";
-import { MARIN_FOOD_INSPECTION_BASE_URL } from "../utils/marinFoodInspectionAPI";
+import { MARIN_FOOD_INSPECTION_BASE_URL } from "../utils/marinAPI/marinFoodInspectionAPI";
 
 export type tFoodInspectionQueries = string
 

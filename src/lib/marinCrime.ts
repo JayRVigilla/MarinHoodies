@@ -1,6 +1,6 @@
 import { tObjectStringToString } from "../types";
 import { validQueries } from "../utils/api";
-import { MARIN_CRIME_BASE_URL } from "../utils/marinCrimeAPI";
+import { MARIN_CRIME_BASE_URL } from "../utils/marinAPI/marinCrimeAPI";
 
 
 export type tCrimeQueries = {

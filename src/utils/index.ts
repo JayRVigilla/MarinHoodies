@@ -23,7 +23,7 @@ export const calcMaxMinLatLong = (coords: tCoordsObject): tMaxMinTuple => {
   //   min: { lat: "", lon: "" },
   // }
   const latLong = coordsObjToLatLngExp(coords)
-  const diff = .018
+  const diff = .019
   const result: tMaxMinTuple = [
     { lat: (latLong[0] - diff).toString(), lon: (latLong[1] - diff).toString() },
     { lat: (latLong[0] + diff).toString(), lon: (latLong[1] - diff).toString() },

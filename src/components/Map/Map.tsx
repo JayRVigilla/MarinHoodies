@@ -9,7 +9,7 @@ import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
 import { CrimeMarker, MaxMinMarker, RestaurantMarker } from "./Marker/Marker";
 
-import { tCrime } from "@/src/utils/marinCrimeAPI";
+import { tCrime } from "@/src/utils/marinAPI/marinCrimeAPI";
 
 import "./styles.css";
 import { iFoodInspectionMarker } from "./Marker/types";
