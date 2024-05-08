@@ -134,8 +134,3 @@ export type tCrime =     {
         ":@computed_region_nyxm_p3bi": string;
         ":@computed_region_3c6h_y28d": string;
 }
-
-type tWhereStringProps = {
-  from?: Date;
-  to?: Date;
-}
