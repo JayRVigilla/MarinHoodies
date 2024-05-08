@@ -10,7 +10,9 @@ import { DropdownSelector } from '../../DropdownSelector';
 import { DatePicker } from '../../DatePicker';
 import { subDays } from 'date-fns';
 import isEqual from "lodash/isEqual"
-import { DATE_RANGE_OPTIONS, DATE_RANGE_OPTIONS_LABELS } from '@/src/constants';
+import { DATE_RANGE_OPTIONS, DATE_RANGE_OPTIONS_LABELS, homeCords } from '@/src/constants';
+import { DateRange, FormatShapes } from '@mui/icons-material';
+import { iMaxMin } from '@/src/utils/marinAPI';
 
 export interface iCrimeSearchFormProps {
   "data-test-id"?: string;
@@ -21,25 +23,25 @@ type tFormState = {
   crime_class: string;
   crime: string;
   incident_city_town: string;
-  // $where: string;
+  dateRange: [string, string]; // [MinISOString, MaxISOString]
   // whereFilter: string,
   limit?: string | number;
   offset?: string | number;
 }
 
-const INITIAL_FORM_STATE = {
+const INITIAL_FORM_STATE: tFormState = {
   crime_class: "",
   crime: "",
   incident_city_town: "",
+  dateRange: ["", ""]
 }
 
-type tWhereObject = { from: string, to: string }
+type tWhereObject = { min: string, max: string }
 
 export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
   // * state
   const [formState, setFormState] = useState<tFormState>(INITIAL_FORM_STATE);
   const [whereFilter, setWhereFilter] = useState<string|undefined>(undefined);
-  const [where, setWhere] = useState<tWhereObject>({ from: "", to: "" });
   const [results, setResults] = useState<number | undefined>(undefined)
 
 
@@ -50,26 +52,13 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
 
   const submitSearch = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-
-    let $where = ''
-    // handle Date Range selection
-    if (whereFilter === DATE_RANGE_OPTIONS_LABELS.CUSTOM) {
-      // $where becomes a string using toFrom values
-      $where = `incident_date_time between
-      '${new Date(where.from).toISOString().slice(0, -1)}' and
-      '${new Date(where.to).toISOString().slice(0, -1)}'`
-    } else if (whereFilter && typeof DATE_RANGE_OPTIONS[whereFilter] !== "string"){
-      // $where becomes a string of the given amount of days in the past
-      $where = `incident_date_time between
-        '${subDays(Date.now(), DATE_RANGE_OPTIONS[whereFilter] as number).toISOString().slice(0, -1)}' and
-        '${new Date(Date.now()).toISOString().slice(0, -1)}'`
-
-    }
-
-    const data = await getCrimes({...formState,  "$where": $where})
+    const data = await getCrimes({
+      ...formState,
+      focalLatLong: [homeCords.lat, homeCords.lon]
+    })
     setResults(data.length)
     setCrimes(data)
-  }, [formState, where, whereFilter])
+  }, [formState, whereFilter])
 
   return (
     <form className='crime-search-form'>
@@ -109,8 +98,16 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
           <DropdownSelector
             label="date range"
             value={whereFilter}
-            onChange={(event)=> {
-              setWhereFilter( event.target.value)
+            onChange={(event) => {
+              const value = event.target.value
+              setWhereFilter(value)
+              // handle 30/60/90 day Date Range selection
+                if (value && typeof DATE_RANGE_OPTIONS[value] !== "string"){
+                  const min = subDays(Date.now(), DATE_RANGE_OPTIONS[value] as number).toISOString().slice(0, -1)
+                  const max = new Date(Date.now()).toISOString().slice(0, -1)
+
+                  setFormState({...formState, dateRange: [min, max]})
+                }
             }}
             options={Object.values(DATE_RANGE_OPTIONS_LABELS)}
           />
@@ -119,17 +116,17 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
             <span className='input-group'>
 
           <DatePicker
-            label="from"
-            value={where.from}
+            label="min"
+            value={formState.dateRange[0]}
             onChange={(event)=> {
-              setWhere({...where, from: event.target.value})
+              setFormState({ ...formState, dateRange: [event.target.value, formState.dateRange[1]] })
             }}
             />
           <DatePicker
-            label="to"
-            value={where.to}
+            label="max"
+            value={formState.dateRange[1]}
             onChange={(event)=> {
-              setWhere({...where, to: event.target.value})
+              setFormState({ ...formState, dateRange: [formState.dateRange[0], event.target.value] })
             }}
             />
             </span>

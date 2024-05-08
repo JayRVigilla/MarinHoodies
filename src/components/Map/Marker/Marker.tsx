@@ -16,9 +16,7 @@ export interface iMarkerProps {
 
 /**
  * TODO:
- * - CrimeMarker goes Navy
  * - CommuteMarker - change color as the time increases, stop light colors
- * - InspectionMarker - find Icon for Restaurant Health
  * - EMSMarker - Red Hospital Cross on a white field
  * - ParkRangerMarker -
  */
@@ -108,7 +106,6 @@ export const MaxMinMarker = ({latitude, longitude, type="max-min"}: iLocationMar
   return (
     <Marker
       opacity={0.4}
-      // icon={crimeMarkerIcon}
         position={[parseFloat(latitude),parseFloat(longitude)]}>
     </Marker>
   )

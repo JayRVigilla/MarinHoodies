@@ -2,7 +2,6 @@
  */
 // "use client"
 import React from "react";
-import { LatLngExpression } from "leaflet";
 import { MapContainer, TileLayer } from 'react-leaflet'
 import "leaflet/dist/leaflet.css" // !! leaflet CSS: REQUIRED.
 import "leaflet-defaulticon-compatibility"
@@ -14,7 +13,7 @@ import { tCrime } from "@/src/utils/marinAPI/marinCrimeAPI";
 import "./styles.css";
 import { iFoodInspectionMarker } from "./Marker/types";
 import { Marker } from 'react-leaflet'
-import { calcMaxMinLatLong, coordsObjToLatLngExp } from "@/src/utils";
+import { calcMaxMinLatLongCorners, coordsObjToLatLngExp } from "@/src/utils";
 import { homeCords, kinrossCords } from "@/src/constants";
 
 
@@ -24,7 +23,7 @@ export interface MapProps {
   foodInspections: iFoodInspectionMarker[]
 }
 
-const maxMins = calcMaxMinLatLong(homeCords)
+const maxMins = calcMaxMinLatLongCorners(homeCords)
 const target = coordsObjToLatLngExp(homeCords)
 
 

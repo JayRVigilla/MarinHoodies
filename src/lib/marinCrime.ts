@@ -1,6 +1,6 @@
-import { tObjectStringToString } from "../types";
-import { validQueries } from "../utils/api";
+import { dateRangeClean, iBetweenProps, whereString } from "../utils/marinAPI";
 import { MARIN_CRIME_BASE_URL } from "../utils/marinAPI/marinCrimeAPI";
+import { calcMaxMinLatLong } from "../utils";
 
 
 export type tCrimeQueries = {
@@ -9,32 +9,63 @@ export type tCrimeQueries = {
   incident_city_town?: string;
   incident_city_town_mapping?: string;
   $where?: string;
-  dateRange: [string, string]; // [MinISOString, ISOString]
-  focalLatLong: [number, number]; // [lat,long]
+  dateRange: [string, string]; // [MinISOString, MaxISOString]
+  focalLatLong: [string, string]; // [lat,long] float strings
 }
-
-/**
- * query strings seem to take limit & offset for pagination
- *
- *
- */
 
 export const getCrimes = async (queries: tCrimeQueries) => {
   try {
-    // const url = `${MARIN_CRIME_BASE_URL}?${validQueries(queries)}`
+    const {dateRange, focalLatLong} = queries
 
     const qStrings: string[] = []
-    const url = `${MARIN_CRIME_BASE_URL}?$where${""}`
-    // console.log("getCrimes: ", {url})
 
-// latitude > 38 AND latitude < 38.1
-// latitude > 38 AND latitude < 38.1
+    const dateProps: iBetweenProps = {
+      max: dateRangeClean(dateRange[1]),
+      min: dateRangeClean(dateRange[0]),
+      param: "incident_date_time",
+    }
+
+    const maxMinLatLong = calcMaxMinLatLong({
+      lat:focalLatLong[0],
+      lon:focalLatLong[1],
+    })
+
+    const latProps: iBetweenProps = {
+      max: maxMinLatLong.max[0].toString(),
+      min: maxMinLatLong.min[0].toString(),
+      param: "latitude",
+    }
+
+    const longProps: iBetweenProps = {
+      max: maxMinLatLong.max[1].toString(),
+      min: maxMinLatLong.min[1].toString(),
+      param: "longitude",
+    }
+
+    qStrings.push(whereString.betweenISOStrings(dateProps))
+
+    const props = [latProps, longProps]
+    props.forEach(prop => {
+      qStrings.push(whereString.betweenNums(prop))
+    })
+
+    const selects = [
+      "longitude",
+      "latitude",
+      "incident_street_address",
+      "incident_city_town",
+      "crime",
+      "incident_date_time"
+    ]
+
+    const url = `${MARIN_CRIME_BASE_URL}?$select=${selects.join(", ")}&$where=${qStrings.join(" AND ")}`
 
     const data = fetch(url)
     .then(response => response.json())
     .then(result => {
       return result
     })
+    console.log("crimes", data)
     return data
   } catch (error) {
     console.error(`ERROR getCrimes(${queries}): ${error}`)

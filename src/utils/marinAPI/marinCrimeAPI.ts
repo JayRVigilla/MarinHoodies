@@ -139,7 +139,3 @@ type tWhereStringProps = {
   from?: Date;
   to?: Date;
 }
-
-export const whereString = ({ }) => {
-
-}
