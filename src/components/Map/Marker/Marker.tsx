@@ -21,7 +21,15 @@ export interface iMarkerProps {
  * - ParkRangerMarker -
  */
 
-export const CrimeMarker = ({ longitude, latitude, incident_street_address, incident_city_town, crime, incident_date_time }: iCrimeLocationMarker) => {
+export const CrimeMarker = ({
+  longitude,
+  latitude,
+  incident_street_address,
+  incident_city_town,
+  crime,
+  incident_date_time,
+  unique_id
+}: iCrimeLocationMarker) => {
 
   const crimeMarkerIcon = new DivIcon({
     html: renderToStaticMarkup(<LocalPolice/>),
@@ -32,8 +40,10 @@ export const CrimeMarker = ({ longitude, latitude, incident_street_address, inci
 
   return (
     <Marker
+      key={unique_id}
       icon={crimeMarkerIcon}
-      position={[parseFloat(latitude), parseFloat(longitude)]}>
+      // position={[parseFloat(latitude), parseFloat(longitude)]}>
+      position={[latitude, longitude]}>
       <Popup>
           {CRIME_ABBREVIATION_TO_DESCRIPTION[crime] ?
             startCase(CRIME_ABBREVIATION_TO_DESCRIPTION[crime].toLowerCase()) :
@@ -81,7 +91,8 @@ placard
   return (
     <Marker
       icon={markerIcon(placard)}
-      position={[parseFloat(latitude), parseFloat(longitude)]}>
+      // position={[parseFloat(latitude), parseFloat(longitude)]}>
+      position={[latitude, longitude]}>
       <Popup>
         {startCase(business_name?.toLowerCase())}
         <br />
@@ -106,7 +117,8 @@ export const MaxMinMarker = ({latitude, longitude, type="max-min"}: iLocationMar
   return (
     <Marker
       opacity={0.4}
-        position={[parseFloat(latitude),parseFloat(longitude)]}>
+      // position={[parseFloat(latitude),parseFloat(longitude)]}>
+      position={[latitude, longitude]}>
     </Marker>
   )
 }

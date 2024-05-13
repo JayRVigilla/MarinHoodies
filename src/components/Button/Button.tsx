@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 import "./styles.css";
 
 
-export interface ButtonProps {
+export interface iButtonProps {
   "data-test-id"?: string;
   child?: ReactNode;
   label?: string;
@@ -17,7 +17,7 @@ export const Button = ({
   label,
   onClick,
   disabled = false
-}: ButtonProps) => {
+}: iButtonProps) => {
 
   return (
     <button className="button root"

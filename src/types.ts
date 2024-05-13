@@ -15,3 +15,5 @@ export type tObjectStringToString = {
 export type tObjectStringToStringArray = {
   [key: string]: string[];
 }
+
+export type tLatitudeLongitudeCoords = [number, number]; // floats for lat, long

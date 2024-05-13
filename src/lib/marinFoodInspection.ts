@@ -3,16 +3,14 @@ import { calcMaxMinLatLong } from "../utils";
 import { dateRangeClean, iBetweenProps, whereString } from "../utils/marinAPI";
 import { MARIN_FOOD_INSPECTION_BASE_URL } from "../utils/marinAPI/marinFoodInspectionAPI";
 
-// export type tFoodInspectionQueries = string
 export type tFoodInspectionProps = {
   dateRange: [string, string]; // [MinISOString, MaxISOString]
-  focalLatLong: [string, string]; // [lat,long] float strings
+  // focalLatLong: [string, string]; // [lat,long] float strings
+  focalLatLong: [number, number]; // [lat,long] float strings
 }
 
 export const getFoodInspections = async (queries: tFoodInspectionProps) => {
   try {
-    // TODO: queries should be object, create $where string here
-
     /**
      * TODO:
      * cityName used in 'upper(business_city) = cityName.toUppercase()
@@ -69,6 +67,7 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
       "corrected_on_site",
       "violation_description",
       "placard",
+      "business_id"
     ]
 
 

@@ -3,20 +3,20 @@ import "./page.css";
 import { Map } from "../components/Map";
 import { CrimeSearchForm } from "../components/Forms/CrimeSearchForm";
 import { useEffect, useState } from "react";
-import { tCrime } from "../utils/marinAPI/marinCrimeAPI";
 import { getFoodInspections } from "../lib/marinFoodInspection";
-import { iFoodInspectionMarker } from "../components/Map/Marker/types";
+import { iCrimeLocationMarker, iFoodInspectionMarker } from "../components/Map/Marker/types";
 import { PropertySearchForm } from "../components/Forms/PropertySearchForm";
-import { homeCords } from "../constants";
+import { homeCords, tCoordsObject } from "../constants";
 import { subDays } from 'date-fns';
 
 
 export default function Home() {
-  const [crimes, setCrimes] = useState<tCrime[]>([])
+  const [crimes, setCrimes] = useState<iCrimeLocationMarker[]>([])
   const [foodInspections, setFoodInspections] = useState<iFoodInspectionMarker[]>([])
+  const [locationLatLong, setLocationLatLong] = useState<tCoordsObject>()
 
   useEffect(() => {
-    const min = subDays(Date.now(), 60).toISOString().slice(0, -1)
+    const min = subDays(Date.now(), 90).toISOString().slice(0, -1)
     const max = new Date(Date.now()).toISOString().slice(0, -1)
 
     const fetchFoodInspections = async() => {
@@ -33,13 +33,16 @@ export default function Home() {
     <div className="home root">
       <h1>Lauren Ipsom Realty</h1>
       <CrimeSearchForm setCrimes={setCrimes} />
-      <PropertySearchForm />
+      <PropertySearchForm
+        setLocationLatLong={setLocationLatLong}
+      />
       <div className="map-container">
 
-        <Map
+        {locationLatLong && <Map
           crimes={crimes}
           foodInspections={foodInspections}
-        />
+          locationLatLong={locationLatLong}
+        />}
 
       </div>
     </div>

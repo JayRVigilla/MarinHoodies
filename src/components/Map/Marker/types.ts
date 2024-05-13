@@ -1,7 +1,9 @@
 export interface iLocationMarker {
   type: "crime"| "ems" | "food-inspection" | "park-ranger" | "max-min"
-  longitude: string;
-  latitude: string;
+  // longitude: string;
+  longitude: number;
+  // latitude: string;
+  latitude: number;
 }
 
 export interface iCrimeLocationMarker extends iLocationMarker {
@@ -9,13 +11,14 @@ export interface iCrimeLocationMarker extends iLocationMarker {
   incident_street_address: string;
   incident_city_town: string;
   incident_date_time: string;
+  unique_id: string;
 }
 export interface iFoodInspectionMarker extends iLocationMarker {
   business_name: string;
   formatted_address: string;
   // business_city: string;
-  latitude: string, // floats as strings
-  longitude: string, // floats as strings
+  // latitude: string, // floats as strings
+  // longitude: string, // floats as strings
   inspection_date: string;
   inspection_type: "Routine" | "Follow-up";
   inspector: string;
@@ -27,6 +30,7 @@ export interface iFoodInspectionMarker extends iLocationMarker {
   corrected_on_site: "No" | "Yes";
   violation_description: string;
   placard: "GREEN" | "YELLOW" | "RED" | "NA" | " ";
+
 }
 
 export interface iFoodInspectionAPIInspection {

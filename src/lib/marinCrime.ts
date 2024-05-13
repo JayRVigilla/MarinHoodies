@@ -1,6 +1,7 @@
 import { dateRangeClean, iBetweenProps, whereString } from "../utils/marinAPI";
-import { MARIN_CRIME_BASE_URL } from "../utils/marinAPI/marinCrimeAPI";
+import { MARIN_CRIME_BASE_URL, tCrime } from "../utils/marinAPI/marinCrimeAPI";
 import { calcMaxMinLatLong } from "../utils";
+import { iCrimeLocationMarker } from "../components/Map/Marker/types";
 
 
 export type tCrimeQueries = {
@@ -10,7 +11,8 @@ export type tCrimeQueries = {
   incident_city_town_mapping?: string;
   $where?: string;
   dateRange: [string, string]; // [MinISOString, MaxISOString]
-  focalLatLong: [string, string]; // [lat,long] float strings
+  // focalLatLong: [string, string]; // [lat,long] float strings
+  focalLatLong: [number, number]; // [lat,long] float strings
 }
 
 export const getCrimes = async (queries: tCrimeQueries) => {
@@ -60,12 +62,31 @@ export const getCrimes = async (queries: tCrimeQueries) => {
 
     const url = `${MARIN_CRIME_BASE_URL}?$select=${selects.join(", ")}&$where=${qStrings.join(" AND ")}`
 
-    const data = fetch(url)
+    const data: Promise<iCrimeLocationMarker[]> = fetch(url)
     .then(response => response.json())
-    .then(result => {
-      return result
+      .then(result => {
+        const crimes: iCrimeLocationMarker[] = []
+        result.forEach((d: tCrime) => {
+          crimes.push(
+            {
+              type: "crime",
+              ...d,
+              longitude: parseFloat(d.longitude!),
+              latitude: parseFloat(d.latitude!)
+            }
+          )
+
+      })
+
+      // return result
+      return crimes
     })
-    console.log("crimes", data)
+
+    // console.log("crimes", data)
+    // data.forEach(d => {
+    //   data.longitude = parseFloat(data.longitude)
+    //   data.latitude = parseFloat(data.latitude)
+    // })
     return data
   } catch (error) {
     console.error(`ERROR getCrimes(${queries}): ${error}`)

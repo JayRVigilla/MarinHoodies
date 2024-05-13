@@ -1,69 +1,96 @@
 /** Map documentation
  */
-// "use client"
-import React from "react";
-import { MapContainer, TileLayer } from 'react-leaflet'
+"use client"
+import React, { useEffect } from "react";
+import { MapContainer, TileLayer, useMap } from 'react-leaflet'
 import "leaflet/dist/leaflet.css" // !! leaflet CSS: REQUIRED.
 import "leaflet-defaulticon-compatibility"
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css"
 import { CrimeMarker, MaxMinMarker, RestaurantMarker } from "./Marker/Marker";
 
-import { tCrime } from "@/src/utils/marinAPI/marinCrimeAPI";
-
 import "./styles.css";
-import { iFoodInspectionMarker } from "./Marker/types";
+import { iCrimeLocationMarker, iFoodInspectionMarker } from "./Marker/types";
 import { Marker } from 'react-leaflet'
 import { calcMaxMinLatLongCorners, coordsObjToLatLngExp } from "@/src/utils";
-import { homeCords, kinrossCords } from "@/src/constants";
+import { homeCords, kinrossCords, tCoordsObject } from "@/src/constants";
+import { PanOptions } from "leaflet";
 
 
 export interface MapProps {
   "data-test-id"?: string;
-  crimes: tCrime[];
-  foodInspections: iFoodInspectionMarker[]
+  // crimes: tCrime[];
+  crimes: iCrimeLocationMarker[];
+  foodInspections: iFoodInspectionMarker[];
+  locationLatLong: tCoordsObject;
 }
 
-const maxMins = calcMaxMinLatLongCorners(homeCords)
-const target = coordsObjToLatLngExp(homeCords)
+// const target = coordsObjToLatLngExp(homeCords)
 
 
-export const Map = ({ crimes, foodInspections }: MapProps) => {
+export const Map = ({ crimes, foodInspections, locationLatLong }: MapProps) => {
+  const maxMins = locationLatLong ? calcMaxMinLatLongCorners(locationLatLong) : undefined
+
+  const MapInstance = () => {
+
+    const map = useMap()
+
+    const panOptions: PanOptions = {
+      animate: true,
+      duration: 1,
+    }
+
+    // animates the change of address
+    useEffect(() => {
+      map.panTo(coordsObjToLatLngExp(locationLatLong), panOptions)
+    },[locationLatLong])
+    return null
+  }
+
+
   return (
     <MapContainer
       className="map root"
-
       // centered on address, without marker
-      center={target}
+      center={coordsObjToLatLngExp(locationLatLong)}
       zoom={15}
       scrollWheelZoom={false}>
-  <TileLayer
+      <MapInstance />
+    <TileLayer
     attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
-    <Marker
-        position={target}>
-    </Marker>
+
+      {/* Target Address Marker */}
+      {locationLatLong && maxMins && <Marker
+        position={coordsObjToLatLngExp(locationLatLong)}>
+
+      {/* DEV use: shows lat/long boundaries */}
       {maxMins.length && maxMins.map(coord => {
-        return <MaxMinMarker
-          longitude={coord.lon}
-          latitude={coord.lat}
-          type="max-min"
-        />
+        return (
+          <MaxMinMarker
+            longitude={coord.lon}
+            latitude={coord.lat}
+            type="max-min"
+            key={`${coord.lon}-${coord.lat}`}
+        />)
       })}
 
+      </Marker>}
 
       {crimes.length && crimes.map(c => {
         if(c?.longitude && c?.latitude)
         return (
           <CrimeMarker
-            type="crime"
+            // type="crime"
+            type={c.type}
             longitude={c.longitude}
             latitude={c.latitude}
             incident_street_address={c.incident_street_address}
             incident_city_town={c.incident_city_town}
             crime={c.crime}
             incident_date_time={c.incident_date_time}
-            key={c.unique_id}
+            // key={c.unique_id}
+            unique_id={c.unique_id}
           />
         )
       })}

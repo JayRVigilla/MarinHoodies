@@ -1,7 +1,7 @@
 /** CrimeSearchForm documentation
  */
 "use client"
-import {Dispatch, useCallback, useState} from 'react'
+import {Dispatch, SetStateAction, useCallback, useState} from 'react'
 import "./styles.css";
 import { Button } from '../../Button';
 import { getCrimes } from '@/src/lib/marinCrime';
@@ -11,12 +11,12 @@ import { DatePicker } from '../../DatePicker';
 import { subDays } from 'date-fns';
 import isEqual from "lodash/isEqual"
 import { DATE_RANGE_OPTIONS, DATE_RANGE_OPTIONS_LABELS, homeCords } from '@/src/constants';
-import { DateRange, FormatShapes } from '@mui/icons-material';
-import { iMaxMin } from '@/src/utils/marinAPI';
+import { iCrimeLocationMarker } from '../../Map/Marker/types';
 
 export interface iCrimeSearchFormProps {
   "data-test-id"?: string;
-  setCrimes: Dispatch<tCrime[]>
+  // setCrimes: Dispatch<tCrime[]>
+  setCrimes: Dispatch<SetStateAction<iCrimeLocationMarker[]>>;
 }
 
 type tFormState = {
@@ -42,7 +42,7 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
   // * state
   const [formState, setFormState] = useState<tFormState>(INITIAL_FORM_STATE);
   const [whereFilter, setWhereFilter] = useState<string|undefined>(undefined);
-  const [results, setResults] = useState<number | undefined>(undefined)
+  // const [results, setResults] = useState<number | undefined>(undefined)
 
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -56,8 +56,8 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
       ...formState,
       focalLatLong: [homeCords.lat, homeCords.lon]
     })
-    setResults(data.length)
-    setCrimes(data)
+    // setResults(data.length)
+    setCrimes(data!)
   }, [formState, whereFilter])
 
   return (
@@ -148,6 +148,6 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
       />
     </div>
 
-    {typeof results === "number" && <p>{`Found ${results} results`}</p> }
+    {/* {typeof results === "number" && <p>{`Found ${results} results`}</p> } */}
   </form>);
 };
