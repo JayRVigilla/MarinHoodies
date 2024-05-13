@@ -32,7 +32,14 @@ export const PropertySearchForm = ({setLocationLatLong}: iPropertySearchFormProp
     event.preventDefault()
     if(!address && !city && !state)return
     const data = await getLongLatFromAddress({ address, city, state })
-    if(data) setLocationLatLong(data)
+    if (data) setLocationLatLong(data)
+
+    /**
+     * TODO:
+     * - add search for Crime and FoodInspections
+     * - add Date Range time selectors
+     */
+
   }, [address, city, state])
 
   return (
