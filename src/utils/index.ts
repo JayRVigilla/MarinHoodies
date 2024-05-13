@@ -1,17 +1,12 @@
 import { LatLngExpression, LatLngTuple } from "leaflet";
 import { tCoordsObject } from "../constants";
 
-// type tCoordsObject = {
-//   lat: string;
-//   lon: string;
-// }
 
 export const roundStringToFloat = (floatString: string, places: number) => {
   return parseFloat(parseFloat(floatString).toFixed(places))
 }
 
 export const coordsObjToLatLngExp = (coords: tCoordsObject) => {
-  // return [parseFloat(coords.lat), parseFloat(coords.lon)] as LatLngTuple
   return [coords.lat, coords.lon] as LatLngTuple
 }
 
@@ -44,7 +39,5 @@ export const calcMaxMinLatLongCorners = (coords: tCoordsObject): tMaxMinTuple =>
     { lat: (latLong[0] + DIFF), lon: (latLong[1] + DIFF) },
     { lat: (latLong[0] - DIFF), lon: (latLong[1] + DIFF) },
 ]
-// console.log([{ lat: (latLong[0] + DIFF).toString(), lon: (latLong[1] + DIFF).toString() },
-//     { lat: (latLong[0] - DIFF).toString(), lon: (latLong[1] + DIFF).toString() }])
   return result
 }

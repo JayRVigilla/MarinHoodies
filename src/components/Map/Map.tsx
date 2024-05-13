@@ -12,19 +12,16 @@ import "./styles.css";
 import { iCrimeLocationMarker, iFoodInspectionMarker } from "./Marker/types";
 import { Marker } from 'react-leaflet'
 import { calcMaxMinLatLongCorners, coordsObjToLatLngExp } from "@/src/utils";
-import { homeCords, kinrossCords, tCoordsObject } from "@/src/constants";
+import { tCoordsObject } from "@/src/constants";
 import { PanOptions } from "leaflet";
 
 
 export interface MapProps {
   "data-test-id"?: string;
-  // crimes: tCrime[];
   crimes: iCrimeLocationMarker[];
   foodInspections: iFoodInspectionMarker[];
   locationLatLong: tCoordsObject;
 }
-
-// const target = coordsObjToLatLngExp(homeCords)
 
 
 export const Map = ({ crimes, foodInspections, locationLatLong }: MapProps) => {
@@ -89,7 +86,6 @@ export const Map = ({ crimes, foodInspections, locationLatLong }: MapProps) => {
             incident_city_town={c.incident_city_town}
             crime={c.crime}
             incident_date_time={c.incident_date_time}
-            // key={c.unique_id}
             unique_id={c.unique_id}
           />
         )

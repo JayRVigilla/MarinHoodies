@@ -5,7 +5,6 @@ import { MARIN_FOOD_INSPECTION_BASE_URL } from "../utils/marinAPI/marinFoodInspe
 
 export type tFoodInspectionProps = {
   dateRange: [string, string]; // [MinISOString, MaxISOString]
-  // focalLatLong: [string, string]; // [lat,long] float strings
   focalLatLong: [number, number]; // [lat,long] float strings
 }
 

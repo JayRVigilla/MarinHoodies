@@ -15,7 +15,6 @@ import { iCrimeLocationMarker } from '../../Map/Marker/types';
 
 export interface iCrimeSearchFormProps {
   "data-test-id"?: string;
-  // setCrimes: Dispatch<tCrime[]>
   setCrimes: Dispatch<SetStateAction<iCrimeLocationMarker[]>>;
 }
 
@@ -24,7 +23,6 @@ type tFormState = {
   crime: string;
   incident_city_town: string;
   dateRange: [string, string]; // [MinISOString, MaxISOString]
-  // whereFilter: string,
   limit?: string | number;
   offset?: string | number;
 }
@@ -36,13 +34,10 @@ const INITIAL_FORM_STATE: tFormState = {
   dateRange: ["", ""]
 }
 
-type tWhereObject = { min: string, max: string }
-
 export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
   // * state
   const [formState, setFormState] = useState<tFormState>(INITIAL_FORM_STATE);
   const [whereFilter, setWhereFilter] = useState<string|undefined>(undefined);
-  // const [results, setResults] = useState<number | undefined>(undefined)
 
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {

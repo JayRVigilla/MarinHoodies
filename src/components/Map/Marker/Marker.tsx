@@ -42,7 +42,6 @@ export const CrimeMarker = ({
     <Marker
       key={unique_id}
       icon={crimeMarkerIcon}
-      // position={[parseFloat(latitude), parseFloat(longitude)]}>
       position={[latitude, longitude]}>
       <Popup>
           {CRIME_ABBREVIATION_TO_DESCRIPTION[crime] ?
@@ -60,8 +59,6 @@ export const CrimeMarker = ({
 }
 
 export const RestaurantMarker = ({
-  // business_city,
-  // inspection_results,
 business_name,
 formatted_address,
 latitude,
@@ -76,7 +73,6 @@ is_major_violation,
 correct_by_date,
 corrected_on_site,
 violation_description,
-// violation_code,
 placard
  }: iFoodInspectionMarker) => {
 
@@ -91,7 +87,6 @@ placard
   return (
     <Marker
       icon={markerIcon(placard)}
-      // position={[parseFloat(latitude), parseFloat(longitude)]}>
       position={[latitude, longitude]}>
       <Popup>
         {startCase(business_name?.toLowerCase())}
@@ -117,7 +112,6 @@ export const MaxMinMarker = ({latitude, longitude, type="max-min"}: iLocationMar
   return (
     <Marker
       opacity={0.4}
-      // position={[parseFloat(latitude),parseFloat(longitude)]}>
       position={[latitude, longitude]}>
     </Marker>
   )

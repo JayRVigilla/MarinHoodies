@@ -11,7 +11,6 @@ export type tCrimeQueries = {
   incident_city_town_mapping?: string;
   $where?: string;
   dateRange: [string, string]; // [MinISOString, MaxISOString]
-  // focalLatLong: [string, string]; // [lat,long] float strings
   focalLatLong: [number, number]; // [lat,long] float strings
 }
 
@@ -78,15 +77,8 @@ export const getCrimes = async (queries: tCrimeQueries) => {
 
       })
 
-      // return result
       return crimes
     })
-
-    // console.log("crimes", data)
-    // data.forEach(d => {
-    //   data.longitude = parseFloat(data.longitude)
-    //   data.latitude = parseFloat(data.latitude)
-    // })
     return data
   } catch (error) {
     console.error(`ERROR getCrimes(${queries}): ${error}`)

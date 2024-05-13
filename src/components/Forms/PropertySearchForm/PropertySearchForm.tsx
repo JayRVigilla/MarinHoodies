@@ -4,15 +4,12 @@
 import {useCallback, useState, Dispatch} from 'react'
 import "./styles.css";
 import { TextInput } from '../../TextInput';
-// import { getPropertyByAddress } from '@/src/lib/attom';
 import { Button } from '../../Button';
-// import { add } from 'date-fns';
 import { getLongLatFromAddress } from '@/src/lib/positionstack';
 import { tCoordsObject } from '@/src/constants';
 
 export interface iPropertySearchFormProps {
   "data-test-id"?: string;
-  // setTargetLatLong: Dispatch<tCoordsObject>;
   setLocationLatLong: Dispatch<tCoordsObject>;
 
 }
@@ -22,7 +19,6 @@ export const PropertySearchForm = ({setLocationLatLong}: iPropertySearchFormProp
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
-  // const [zipCode, setZipCode] = useState("");
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
@@ -47,7 +43,6 @@ export const PropertySearchForm = ({setLocationLatLong}: iPropertySearchFormProp
     <span className='input-group'>
       <TextInput value={city } placeholder='' setValue={setCity } label="city" />
       <TextInput value={state } placeholder='' setValue={setState } label="state" />
-      {/** <TextInput value={zipCode} placeholder='' setValue={setZipCode} label="zip code" /> */}
     </span>
 
     <div className='action-buttons'>
