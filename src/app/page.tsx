@@ -1,12 +1,10 @@
 "use client"
 import "./page.css";
 import { Map } from "../components/Map";
-import { useEffect, useState } from "react";
-import { getFoodInspections } from "../lib/marinFoodInspection";
+import { useState } from "react";
 import { iCrimeLocationMarker, iFoodInspectionMarker } from "../components/Map/Marker/types";
 import { PropertySearchForm } from "../components/PropertySearchForm";
-import { homeCords, tCoordsObject } from "../constants";
-import { subDays } from 'date-fns';
+import { tCoordsObject } from "../constants";
 
 
 export default function Home() {
@@ -18,6 +16,10 @@ export default function Home() {
     <div className="home root">
       <h1>Lauren Ipsom Realty</h1>
       {/* TODO: explain the premise */}
+      <div className="into-content">
+        
+      </div>
+
       <PropertySearchForm
         setLocationLatLong={setLocationLatLong}
         setFoodInspections={setFoodInspections}
