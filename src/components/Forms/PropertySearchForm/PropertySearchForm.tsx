@@ -6,10 +6,8 @@ import "./styles.css";
 import { TextInput } from '../../TextInput';
 import { Button } from '../../Button';
 import { getLongLatFromAddress } from '@/src/lib/positionstack';
-import { DATE_RANGE_OPTIONS, DATE_RANGE_OPTIONS_LABELS, tCoordsObject } from '@/src/constants';
-import { DropdownSelector } from '../../DropdownSelector';
-import { DatePicker } from '../../DatePicker';
-import { subDays } from 'date-fns';
+import { tCoordsObject } from '@/src/constants';
+import { DateRangeSelector } from '../../DateRangeSelector/DateRangeSelector';
 
 export interface iPropertySearchFormProps {
   "data-test-id"?: string;
@@ -49,52 +47,20 @@ export const PropertySearchForm = ({setLocationLatLong}: iPropertySearchFormProp
   return (
     <form className='property-search-form'>
 
-    <TextInput value={address} placeholder='' setValue={setAddress} label="address" />
 
+      <TextInput value={address} placeholder='' setValue={setAddress} label="address" />
     <span className='input-group'>
       <TextInput value={city } placeholder='' setValue={setCity } label="city" />
       <TextInput value={state } placeholder='' setValue={setState } label="state" />
     </span>
 
-      <span className='input-group date-range'>
-          <DropdownSelector
-            label="date range"
-            value={whereFilter}
-            onChange={(event) => {
-              const value = event.target.value
-              setWhereFilter(value)
-              // handle 30/60/90 day Date Range selection
-                if (value && typeof DATE_RANGE_OPTIONS[value] !== "string"){
-                  const min = subDays(Date.now(), DATE_RANGE_OPTIONS[value] as number).toISOString().slice(0, -1)
-                  const max = new Date(Date.now()).toISOString().slice(0, -1)
+      <DateRangeSelector
+        whereFilter={whereFilter}
+        setWhereFilter={setWhereFilter}
+        dateRange={dateRange}
+        setDateRange={setDateRange}
+      />
 
-                  setDateRange([min, max])
-                }
-            }}
-            options={Object.values(DATE_RANGE_OPTIONS_LABELS)}
-          />
-
-          {whereFilter === DATE_RANGE_OPTIONS_LABELS.CUSTOM &&
-            <span className='input-group'>
-
-          <DatePicker
-            label="min"
-            value={dateRange[0]}
-            onChange={(event)=> {
-              ([event.target.value, dateRange[1]])
-            }}
-            />
-          <DatePicker
-            label="max"
-            value={dateRange[1]}
-            onChange={(event)=> {
-              ([dateRange[0], event.target.value] )
-            }}
-            />
-            </span>
-          }
-
-        </span>
 
     <div className='action-buttons'>
 

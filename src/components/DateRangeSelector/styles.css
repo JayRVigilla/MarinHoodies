@@ -1,0 +1,7 @@
+span.DateRangeSelector.date-range{
+      display: flex;
+
+      span.date-group{
+        display: flex;
+      }
+    }
