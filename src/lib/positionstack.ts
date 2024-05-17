@@ -18,10 +18,13 @@ state,
 
     const response = await fetch(url)
     const res = await response.json()
-    const data = res.data?.[0]
 
-    const { longitude, latitude } = data
-    return {lon: longitude, lat: latitude}
+    if (res) {
+      const data = res.data?.[0]
+
+      const { longitude, latitude } = data
+      return { lon: longitude, lat: latitude }
+    }
 
   } catch (error) {
     console.error(`ERROR getLongLatFromAddress (${address}): ${error}`)

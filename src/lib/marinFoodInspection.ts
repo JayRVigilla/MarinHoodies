@@ -93,6 +93,7 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
             corrected_on_site: inspection.corrected_on_site,
             violation_description: inspection.violation_description,
             placard: inspection.placard,
+            business_id: inspection.business_id,
           }
           result.push(newMarkerData)
         }
@@ -102,6 +103,6 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
 
     return data
   } catch (error) {
-    console.error(`ERROR getFoodInspection (${queries}): ${error}`)
+    console.error(`ERROR getFoodInspection (${JSON.stringify(queries)}): \n** ${error}`)
   }
 }

@@ -8,21 +8,24 @@ import { Button } from '../../Button';
 import { getLongLatFromAddress } from '@/src/lib/positionstack';
 import { tCoordsObject } from '@/src/constants';
 import { DateRangeSelector } from '../../DateRangeSelector/DateRangeSelector';
+import { iCrimeLocationMarker, iFoodInspectionMarker } from '../../Map/Marker/types';
+import { getFoodInspections } from '@/src/lib/marinFoodInspection';
 
 export interface iPropertySearchFormProps {
   "data-test-id"?: string;
   setLocationLatLong: Dispatch<tCoordsObject>;
-
+  setFoodInspections: Dispatch<iFoodInspectionMarker[]>;
+  setCrimes: Dispatch<iCrimeLocationMarker[]>;
 }
 
-export const PropertySearchForm = ({setLocationLatLong}: iPropertySearchFormProps) => {
+export const PropertySearchForm = ({setLocationLatLong, setFoodInspections, setCrimes}: iPropertySearchFormProps) => {
   // * state
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [whereFilter, setWhereFilter] = useState<string | undefined>(undefined);
   // Using lat,long from Wikipedia for Marin County
-  const [dateRange, setDateRange] = useState<[string, string]>(["38.04","-122.74"]); // [MinISOString, MaxISOString]
+  const [dateRange, setDateRange] = useState<[string, string]>(["",""]); // [MinISOString, MaxISOString]
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
@@ -34,15 +37,21 @@ export const PropertySearchForm = ({setLocationLatLong}: iPropertySearchFormProp
 
   const submitSearch = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if(!address && !city && !state)return
-    const data = await getLongLatFromAddress({ address, city, state })
-    if (data) setLocationLatLong(data)
+    if(!address && !city && !state) return
+    const locationData = await getLongLatFromAddress({ address, city, state })
+    if (locationData) {
+      setLocationLatLong(locationData)
 
-    // TODO: add search for Crime and FoodInspections
+      // TODO: add search for Crime
+      const inspectionsData = await getFoodInspections({
+        dateRange: dateRange,
+        focalLatLong: [locationData.lat, locationData.lon]
+      })
+      if(inspectionsData) setFoodInspections(inspectionsData)
 
 
-
-  }, [address, city, state])
+      }
+  }, [address, city, state, dateRange])
 
   return (
     <form className='property-search-form'>

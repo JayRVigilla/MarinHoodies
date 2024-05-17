@@ -110,6 +110,8 @@ export const Map = ({ crimes, foodInspections, locationLatLong }: MapProps) => {
             corrected_on_site={fi.corrected_on_site}
             violation_description={fi.violation_description}
             placard={fi.placard}
+            business_id={fi.business_id}
+
           />
         )
       })}
