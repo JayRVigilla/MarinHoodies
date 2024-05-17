@@ -4,7 +4,7 @@ import { Map } from "../components/Map";
 import { useEffect, useState } from "react";
 import { getFoodInspections } from "../lib/marinFoodInspection";
 import { iCrimeLocationMarker, iFoodInspectionMarker } from "../components/Map/Marker/types";
-import { PropertySearchForm } from "../components/Forms/PropertySearchForm";
+import { PropertySearchForm } from "../components/PropertySearchForm";
 import { homeCords, tCoordsObject } from "../constants";
 import { subDays } from 'date-fns';
 

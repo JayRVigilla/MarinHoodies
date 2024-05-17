@@ -3,12 +3,12 @@
 "use client"
 import {useCallback, useState, Dispatch} from 'react'
 import "./styles.css";
-import { TextInput } from '../../TextInput';
-import { Button } from '../../Button';
+import { TextInput } from '../TextInput';
+import { Button } from '../Button';
 import { getLongLatFromAddress } from '@/src/lib/positionstack';
 import { tCoordsObject } from '@/src/constants';
-import { DateRangeSelector } from '../../DateRangeSelector/DateRangeSelector';
-import { iCrimeLocationMarker, iFoodInspectionMarker } from '../../Map/Marker/types';
+import { DateRangeSelector } from '../DateRangeSelector/DateRangeSelector';
+import { iCrimeLocationMarker, iFoodInspectionMarker } from '../Map/Marker/types';
 import { getFoodInspections } from '@/src/lib/marinFoodInspection';
 import { getCrimes } from '@/src/lib/marinCrime';
 
