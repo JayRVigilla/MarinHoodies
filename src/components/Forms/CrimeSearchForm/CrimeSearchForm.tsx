@@ -51,7 +51,6 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
       ...formState,
       focalLatLong: [homeCords.lat, homeCords.lon]
     })
-    // setResults(data.length)
     setCrimes(data!)
   }, [formState, whereFilter])
 

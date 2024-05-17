@@ -14,23 +14,10 @@ export default function Home() {
   const [foodInspections, setFoodInspections] = useState<iFoodInspectionMarker[]>([])
   const [locationLatLong, setLocationLatLong] = useState<tCoordsObject>()
 
-  // useEffect(() => {
-  //   const min = subDays(Date.now(), 90).toISOString().slice(0, -1)
-  //   const max = new Date(Date.now()).toISOString().slice(0, -1)
-
-  //   const fetchFoodInspections = async() => {
-  //     const data = await getFoodInspections({
-  //       dateRange: [min, max],
-  //       focalLatLong: [homeCords.lat, homeCords.lon]
-  //     })
-  //     if(data) setFoodInspections(data)
-  //   }
-  //   if (crimes.length) fetchFoodInspections()
-  // },[crimes])
-
   return (
     <div className="home root">
       <h1>Lauren Ipsom Realty</h1>
+      {/* TODO: explain the premise */}
       <PropertySearchForm
         setLocationLatLong={setLocationLatLong}
         setFoodInspections={setFoodInspections}
