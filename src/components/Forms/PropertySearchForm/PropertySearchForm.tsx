@@ -10,6 +10,7 @@ import { tCoordsObject } from '@/src/constants';
 import { DateRangeSelector } from '../../DateRangeSelector/DateRangeSelector';
 import { iCrimeLocationMarker, iFoodInspectionMarker } from '../../Map/Marker/types';
 import { getFoodInspections } from '@/src/lib/marinFoodInspection';
+import { getCrimes } from '@/src/lib/marinCrime';
 
 export interface iPropertySearchFormProps {
   "data-test-id"?: string;
@@ -42,14 +43,17 @@ export const PropertySearchForm = ({setLocationLatLong, setFoodInspections, setC
     if (locationData) {
       setLocationLatLong(locationData)
 
-      // TODO: add search for Crime
       const inspectionsData = await getFoodInspections({
         dateRange: dateRange,
         focalLatLong: [locationData.lat, locationData.lon]
       })
       if(inspectionsData) setFoodInspections(inspectionsData)
 
-
+      const crimeData = await getCrimes({
+        dateRange: dateRange,
+        focalLatLong: [locationData.lat, locationData.lon]
+      })
+      setCrimes(crimeData!)
       }
   }, [address, city, state, dateRange])
 
