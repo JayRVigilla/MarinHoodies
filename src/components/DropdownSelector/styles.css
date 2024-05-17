@@ -10,9 +10,10 @@ span.dropdown-selector.root{
   select {
     padding: 4px 6px;
     background-color: white;
+    border-radius: 6px;
 
     &:focus{
-      outline: orange solid 2px;
+      outline: orange dashed 1px;
   outline-offset: 2px;
      }
   }

@@ -25,8 +25,8 @@ export const PropertySearchForm = ({setLocationLatLong, setFoodInspections, setC
   const [city, setCity] = useState("");
   const [state, setState] = useState("");
   const [whereFilter, setWhereFilter] = useState<string | undefined>(undefined);
-  // Using lat,long from Wikipedia for Marin County
-  const [dateRange, setDateRange] = useState<[string, string]>(["",""]); // [MinISOString, MaxISOString]
+  // [MinISOString, MaxISOString]
+  const [dateRange, setDateRange] = useState<[string, string]>(["", ""]);
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
