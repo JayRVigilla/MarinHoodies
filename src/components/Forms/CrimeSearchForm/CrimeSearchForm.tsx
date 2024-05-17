@@ -142,6 +142,5 @@ export const CrimeSearchForm = ({setCrimes}: iCrimeSearchFormProps) => {
       />
     </div>
 
-    {/* {typeof results === "number" && <p>{`Found ${results} results`}</p> } */}
   </form>);
 };

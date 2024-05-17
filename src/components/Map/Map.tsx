@@ -64,7 +64,8 @@ export const Map = ({
         {locationLatLong && maxMins && <Marker
           position={coordsObjToLatLngExp(locationLatLong)}>
 
-        {/* DEV use: shows lat/long boundaries */}
+          {/* DEV use: shows lat/long boundaries */}
+          {/* TODO: Turn this into a Pane */}
         {maxMins.length && maxMins.map(coord => {
           return (
             <MaxMinMarker
