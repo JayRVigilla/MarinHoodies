@@ -24,39 +24,43 @@ export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
   // * state
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
-  const [state, setState] = useState("");
-  const [whereFilter, setWhereFilter] = useState<string | undefined>(undefined);
+  // const [state, setState] = useState("");
+  // const [whereFilter, setWhereFilter] = useState<string | undefined>(undefined);
   // [MinISOString, MaxISOString]
-  const [dateRange, setDateRange] = useState<[string, string]>(["", ""]);
+  // const [dateRange, setDateRange] = useState<[string, string]>(["", ""]);
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if(!address && !city && !state)return
+    // if(!address && !city && !state)return
+    if(!address && !city )return
     setAddress("")
     setCity("")
-    setState("")
+    // setState("")
   }
 
   const submitSearch = useCallback(async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
-    if(!address && !city && !state) return
-    const locationData = await getLongLatFromAddress({ address, city, state })
+    // if(!address && !city && !state) return
+    if(!address && !city) return
+    const locationData = await getLongLatFromAddress({ address, city, state: "CA" })
     if (locationData) {
+      console.log(locationData)
       // setLocationLatLong(locationData)
 
-      const inspectionsData = await getFoodInspections({
-        dateRange: dateRange,
-        focalLatLong: [locationData.lat, locationData.lon]
-      })
+      // const inspectionsData = await getFoodInspections({
+      //   dateRange: dateRange,
+      //   focalLatLong: [locationData.lat, locationData.lon]
+      // })
       // if(inspectionsData) setFoodInspections(inspectionsData)
 
-      const crimeData = await getCrimes({
-        dateRange: dateRange,
-        focalLatLong: [locationData.lat, locationData.lon]
-      })
+      // const crimeData = await getCrimes({
+      //   dateRange: dateRange,
+      //   focalLatLong: [locationData.lat, locationData.lon]
+      // })
       // setCrimes(crimeData!)
       }
-  }, [address, city, state, dateRange])
+  // }, [address, city, state, dateRange])
+  }, [address, city])
 
   return (
     <form className='property-search-form'>
@@ -64,12 +68,12 @@ export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
 
       <TextInput value={address} placeholder='' setValue={setAddress} label="address" />
 
-      {/* <span className='input-group'>
       <TextInput value={city } placeholder='' setValue={setCity } label="city" />
-      <TextInput value={state } placeholder='' setValue={setState } label="state" />
-    </span>
+      {/* <TextInput value={state } placeholder='' setValue={setState } label="state" /> */}
+      {/* <span className='input-group'>
+    </span> */}
 
-      <DateRangeSelector
+      {/* <DateRangeSelector
         whereFilter={whereFilter}
         setWhereFilter={setWhereFilter}
         dateRange={dateRange}

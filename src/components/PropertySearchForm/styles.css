@@ -4,10 +4,12 @@ form.property-search-form{
   background-color: var(--brand-primary);
   border-radius: 4px;
   justify-content: center;
-
+  box-shadow: 0 4px 20px 0 var(--gray);
 
   span.input-group{
     display: flex;
+    width: 100%;
+
     span {
       margin-right: .5rem;
     }

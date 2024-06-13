@@ -25,11 +25,8 @@ export default function Home() {
         <p>Start by entering the address below to see a map and relevant permit data for the address</p>
       </div>
 
-      <PropertySearchForm
-      // setLocationLatLong={(setLocationLatLong)}
-      // setFoodInspections={(setFoodInspections)}
-      // setCrimes={(setCrimes)}
-      />
+      <PropertySearchForm />
+      
       {/* <div className="map-container">
 
         {locationLatLong && <Map

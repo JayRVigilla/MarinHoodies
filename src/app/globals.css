@@ -7,13 +7,23 @@
       var(--brand-secondary),
       var(--brand-primary));
 
+  --gray: rgba(20, 20, 20, 1);
+  --gray50: rgba(20, 20, 20, 0.5);
+  --lt-gray: rgb(204, 204, 204);
+  --lt-gray50: rgba(45, 44, 44, 0.5);
+
   --white: rgba(255, 255, 255, 1);
   --black: rgba(0, 0, 0, 1);
+
+
+
+
 
   display: flex;
 
 
   body {
+    padding: .5rem;
     width: 100vw;
     height: 100vh;
   }
