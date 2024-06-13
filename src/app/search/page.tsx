@@ -2,14 +2,17 @@
 /** AddressPage documentation
  */
 import React, { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter, useSearchParams } from "next/navigation";
 import { Map } from "@/src/components/Map";
 
 // import styles from "./styles.css";
 
 export default function Search() {
-  const params = useParams()
-  console.log("Search", {params})
+  const params = useSearchParams();
+  const lon = parseFloat(params?.get("lon")!)
+  const lat = parseFloat(params?.get("lat")!)
+  console.log("Search", {lon, lat})
+
   // * hooks
   // const hook = () => {};
 
@@ -26,10 +29,10 @@ export default function Search() {
 
   return <div className="AddressPage root">
     SearchResultPage
-    {/* <Map
+    <Map
       crimes={[]}
       foodInspections={[]}
-      locationLatLong={}
-    /> */}
+      locationLatLong={{lat, lon}}
+    />
   </div>;
 }

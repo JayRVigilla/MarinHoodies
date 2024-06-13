@@ -49,7 +49,7 @@ export const Map = ({
 
     return (
       <MapContainer
-        className="map root"
+        className="Map root"
         // centered on address, without marker
         center={coordsObjToLatLngExp(locationLatLong)}
         zoom={15}
