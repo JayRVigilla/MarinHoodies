@@ -20,7 +20,6 @@ export interface iPropertySearchFormProps {
   // setCrimes: Dispatch<iCrimeLocationMarker[]>;
 }
 
-// export const PropertySearchForm = ({setLocationLatLong, setFoodInspections, setCrimes}: iPropertySearchFormProps) => {
 export const PropertySearchForm = ({ }: iPropertySearchFormProps) => {
   const router = useRouter()
 
