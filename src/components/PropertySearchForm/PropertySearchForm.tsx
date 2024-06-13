@@ -11,6 +11,7 @@ import { DateRangeSelector } from '../DateRangeSelector/DateRangeSelector';
 import { iCrimeLocationMarker, iFoodInspectionMarker } from '../Map/Marker/types';
 import { getFoodInspections } from '@/src/lib/marinFoodInspection';
 import { getCrimes } from '@/src/lib/marinCrime';
+import { useRouter } from "next/navigation";
 
 export interface iPropertySearchFormProps {
   "data-test-id"?: string;
@@ -20,7 +21,9 @@ export interface iPropertySearchFormProps {
 }
 
 // export const PropertySearchForm = ({setLocationLatLong, setFoodInspections, setCrimes}: iPropertySearchFormProps) => {
-export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
+export const PropertySearchForm = ({ }: iPropertySearchFormProps) => {
+  const router = useRouter()
+
   // * state
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -44,7 +47,10 @@ export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
     if(!address && !city) return
     const locationData = await getLongLatFromAddress({ address, city, state: "CA" })
     if (locationData) {
-      console.log(locationData)
+      const params = new URLSearchParams(locationData)
+      console.log("submitSearch", params);
+      router.push(`/search?${params.toString()}`);
+
       // setLocationLatLong(locationData)
 
       // const inspectionsData = await getFoodInspections({

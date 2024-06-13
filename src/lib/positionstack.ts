@@ -20,8 +20,8 @@ state,
     const res = await response.json()
 
     if (res) {
-      const data = res.data?.[0]
-
+      const data = res?.data?.[0]
+      
       const { longitude, latitude } = data
       return { lon: longitude, lat: latitude }
     }
