@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Lauren Ipsom Realty",
+  title: "Marin Hoodies",
   description: "Marin County neighborhood information",
 };
 

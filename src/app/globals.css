@@ -1,8 +1,21 @@
 :root {
-  display: flex;
-}
+  --brand-primary: rgba(107, 142, 35, 1);
+  --brand-secondary: rgb(218, 165, 32, 1);
+  --brand-tertiary: rgba(0, 0, 139, 1);
+  --brand-gradient: linear-gradient(
+    var(--brand-tertiary),
+    var(--brand-secondary),
+    var(--brand-primary)
+    );
 
-body {
-  width: 100vw;
-  height: 100vh;
+  --white: rgba(255, 255, 255, 1);
+  --black: rgba(0, 0, 0, 1);
+
+  display: flex;
+
+
+  body {
+    width: 100vw;
+    height: 100vh;
+  }
 }

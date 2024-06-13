@@ -14,12 +14,13 @@ import { getCrimes } from '@/src/lib/marinCrime';
 
 export interface iPropertySearchFormProps {
   "data-test-id"?: string;
-  setLocationLatLong: Dispatch<tCoordsObject>;
-  setFoodInspections: Dispatch<iFoodInspectionMarker[]>;
-  setCrimes: Dispatch<iCrimeLocationMarker[]>;
+  // setLocationLatLong: Dispatch<tCoordsObject>;
+  // setFoodInspections: Dispatch<iFoodInspectionMarker[]>;
+  // setCrimes: Dispatch<iCrimeLocationMarker[]>;
 }
 
-export const PropertySearchForm = ({setLocationLatLong, setFoodInspections, setCrimes}: iPropertySearchFormProps) => {
+// export const PropertySearchForm = ({setLocationLatLong, setFoodInspections, setCrimes}: iPropertySearchFormProps) => {
+export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
   // * state
   const [address, setAddress] = useState("");
   const [city, setCity] = useState("");
@@ -41,19 +42,19 @@ export const PropertySearchForm = ({setLocationLatLong, setFoodInspections, setC
     if(!address && !city && !state) return
     const locationData = await getLongLatFromAddress({ address, city, state })
     if (locationData) {
-      setLocationLatLong(locationData)
+      // setLocationLatLong(locationData)
 
       const inspectionsData = await getFoodInspections({
         dateRange: dateRange,
         focalLatLong: [locationData.lat, locationData.lon]
       })
-      if(inspectionsData) setFoodInspections(inspectionsData)
+      // if(inspectionsData) setFoodInspections(inspectionsData)
 
       const crimeData = await getCrimes({
         dateRange: dateRange,
         focalLatLong: [locationData.lat, locationData.lon]
       })
-      setCrimes(crimeData!)
+      // setCrimes(crimeData!)
       }
   }, [address, city, state, dateRange])
 
