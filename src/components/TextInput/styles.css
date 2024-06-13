@@ -1,33 +1,35 @@
-span.text-input{
-  display: flex;
-  flex-direction: column;
+span.text-input {
 
-  label{
-    margin-right: 4px;
+  label {
+    display: flex;
+    flex-direction: column;
     font-size: large;
-  }
+    color: var(--white);
 
-  input[type=text]{
-    padding: 4px 6px;
-    background-color: white;
-    border-radius: 6px;
+    input[type=text] {
+      margin: 0.25rem 0;
+      padding: 4px 6px;
+      background-color: var(--white);
+      border-radius: 6px;
 
-    &:focus{
-      outline: orange dashed 2px;
-      outline-offset: 2px;
-     }
-  }
-
-  &.dark-mode{
-    label{
-      color: white;
+      &:focus {
+        outline: orange dashed 2px;
+        outline-offset: 2px;
+      }
     }
 
-    input[type=text]{
-      color: white;
+
+  }
+
+  &.dark-mode {
+    label {
+      color: var(--white);
+    }
+
+    input[type=text] {
+      color: var(--white);
       background-color: transparent;
-      border-color: white;
+      border-color: var(--white);
     }
   }
-
 }

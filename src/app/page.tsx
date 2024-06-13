@@ -20,7 +20,9 @@ export default function Home() {
     <div className="home root">
       <Logo />
       <div className="into-content">
-        <p>Welcome to MarinHoodies! </p>
+        <p>Welcome to MarinHoodies!</p>
+        <p>We are sharing information about Marin County to make your search for a home or rental bsed on real data from county services. </p>
+        <p>Start by entering the address below to see a map and relevant permit data for the address</p>
       </div>
 
       <PropertySearchForm

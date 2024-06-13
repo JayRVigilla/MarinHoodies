@@ -1,6 +1,7 @@
 form.property-search-form{
   padding: 1rem 2rem;
-  background-color: teal;
+  /* background-color: teal; */
+  background-color: var(--brand-primary);
   border-radius: 4px;
   justify-content: center;
 

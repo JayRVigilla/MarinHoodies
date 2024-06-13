@@ -63,7 +63,8 @@ export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
 
 
       <TextInput value={address} placeholder='' setValue={setAddress} label="address" />
-    <span className='input-group'>
+
+      {/* <span className='input-group'>
       <TextInput value={city } placeholder='' setValue={setCity } label="city" />
       <TextInput value={state } placeholder='' setValue={setState } label="state" />
     </span>
@@ -73,7 +74,7 @@ export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
         setWhereFilter={setWhereFilter}
         dateRange={dateRange}
         setDateRange={setDateRange}
-      />
+      /> */}
 
 
     <div className='action-buttons'>

@@ -1,12 +1,11 @@
 :root {
-  --brand-primary: rgba(107, 142, 35, 1);
+  /* --brand-primary: rgba(107, 142, 35, 1); */
+  --brand-primary: rgba(85, 107, 47, 1);
   --brand-secondary: rgb(218, 165, 32, 1);
   --brand-tertiary: rgba(0, 0, 139, 1);
-  --brand-gradient: linear-gradient(
-    var(--brand-tertiary),
-    var(--brand-secondary),
-    var(--brand-primary)
-    );
+  --brand-gradient: linear-gradient(var(--brand-tertiary),
+      var(--brand-secondary),
+      var(--brand-primary));
 
   --white: rgba(255, 255, 255, 1);
   --black: rgba(0, 0, 0, 1);
