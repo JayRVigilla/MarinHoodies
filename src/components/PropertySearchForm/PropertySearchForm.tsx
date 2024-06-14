@@ -46,25 +46,15 @@ export const PropertySearchForm = ({ }: iPropertySearchFormProps) => {
     if(!address && !city) return
     const locationData = await getLongLatFromAddress({ address, city, state: "CA" })
     if (locationData) {
-      const params = new URLSearchParams(locationData)
-      console.log("submitSearch", params);
+      const params = new URLSearchParams({
+        ...locationData,
+        address,
+        city,
+        state: "CA",
+      });
       router.push(`/search?${params.toString()}`);
-
-      // setLocationLatLong(locationData)
-
-      // const inspectionsData = await getFoodInspections({
-      //   dateRange: dateRange,
-      //   focalLatLong: [locationData.lat, locationData.lon]
-      // })
-      // if(inspectionsData) setFoodInspections(inspectionsData)
-
-      // const crimeData = await getCrimes({
-      //   dateRange: dateRange,
-      //   focalLatLong: [locationData.lat, locationData.lon]
-      // })
-      // setCrimes(crimeData!)
       }
-  // }, [address, city, state, dateRange])
+
   }, [address, city])
 
   return (

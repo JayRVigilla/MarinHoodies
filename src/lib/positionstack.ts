@@ -21,9 +21,9 @@ state,
 
     if (res) {
       const data = res?.data?.[0]
-      
-      const { longitude, latitude } = data
-      return { lon: longitude, lat: latitude }
+
+      const { longitude, latitude, postal_code } = data
+      return { lon: longitude, lat: latitude, zipCode: postal_code }
     }
 
   } catch (error) {

@@ -1,7 +1,8 @@
-.Map.root{
-  border: 2px inset grey;
-  position: relative;
-  width: 100%;
-  height: 100%;
-
+div.Map.root {
+  &.leaflet-container.leaflet-touch-drag.leaflet-touch-zoom {
+    border: 2px inset grey;
+    position: relative;
+    width: 66%;
+    height: 40vh;
+  }
 }

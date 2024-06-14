@@ -1,0 +1,13 @@
+div.root.AddressPage {
+  border: 1px solid teal;
+
+  section.map-container {
+    display: flex;
+    border: 1px solid pink;
+  }
+
+  section.permits {
+    border: 1px solid orange;
+
+  }
+}
