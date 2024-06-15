@@ -41,3 +41,5 @@ export const calcMaxMinLatLongCorners = (coords: tCoordsObject): tMaxMinTuple =>
 ]
   return result
 }
+
+export const milesToMeters = (miles: number) => 1609.344 * miles

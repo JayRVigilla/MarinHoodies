@@ -9,8 +9,10 @@ import "./styles.css";
 // import styles from "./styles.css";
 
 export default function Search() {
-  // * hooks
+
+  // extract data from query string
   const params = useSearchParams();
+
   const lon = parseFloat(params?.get("lon")!);
   const lat = parseFloat(params?.get("lat")!);
 
@@ -32,7 +34,7 @@ export default function Search() {
     <div className="AddressPage root">
       SearchResultPage
       <section className="map-container">
-        <Map crimes={[]} foodInspections={[]} locationLatLong={{ lat, lon }} />
+        <Map crimes={[]} foodInspections={[]} locationLatLong={{ lat, lon }} milesRadius={3}/>
         <div className="filters">Search filter component</div>
       </section>
       <section className="permits">show Permit data here</section>
