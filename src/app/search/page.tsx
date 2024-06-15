@@ -1,15 +1,11 @@
 "use client";
 /** AddressPage documentation
  */
-import React, { useEffect, useState } from "react";
-import { useParams, useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import { Map } from "@/src/components/Map";
 import "./styles.css";
 
-// import styles from "./styles.css";
-
 export default function Search() {
-
   // extract data from query string
   const params = useSearchParams();
 
@@ -19,25 +15,22 @@ export default function Search() {
   const address = params?.get("address");
   const city = params?.get("city");
   const state = params?.get("state");
+  const zipCode = params?.get("zipCode");
   console.log("Search", { lon, lat, address, city, state });
-
-  // * state
-  const [permits, setPermits] = useState(undefined);
-
-  // * useEffects
-  useEffect(() => {
-    if (permits) return;
-    // TODO: make API calls for Permits with given address
-  }, [permits]);
 
   return (
     <div className="AddressPage root">
-      SearchResultPage
+      {` ${address}, ${city}, ${state} ${zipCode}`}
       <section className="map-container">
-        <Map crimes={[]} foodInspections={[]} locationLatLong={{ lat, lon }} milesRadius={3}/>
-        <div className="filters">Search filter component</div>
+        <Map
+          crimes={[]}
+          foodInspections={[]}
+          locationLatLong={{ lat, lon }}
+          milesRadius={3}
+        />
+        <div className="filters">Radius selector</div>
       </section>
-      <section className="permits">show Permit data here</section>
+      <section className="permits">Search filters controls component</section>
     </div>
   );
 }
