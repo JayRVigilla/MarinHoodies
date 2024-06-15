@@ -3,6 +3,6 @@ div.Map.root {
     border: 2px inset grey;
     position: relative;
     width: 66%;
-    height: 40vh;
+    height: 60vh;
   }
 }
