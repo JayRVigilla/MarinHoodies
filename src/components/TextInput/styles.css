@@ -13,7 +13,7 @@ span.text-input {
       border-radius: 6px;
 
       &:focus {
-        outline: orange dashed 2px;
+        outline: var(--brand-secondary) dashed 2px;
         outline-offset: 2px;
       }
     }

@@ -1,7 +1,8 @@
-span.DateRangeSelector.date-range{
-      display: flex;
+span.DateRangeSelector.date-range {
+  display: flex;
+  align-items: center;
 
-      span.date-group{
-        display: flex;
-      }
-    }
+  span.date-group {
+    display: flex;
+  }
+}

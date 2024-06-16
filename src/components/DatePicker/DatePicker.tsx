@@ -2,7 +2,7 @@
  */
 import { ChangeEvent } from "react";
 import "./styles.css";
-import startCase from "lodash/startCase"
+import startCase from "lodash/startCase";
 
 export interface DatePickerProps {
   "data-test-id"?: string;
@@ -11,7 +11,6 @@ export interface DatePickerProps {
   min?: string; // ISO String date
   max?: string; // ISO String date
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-
 }
 
 export const DatePicker = ({
@@ -19,9 +18,8 @@ export const DatePicker = ({
   onChange,
   label,
   max = new Date(Date.now()).toISOString().slice(0, 10),
-  min = new Date(0).toISOString().slice(0, 10)
+  min = new Date(0).toISOString().slice(0, 10),
 }: DatePickerProps) => {
-  console.log("DatePicker", {max, min})
   return (
     <span className="date-picker root">
       <label>{startCase(label)}</label>
@@ -33,7 +31,7 @@ export const DatePicker = ({
         value={value}
         min={min}
         max={max}
-        />
+      />
     </span>
   );
 };

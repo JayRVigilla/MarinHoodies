@@ -1,11 +1,11 @@
-span.date-picker.root{
+span.date-picker.root {
   display: flex;
   flex-direction: column;
-  margin: 0 1rem;
+  margin: 0 0.5rem;
 
-  label{
+  label {
     margin-right: 4px;
-    font-size: large;
+    font-size: small;
   }
 
   input[type="date"] {
@@ -13,18 +13,18 @@ span.date-picker.root{
     background-color: white;
     border-radius: 6px;
 
-    &:focus{
-      outline: orange dashed 1px;
-  outline-offset: 2px;
-     }
+    &:focus {
+      outline: var(--brand-secondary) dashed 1px;
+      outline-offset: 2px;
+    }
   }
 
-  &.dark-mode{
-    label{
+  &.dark-mode {
+    label {
       color: white;
     }
 
-    select{
+    select {
       color: white;
       background-color: transparent;
       border-color: white;

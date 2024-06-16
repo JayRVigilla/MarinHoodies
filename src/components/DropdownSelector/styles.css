@@ -1,32 +1,32 @@
-span.dropdown-selector.root{
+span.dropdown-selector.root {
   display: flex;
   flex-direction: column;
 
-  label{
+  label {
     margin-right: 4px;
-    font-size: large;
+    font-size: small;
   }
 
   select {
     padding: 4px 6px;
-    background-color: white;
+    background-color: var(--white);
     border-radius: 6px;
 
-    &:focus{
-      outline: orange dashed 1px;
-  outline-offset: 2px;
-     }
+    &:focus {
+      outline: var(--brand-secondary) dashed 1px;
+      outline-offset: 2px;
+    }
   }
 
-  &.dark-mode{
-    label{
-      color: white;
+  &.dark-mode {
+    label {
+      color: var(--white);
     }
 
-    select{
-      color: white;
+    select {
+      color: var(--white);
       background-color: transparent;
-      border-color: white;
+      border-color: var(--white);
     }
   }
 

@@ -3,6 +3,7 @@
   --brand-primary: rgba(85, 107, 47, 1);
   --brand-secondary: rgb(218, 165, 32, 1);
   --brand-tertiary: rgba(0, 0, 139, 1);
+  --brand-tertiary30: rgba(0, 0, 139, 0.3);
   --brand-gradient: linear-gradient(var(--brand-tertiary),
       var(--brand-secondary),
       var(--brand-primary));

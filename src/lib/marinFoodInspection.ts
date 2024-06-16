@@ -1,12 +1,11 @@
 import { iFoodInspectionMarker } from "../components/Map/Marker/types";
-import { calcMaxMinLatLong } from "../utils";
 import { dateRangeClean, iBetweenProps, whereString } from "../utils/marinAPI";
 import { MARIN_FOOD_INSPECTION_BASE_URL } from "../utils/marinAPI/marinFoodInspectionAPI";
 
 export type tFoodInspectionProps = {
   dateRange: [string, string]; // [MinISOString, MaxISOString]
-  focalLatLong: [number, number]; // [lat,long] float strings
-}
+  focalLatLong?: [number, number]; // [lat,long] float strings
+};
 
 export const getFoodInspections = async (queries: tFoodInspectionProps) => {
   try {
@@ -16,40 +15,39 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
      * default date range set to 90 days
      *
      */
-    const {dateRange, focalLatLong} = queries
+    const { dateRange, focalLatLong } = queries;
 
-    const qStrings: string[] = []
-
+    const qStrings: string[] = [];
 
     const dateProps: iBetweenProps = {
       max: dateRangeClean(dateRange[1]),
       min: dateRangeClean(dateRange[0]),
       param: "inspection_date",
-    }
+    };
 
-    const maxMinLatLong = calcMaxMinLatLong({
-      lat:focalLatLong[0],
-      lon:focalLatLong[1],
-    })
+    // const maxMinLatLong = calcMaxMinLatLong({
+    //   lat:focalLatLong[0],
+    //   lon:focalLatLong[1],
+    // })
 
-    const latProps: iBetweenProps = {
-      max: maxMinLatLong.max[0].toString(),
-      min: maxMinLatLong.min[0].toString(),
-      param: "businessaddress.latitude",
-    }
+    // const latProps: iBetweenProps = {
+    //   max: maxMinLatLong.max[0].toString(),
+    //   min: maxMinLatLong.min[0].toString(),
+    //   param: "businessaddress.latitude",
+    // }
 
-    const longProps: iBetweenProps = {
-      max: maxMinLatLong.max[1].toString(),
-      min: maxMinLatLong.min[1].toString(),
-      param: "businessaddress.longitude",
-    }
+    // const longProps: iBetweenProps = {
+    //   max: maxMinLatLong.max[1].toString(),
+    //   min: maxMinLatLong.min[1].toString(),
+    //   param: "businessaddress.longitude",
+    // }
 
-    qStrings.push(whereString.betweenISOStrings(dateProps))
+    qStrings.push(whereString.betweenISOStrings(dateProps));
 
-    const props = [latProps, longProps]
-    props.forEach(prop => {
-      qStrings.push(whereString.betweenNums(prop))
-    })
+    // const props = [latProps, longProps]
+    // props.forEach(prop => {
+    //   qStrings.push(whereString.betweenNums(prop))
+    // })
 
     const selects = [
       "business_name",
@@ -66,22 +64,21 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
       "corrected_on_site",
       "violation_description",
       "placard",
-      "business_id"
-    ]
+      "business_id",
+    ];
 
-
-    const url = `${MARIN_FOOD_INSPECTION_BASE_URL}?$select=${selects.join(", ")}&$where=${qStrings.join(" AND ")}`
+    const url = `${MARIN_FOOD_INSPECTION_BASE_URL}?$select=${selects.join(", ")}&$where=${qStrings.join(" AND ")}`;
     const data = fetch(url)
-      .then(response => response.json())
-      .then(res => {
-        const result: iFoodInspectionMarker[] = []
+      .then((response) => response.json())
+      .then((res) => {
+        const result: iFoodInspectionMarker[] = [];
         for (let inspection of res) {
           const newMarkerData: iFoodInspectionMarker = {
             type: "food-inspection",
             business_name: inspection.business_name,
             formatted_address: inspection.formatted_address,
             latitude: inspection.businessaddress.latitude,
-            longitude:inspection.businessaddress.longitude,
+            longitude: inspection.businessaddress.longitude,
             inspection_date: inspection.inspection_date,
             inspection_type: inspection.inspection_type,
             inspector: inspection.inspector,
@@ -94,15 +91,17 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
             violation_description: inspection.violation_description,
             placard: inspection.placard,
             business_id: inspection.business_id,
-          }
-          result.push(newMarkerData)
+          };
+          result.push(newMarkerData);
         }
 
-        return result
-      })
+        return result;
+      });
 
-    return data
+    return data;
   } catch (error) {
-    console.error(`ERROR getFoodInspection (${JSON.stringify(queries)}): \n** ${error}`)
+    console.error(
+      `ERROR getFoodInspection (${JSON.stringify(queries)}): \n** ${error}`
+    );
   }
-}
+};
