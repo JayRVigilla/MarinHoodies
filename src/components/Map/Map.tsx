@@ -1,6 +1,6 @@
 /** Map documentation
  */
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { MapContainer, TileLayer, useMap, Pane, Circle } from "react-leaflet";
 import "leaflet/dist/leaflet.css"; // !! leaflet CSS: REQUIRED.
 import "leaflet-defaulticon-compatibility";
@@ -30,7 +30,7 @@ export const Map = ({
   crimes,
   foodInspections,
   locationLatLong,
-  milesRadius = 4,
+  milesRadius,
 }: MapProps) => {
   const maxMins = locationLatLong
     ? calcMaxMinLatLongCorners(locationLatLong)
@@ -56,10 +56,7 @@ export const Map = ({
       className="Map root"
       // centered on address
       center={coordsObjToLatLngExp(locationLatLong)}
-      /**
-       * zoom initiates in relation to radius to show
-       * whole circle.
-       */
+      /** zoom initiates in relation to radius to show whole circle. */
       zoom={16 - milesRadius}
       scrollWheelZoom={false}
     >

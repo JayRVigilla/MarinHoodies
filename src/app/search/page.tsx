@@ -4,7 +4,7 @@
 import { useSearchParams } from "next/navigation";
 import { Map } from "@/src/components/Map";
 import "./styles.css";
-import { Slider } from "@mui/material";
+// import { Slider } from "@mui/material";
 import { useState } from "react";
 
 export default function Search() {
@@ -32,26 +32,26 @@ export default function Search() {
           locationLatLong={{ lat, lon }}
           milesRadius={radius}
         />
-        <section className="filters">
-          Map Control: Radius selector
 
-          <Slider
-            min={0}
-            max={5}
-            size="medium"
-            value={radius}
-            defaultValue={radius}
-            onChange={(event: MouseEvent) => {
-              console.log("slider", event)
-              setRadius(event?.target?.value);
-            }}
-            valueLabelDisplay="on"
-          />
+        <div className="controls">
+          {/* Map Control: Radius selector */}
+          {/* <span className="radius-slider">
+            Miles radius
+            <Slider
+              name="miles-radius"
+              min={0}
+              max={5}
+              size="medium"
+              value={radius}
+              defaultValue={radius}
+              onChange={(event: Event, value) => {
+                setRadius(value as number);
+              }}
+              valueLabelDisplay="on"
+            />
+          </span> */}
+        </div>
 
-          <section className="permits">
-            Search filters controls component
-          </section>
-        </section>
       </section>
     </div>
   );

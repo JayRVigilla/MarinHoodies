@@ -26,29 +26,29 @@ export const getCrimes = async (queries: tCrimeQueries) => {
       param: "incident_date_time",
     }
 
-    const maxMinLatLong = calcMaxMinLatLong({
-      lat:focalLatLong[0],
-      lon:focalLatLong[1],
-    })
+    // const maxMinLatLong = calcMaxMinLatLong({
+    //   lat:focalLatLong[0],
+    //   lon:focalLatLong[1],
+    // })
 
-    const latProps: iBetweenProps = {
-      max: maxMinLatLong.max[0].toString(),
-      min: maxMinLatLong.min[0].toString(),
-      param: "latitude",
-    }
+    // const latProps: iBetweenProps = {
+    //   max: maxMinLatLong.max[0].toString(),
+    //   min: maxMinLatLong.min[0].toString(),
+    //   param: "latitude",
+    // }
 
-    const longProps: iBetweenProps = {
-      max: maxMinLatLong.max[1].toString(),
-      min: maxMinLatLong.min[1].toString(),
-      param: "longitude",
-    }
+    // const longProps: iBetweenProps = {
+    //   max: maxMinLatLong.max[1].toString(),
+    //   min: maxMinLatLong.min[1].toString(),
+    //   param: "longitude",
+    // }
 
     qStrings.push(whereString.betweenISOStrings(dateProps))
 
-    const props = [latProps, longProps]
-    props.forEach(prop => {
-      qStrings.push(whereString.betweenNums(prop))
-    })
+    // const props = [latProps, longProps]
+    // props.forEach(prop => {
+    //   qStrings.push(whereString.betweenNums(prop))
+    // })
 
     const selects = [
       "longitude",

@@ -43,3 +43,7 @@ export const calcMaxMinLatLongCorners = (coords: tCoordsObject): tMaxMinTuple =>
 }
 
 export const milesToMeters = (miles: number) => 1609.344 * miles
+
+export const secondsToMilliseconds = (seconds: number) => seconds * 1000
+export const minutesToMilliseconds = (minutes: number) => secondsToMilliseconds(minutes * 60)
+export const hoursToMilliseconds = (hours: number) => minutesToMilliseconds(hours * 60)

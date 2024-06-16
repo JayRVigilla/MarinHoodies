@@ -8,7 +8,7 @@ export interface DropdownSelectorProps {
   "data-test-id"?: string;
   label?: string;
   options: string[];
-  value: string | undefined;
+  value: string | undefined | number;
   onChange: (val: ChangeEvent<HTMLSelectElement>) => void;
 
 }

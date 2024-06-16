@@ -18,10 +18,10 @@ export const DatePicker = ({
   value,
   onChange,
   label,
-  max = new Date(Date.now()).toISOString(),
-  min = new Date(0).toISOString()
+  max = new Date(Date.now()).toISOString().slice(0, 10),
+  min = new Date(0).toISOString().slice(0, 10)
 }: DatePickerProps) => {
-
+  console.log("DatePicker", {max, min})
   return (
     <span className="date-picker root">
       <label>{startCase(label)}</label>
