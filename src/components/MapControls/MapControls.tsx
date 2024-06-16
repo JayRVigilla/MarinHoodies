@@ -8,46 +8,66 @@ import { getFoodInspections } from "@/src/lib/marinFoodInspection";
 import { getCrimes } from "@/src/lib/marinCrime";
 import { Dispatch, SetStateAction } from "react";
 import { Slider } from "@mui/material";
+import {
+  iCrimeLocationMarker,
+  iFoodInspectionMarker,
+} from "../Map/Marker/types";
 
 export interface iMapControlsProps {
   "data-test-id"?: string;
   radius: number;
   setRadius: Dispatch<SetStateAction<number>>;
+  setCrimes: Dispatch<SetStateAction<iCrimeLocationMarker[]>>;
+  setFoodInspections: Dispatch<SetStateAction<iFoodInspectionMarker[]>>;
+  crimeSelector: boolean;
+  setCrimeSelector: Dispatch<SetStateAction<boolean>>;
+  foodInspectionSelector: boolean;
+  setFoodInspectionSelector: Dispatch<SetStateAction<boolean>>;
 }
 
 type tStringTuple = [string, string];
 
-export const MapControls = ({ radius, setRadius }: iMapControlsProps) => {
-  const [crimeSelector, setCrimeSelector] = useState(false);
+export const MapControls = ({
+  radius,
+  setRadius,
+  setCrimes,
+  setFoodInspections,
+  crimeSelector,
+  setCrimeSelector,
+  foodInspectionSelector,
+  setFoodInspectionSelector,
+}: iMapControlsProps) => {
+  
   const [crimeDateRange, setCrimeDateRange] = useState<tStringTuple>(["", ""]);
-
-  const [foodInspectionSelector, setFoodInspectionSelector] = useState(false);
   const [foodInspectionDateRange, setFoodInspectionDateRange] =
     useState<tStringTuple>(["", ""]);
 
   useEffect(() => {
+    // search for crimes when there is a date range or it changes
     const fetchAndSetCrimes = async () => {
       const crimes = await getCrimes({ dateRange: crimeDateRange });
-      console.log("crimes", { crimes });
-      // todo: set state in Map
+      if (crimes?.length) {
+        setCrimes(crimes);
+      }
     };
 
     if (crimeDateRange[0] && crimeDateRange[1]) {
-      // search for crimes when there is a date range or it changes
       fetchAndSetCrimes();
     }
   }, [crimeDateRange]);
 
   useEffect(() => {
+    // search for food inspection when there is a date range or it changes
     const fetchAndSetFoodInspection = async () => {
       const foodInspections = await getFoodInspections({
         dateRange: foodInspectionDateRange,
       });
-      console.log("foodInspections", { foodInspections });
-      // todo: set state in Map
+
+      if (foodInspections?.length) {
+        setFoodInspections(foodInspections);
+      }
     };
     if (foodInspectionDateRange[0] && foodInspectionDateRange[1]) {
-      // search for food inspection when there is a date range or it changes
       fetchAndSetFoodInspection();
     }
   }, [foodInspectionDateRange]);
