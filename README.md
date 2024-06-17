@@ -1,7 +1,7 @@
 # Marin Hoodies
 
 
-Using open APIs available by [Marin County](https://data.marincounty.org/) and [Leaflet](https://leafletjs.com/) `Marin Hoodies` maps county data. There is plenty of knowledge that a person should have when looking to buy, sell, or rent a home in Marin County.
+Using open APIs available by [Marin County](https://data.marincounty.org/) and [Leaflet](https://leafletjs.com/), `Marin Hoodies` maps county data. There is plenty of knowledge that a person should have when looking to buy, sell, or rent a home in Marin County.
 
 ## Tech/Dev Info
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
@@ -15,7 +15,7 @@ npm run dev
 # or
 yarn dev
 # or
-pnpm dev
+npm dev
 # or
 bun dev
 ```
