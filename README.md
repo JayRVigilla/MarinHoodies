@@ -40,3 +40,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### Storybook
+[Storybook](https://storybook.js.org/) is a Frontend tool for building components in a separate environment than the project. Meaning, you don't have to load the entire project to develop components.
+
+We also get documentation for our components and the ability to demo for PRs and other stakeholders.
+
+#### Usage
+When building a component, also create a file in the same folder `COMPONENT_NAME.stories.jsx`. Use [`Button.stories.jsx`](src/reactComponents/sharedComponents/Button/Button.stories.jsx) and [`OpportunityCardSmall.stories.jsx`](src/reactComponents/OpportunityCardSmall/OpportunityCardSmall.stories.jsx) as templates.
+
+#### Configurations
+Some background colors from the Design are configured so you can see your component with the same color as seen in Figma.
+
+#### `npm run storybook`
+This script will start Storybook and open `localhost:6006` in your browser. Find your component in the left-hand menu and develop away.
