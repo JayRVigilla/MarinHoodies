@@ -26,6 +26,7 @@ export interface iFoodInspectionMarker extends iLocationMarker {
   violation_description: string;
   placard: "GREEN" | "YELLOW" | "RED" | "NA" | " ";
   business_id: string;
+  row_id: string
 }
 
 export interface iFoodInspectionAPIInspection {

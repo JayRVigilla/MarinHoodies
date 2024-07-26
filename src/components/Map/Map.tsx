@@ -95,6 +95,7 @@ export const Map = ({
                 crime={c.crime}
                 incident_date_time={c.incident_date_time}
                 unique_id={c.unique_id}
+                key={c.unique_id}
               />
             );
         })}
@@ -120,6 +121,8 @@ export const Map = ({
                 violation_description={fi.violation_description}
                 placard={fi.placard}
                 business_id={fi.business_id}
+                row_id={fi.row_id}
+                key={`${fi.business_id}-${fi.row_id}`}
               />
             );
         })}

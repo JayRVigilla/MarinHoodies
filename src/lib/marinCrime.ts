@@ -56,6 +56,7 @@ export const getCrimes = async (queries: tCrimeQueries) => {
       "incident_city_town",
       "crime",
       "incident_date_time",
+      "unique_id",
     ];
 
     const url = `${MARIN_CRIME_BASE_URL}?$select=${selects.join(", ")}&$where=${qStrings.join(" AND ")}`;

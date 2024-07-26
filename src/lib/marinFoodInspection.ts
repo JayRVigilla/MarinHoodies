@@ -65,6 +65,7 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
       "violation_description",
       "placard",
       "business_id",
+      "row_id"
     ];
 
     const url = `${MARIN_FOOD_INSPECTION_BASE_URL}?$select=${selects.join(", ")}&$where=${qStrings.join(" AND ")}`;
@@ -91,6 +92,7 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
             violation_description: inspection.violation_description,
             placard: inspection.placard,
             business_id: inspection.business_id,
+            row_id: inspection.row_id
           };
           result.push(newMarkerData);
         }
