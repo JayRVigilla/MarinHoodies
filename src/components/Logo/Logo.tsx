@@ -6,16 +6,17 @@ import "./styles.css";
 
 export interface iLogoProps {
   "data-test-id"?: string;
+  href?: string;
 }
 
 export const Logo = ({
-
+href="/",
 }: iLogoProps) => {
 
   return (
-    <span className="Logo root">
+    <a className="Logo root" href={href}>
         <Landscape fontSize="large" />
         MarinHoodies
-    </span>
+    </a>
   );
 };

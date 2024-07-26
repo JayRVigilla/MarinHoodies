@@ -1,4 +1,4 @@
-span.Logo.root {
+a.Logo.root {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -12,6 +12,12 @@ span.Logo.root {
   font-size: 24px;
   font-weight: 800;
   color: var(--brand-secondary);
+  text-decoration: none;
+
+  &:hover {
+    box-shadow: 0px 0px 16px var(--brand-secondary);
+    transition: all 0.3s;
+  }
 
   svg {
     margin-right: 0.5rem;
