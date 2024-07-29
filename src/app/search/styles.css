@@ -1,9 +1,9 @@
 div.root.AddressPage {
-  border: 1px solid teal;
+  /* border: 1px solid teal; */
 
   section.map-container {
     display: flex;
-    border: 1px solid pink;
+    /* border: 1px solid pink; */
   }
 
   div.controls {

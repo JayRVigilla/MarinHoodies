@@ -16,7 +16,7 @@ state,
   try {
     const url = `${BASE_URL}?access_key=${process.env.NEXT_PUBLIC_POSITIONSTACK_API_KEY}&query=${address} ${city} ${state}`
 
-    const response = await fetch(url, {cache: "no-store"})
+    const response = await fetch(url, { next: { revalidate: 300 } })
     const res = await response.json()
 
     if (res) {
