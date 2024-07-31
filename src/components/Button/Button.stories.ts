@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Button } from "./Button"
+import { fn } from '@storybook/test';
 
 // * More on how to set up stories at: https://storybook.js.org/docs/writing-stories#default-export
 const meta = {
@@ -27,5 +28,6 @@ export const Primary: Story = {
   args: {
     // * args go here
     label: "Button",
+    onClick: fn()
   }
 };
