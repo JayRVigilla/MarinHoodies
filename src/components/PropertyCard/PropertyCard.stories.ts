@@ -26,13 +26,15 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     // * args go here
-    price:"250,000",
+    // price:"250,000",
     image: {
       src: "https://images.unsplash.com/photo-1580587771525-78b9dba3b914?q=80&w=2148&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
       alt: "white and brown concrete building under blue sky during daytime"
     },
     address:"123 Some St",
     city:"Anytown",
-    state:"YY",
+    // state:"YY",
+    bedrooms: 2,
+    bathrooms: 3
   }
 };

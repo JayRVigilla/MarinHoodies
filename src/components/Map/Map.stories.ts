@@ -28,5 +28,9 @@ type Story = StoryObj<typeof meta>;
 export const Primary: Story = {
   args: {
     // * args go here
-  }
+    crimes: [],
+    foodInspections: [],
+    locationLatLong: {lat: 0, lon: 0},
+    milesRadius: 2,
+  },
 };
