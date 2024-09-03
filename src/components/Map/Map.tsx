@@ -1,5 +1,4 @@
-
-"use client"
+"use client";
 /** Map documentation
  */
 import React, { useEffect, useRef } from "react";
@@ -52,82 +51,83 @@ export const Map = ({
     }, [locationLatLong]);
     return null;
   };
-
-  return (
-    <MapContainer
-      className="Map root"
-      // centered on address
-      center={coordsObjToLatLngExp(locationLatLong)}
-      /** zoom initiates in relation to radius to show whole circle. */
-      zoom={16 - milesRadius}
-      scrollWheelZoom={false}
-    >
-      <MapInstance />
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-
-      {/* Target Address Marker */}
-      {locationLatLong && maxMins && (
-        <>
-          <Marker position={coordsObjToLatLngExp(locationLatLong)} />
-        </>
-      )}
-
-      {/* Miles radius from search address */}
-      <Pane className="circle-container" name="custom">
-        <Circle
-          center={coordsObjToLatLngExp(locationLatLong)}
-          radius={milesToMeters(milesRadius)}
+  if (typeof window !== "undefined") {
+    return (
+      <MapContainer
+        className="Map root"
+        // centered on address
+        center={coordsObjToLatLngExp(locationLatLong)}
+        /** zoom initiates in relation to radius to show whole circle. */
+        zoom={16 - milesRadius}
+        scrollWheelZoom={false}
+      >
+        <MapInstance />
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-      </Pane>
 
-      {crimes.length &&
-        crimes.map((c) => {
-          if (c?.longitude && c?.latitude)
-            return (
-              <CrimeMarker
-                // type="crime"
-                type={c.type}
-                longitude={c.longitude}
-                latitude={c.latitude}
-                incident_street_address={c.incident_street_address}
-                incident_city_town={c.incident_city_town}
-                crime={c.crime}
-                incident_date_time={c.incident_date_time}
-                unique_id={c.unique_id}
-                key={c.unique_id}
-              />
-            );
-        })}
-      {foodInspections.length &&
-        foodInspections.map((fi) => {
-          if (fi?.longitude && fi?.latitude)
-            return (
-              <RestaurantMarker
-                type="food-inspection"
-                business_name={fi.business_name}
-                formatted_address={fi.formatted_address}
-                latitude={fi.latitude}
-                longitude={fi.longitude}
-                inspection_date={fi.inspection_date}
-                inspection_type={fi.inspection_type}
-                inspector={fi.inspector}
-                inspector_comments={fi.inspector_comments}
-                inspector_freqeuncy={fi.inspector_freqeuncy}
-                inspection_description={fi.inspection_description}
-                is_major_violation={fi.is_major_violation}
-                correct_by_date={fi.correct_by_date}
-                corrected_on_site={fi.corrected_on_site}
-                violation_description={fi.violation_description}
-                placard={fi.placard}
-                business_id={fi.business_id}
-                row_id={fi.row_id}
-                key={`${fi.business_id}-${fi.row_id}`}
-              />
-            );
-        })}
-    </MapContainer>
-  );
+        {/* Target Address Marker */}
+        {locationLatLong && maxMins && (
+          <>
+            <Marker position={coordsObjToLatLngExp(locationLatLong)} />
+          </>
+        )}
+
+        {/* Miles radius from search address */}
+        <Pane className="circle-container" name="custom">
+          <Circle
+            center={coordsObjToLatLngExp(locationLatLong)}
+            radius={milesToMeters(milesRadius)}
+          />
+        </Pane>
+
+        {crimes.length &&
+          crimes.map((c) => {
+            if (c?.longitude && c?.latitude)
+              return (
+                <CrimeMarker
+                  // type="crime"
+                  type={c.type}
+                  longitude={c.longitude}
+                  latitude={c.latitude}
+                  incident_street_address={c.incident_street_address}
+                  incident_city_town={c.incident_city_town}
+                  crime={c.crime}
+                  incident_date_time={c.incident_date_time}
+                  unique_id={c.unique_id}
+                  key={c.unique_id}
+                />
+              );
+          })}
+        {foodInspections.length &&
+          foodInspections.map((fi) => {
+            if (fi?.longitude && fi?.latitude)
+              return (
+                <RestaurantMarker
+                  type="food-inspection"
+                  business_name={fi.business_name}
+                  formatted_address={fi.formatted_address}
+                  latitude={fi.latitude}
+                  longitude={fi.longitude}
+                  inspection_date={fi.inspection_date}
+                  inspection_type={fi.inspection_type}
+                  inspector={fi.inspector}
+                  inspector_comments={fi.inspector_comments}
+                  inspector_freqeuncy={fi.inspector_freqeuncy}
+                  inspection_description={fi.inspection_description}
+                  is_major_violation={fi.is_major_violation}
+                  correct_by_date={fi.correct_by_date}
+                  corrected_on_site={fi.corrected_on_site}
+                  violation_description={fi.violation_description}
+                  placard={fi.placard}
+                  business_id={fi.business_id}
+                  row_id={fi.row_id}
+                  key={`${fi.business_id}-${fi.row_id}`}
+                />
+              );
+          })}
+      </MapContainer>
+    );
+  }
 };

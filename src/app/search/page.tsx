@@ -35,7 +35,8 @@ export default function Search() {
   const [showFoodInspections, setShowFoodInspections] = useState(false);
 
 
-  return (
+  if (typeof window !== undefined) {
+    return (
     <div className="AddressPage root">
       {` ${address}, ${city}, ${state} ${zipCode}`}
       <section className="map-container">
@@ -60,5 +61,5 @@ export default function Search() {
         </div>
       </section>
     </div>
-  );
+  )};
 }
