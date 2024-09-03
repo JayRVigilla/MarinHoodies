@@ -30,7 +30,7 @@ export interface MapProps {
 export const Map = ({
   crimes,
   foodInspections,
-  locationLatLong,
+  locationLatLong = { lat: 38.0057, lon: 122.5388 },
   milesRadius,
 }: MapProps) => {
   const maxMins = locationLatLong
