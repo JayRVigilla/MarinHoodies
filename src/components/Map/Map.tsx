@@ -1,3 +1,5 @@
+
+"use client"
 /** Map documentation
  */
 import React, { useEffect, useRef } from "react";
