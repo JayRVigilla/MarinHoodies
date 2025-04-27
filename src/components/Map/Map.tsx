@@ -1,11 +1,11 @@
 /** Map documentation
  */
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { MapContainer, TileLayer, useMap, Pane, Circle } from "react-leaflet";
 import "leaflet/dist/leaflet.css"; // !! leaflet CSS: REQUIRED.
 import "leaflet-defaulticon-compatibility";
 import "leaflet-defaulticon-compatibility/dist/leaflet-defaulticon-compatibility.css";
-import { CrimeMarker, MaxMinMarker, RestaurantMarker } from "./Marker/Marker";
+import { CrimeMarker, RestaurantMarker } from "./Marker/Marker";
 
 import "./styles.css";
 import { iCrimeLocationMarker, iFoodInspectionMarker } from "./Marker/types";
@@ -47,7 +47,7 @@ export const Map = ({
     // animates the change of address
     useEffect(() => {
       map.panTo(coordsObjToLatLngExp(locationLatLong), panOptions);
-    }, [locationLatLong]);
+    }, [locationLatLong, map, panOptions]);
     return null;
   };
 

@@ -13,7 +13,8 @@ export type tCrimeQueries = {
   // focalLatLong?: [number, number]; // [lat,long] float strings
 };
 
-export const getCrimes = async (queries: tCrimeQueries) => {
+export const getCrimes = (queries: tCrimeQueries) => {
+// export const getCrimes = async (queries: tCrimeQueries) => {
   try {
     const { dateRange } = queries;
 

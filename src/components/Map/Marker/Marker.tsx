@@ -3,8 +3,7 @@
 
 import {
   LocalDiningOutlined,
-  LocalPolice,
-  RestaurantOutlined,
+  LocalPolice
 } from "@mui/icons-material";
 import { Marker, Popup } from "react-leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -39,7 +38,7 @@ export const CrimeMarker = ({
   incident_city_town,
   crime,
   incident_date_time,
-  unique_id,
+  // unique_id,
 }: iCrimeLocationMarker) => {
   const crimeMarkerIcon = new DivIcon({
     html: renderToStaticMarkup(<LocalPolice />),
@@ -86,7 +85,8 @@ export const RestaurantMarker = ({
   violation_description,
   placard,
 }: iFoodInspectionMarker) => {
-  const markerIcon = (placard: string): DivIcon => {
+  // const markerIcon = (placard: string): DivIcon => {
+  const markerIcon = (): DivIcon => {
     return new DivIcon({
       html: renderToStaticMarkup(<LocalDiningOutlined />),
       iconSize: [18, 18],
@@ -95,7 +95,7 @@ export const RestaurantMarker = ({
   };
 
   return (
-    <Marker icon={markerIcon(placard)} position={[latitude, longitude]}>
+    <Marker icon={markerIcon()} position={[latitude, longitude]}>
       <Popup>
         {startCase(business_name?.toLowerCase())}
         <br />
@@ -120,7 +120,7 @@ export const RestaurantMarker = ({
 export const MaxMinMarker = ({
   latitude,
   longitude,
-  type = "max-min",
+  // type = "max-min",
 }: iLocationMarker) => {
   return <Marker opacity={0.4} position={[latitude, longitude]}></Marker>;
 };

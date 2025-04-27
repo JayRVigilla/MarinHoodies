@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "format": "eslint --fix --ignore-path .eslintignore \"**/*.{js,jsx,ts,tsx}\"",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -14,13 +15,9 @@
     "prepare": "husky init"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix",
-      "git add"
-    ],
     "**/*.{json,css,scss,md}": [
       "prettier --write",
-      "git add"
+      "npm run format"
     ]
   },
   "dependencies": {

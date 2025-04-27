@@ -7,7 +7,8 @@ export type tFoodInspectionProps = {
   focalLatLong?: [number, number]; // [lat,long] float strings
 };
 
-export const getFoodInspections = async (queries: tFoodInspectionProps) => {
+// export const getFoodInspections = async (queries: tFoodInspectionProps) => {
+export const getFoodInspections = (queries: tFoodInspectionProps) => {
   try {
     /**
      * TODO:
