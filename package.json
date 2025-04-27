@@ -26,6 +26,7 @@
     "clsx": "^2.1.0",
     "date-fns": "^3.6.0",
     "eslint-plugin-prettier": "^5.2.6",
+    "eslint-plugin-tsdoc": "^0.4.0",
     "leaflet": "^1.9.4",
     "leaflet-defaulticon-compatibility": "^0.1.2",
     "next": "^14.2.28",
