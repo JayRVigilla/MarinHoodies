@@ -34,14 +34,13 @@ export default function Search() {
 
   const [showFoodInspections, setShowFoodInspections] = useState(false);
 
-
   return (
     <div className="AddressPage root">
       {` ${address}, ${city}, ${state} ${zipCode}`}
       <section className="map-container">
         <Map
           crimes={showCrimes ? crimes : []}
-          foodInspections={showFoodInspections ? foodInspections: []}
+          foodInspections={showFoodInspections ? foodInspections : []}
           locationLatLong={{ lat, lon }}
           milesRadius={radius}
         />
