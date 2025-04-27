@@ -78,7 +78,7 @@ export const RestaurantMarker = ({
   inspection_type,
   inspector,
   inspector_comments,
-  inspector_freqeuncy,
+  inspector_frequency,
   inspection_description,
   is_major_violation,
   correct_by_date,
@@ -95,10 +95,7 @@ export const RestaurantMarker = ({
   };
 
   return (
-    <Marker
-      icon={markerIcon(placard)}
-      position={[latitude, longitude]}
-    >
+    <Marker icon={markerIcon(placard)} position={[latitude, longitude]}>
       <Popup>
         {startCase(business_name?.toLowerCase())}
         <br />
@@ -108,7 +105,7 @@ export const RestaurantMarker = ({
         <br />
         {inspection_type}(
         {is_major_violation ? "Major violation" : "Not a major violation"}):{" "}
-        {inspection_date} - {inspector_freqeuncy}
+        {inspection_date} - {inspector_frequency}
         Correct by: {correct_by_date}
         <br />
         {inspection_description}: {violation_description}

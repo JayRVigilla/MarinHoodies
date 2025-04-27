@@ -7,8 +7,15 @@ Using open APIs available by [Marin County](https://data.marincounty.org/) and [
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ### Getting Started
+Install dependencies:
+`npm install`
 
-First, run the development server:
+Set up `.env` for
+```
+NEXT_PUBLIC_POSITIONSTACK_API_KEY=
+```
+
+Run the development server:
 
 ```bash
 npm run dev

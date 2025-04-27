@@ -1,7 +1,6 @@
 "use client";
 import "./page.css";
 import { PropertySearchForm } from "../components/PropertySearchForm";
-import { Logo } from "../components/Logo";
 
 export default function Home() {
 

@@ -65,7 +65,7 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
       "violation_description",
       "placard",
       "business_id",
-      "row_id"
+      "row_id",
     ];
 
     const url = `${MARIN_FOOD_INSPECTION_BASE_URL}?$select=${selects.join(", ")}&$where=${qStrings.join(" AND ")}`;
@@ -84,7 +84,7 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
             inspection_type: inspection.inspection_type,
             inspector: inspection.inspector,
             inspector_comments: inspection.inspector_comments,
-            inspector_freqeuncy: inspection.inspection_frequency,
+            inspector_frequency: inspection.inspection_frequency,
             inspection_description: inspection.inspection_description,
             is_major_violation: inspection.is_major_violation,
             correct_by_date: inspection.correct_by_date,
@@ -92,7 +92,7 @@ export const getFoodInspections = async (queries: tFoodInspectionProps) => {
             violation_description: inspection.violation_description,
             placard: inspection.placard,
             business_id: inspection.business_id,
-            row_id: inspection.row_id
+            row_id: inspection.row_id,
           };
           result.push(newMarkerData);
         }
