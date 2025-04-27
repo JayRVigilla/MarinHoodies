@@ -7,9 +7,21 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "test": "",
     "deploy": "npm run build && npx surge ./out",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "prepare": "husky init"
+  },
+  "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
+    "**/*.{json,css,scss,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "dependencies": {
     "@emotion/react": "^11.11.4",
@@ -56,6 +68,8 @@
     "eslint-config-next": "14.1.4",
     "eslint-config-prettier": "^10.1.2",
     "eslint-plugin-storybook": "^0.8.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.1",
     "storybook": "^8.0.6",
     "typescript": "^5"
   }
