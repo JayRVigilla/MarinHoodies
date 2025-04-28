@@ -2,10 +2,10 @@ import { iFoodInspectionMarker } from "../components/Map/Marker/types";
 import { dateRangeClean, iBetweenProps, whereString } from "../utils/marinAPI";
 import { MARIN_FOOD_INSPECTION_BASE_URL } from "../utils/marinAPI/marinFoodInspectionAPI";
 
-export type tFoodInspectionProps = {
+export interface tFoodInspectionProps {
   dateRange: [string, string]; // [MinISOString, MaxISOString]
   focalLatLong?: [number, number]; // [lat,long] float strings
-};
+}
 
 // export const getFoodInspections = async (queries: tFoodInspectionProps) => {
 export const getFoodInspections = (queries: tFoodInspectionProps) => {
@@ -74,7 +74,7 @@ export const getFoodInspections = (queries: tFoodInspectionProps) => {
       .then((response) => response.json())
       .then((res) => {
         const result: iFoodInspectionMarker[] = [];
-        for (let inspection of res) {
+        for (const inspection of res) {
           const newMarkerData: iFoodInspectionMarker = {
             type: "food-inspection",
             business_name: inspection.business_name,
@@ -104,7 +104,7 @@ export const getFoodInspections = (queries: tFoodInspectionProps) => {
     return data;
   } catch (error) {
     console.error(
-      `ERROR getFoodInspection (${JSON.stringify(queries)}): \n** ${error}`
+      `ERROR getFoodInspection (${JSON.stringify(queries)}): \n** ${error}`,
     );
   }
 };

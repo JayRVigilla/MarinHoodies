@@ -21,7 +21,9 @@ export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
 
   const clearForm = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
-    if (!address && !city) return;
+    if (!address && !city) {
+      return;
+    }
     setAddress("");
     setCity("");
   };
@@ -29,7 +31,9 @@ export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
   const submitSearch = useCallback(
     async (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
-      if (!address && !city) return;
+      if (!address && !city) {
+        return;
+      }
       const locationData = await getLongLatFromAddress({
         address,
         city,
@@ -45,7 +49,7 @@ export const PropertySearchForm = ({}: iPropertySearchFormProps) => {
         router.push(`/search?${params.toString()}`);
       }
     },
-    [address, city]
+    [address, city],
   );
 
   return (

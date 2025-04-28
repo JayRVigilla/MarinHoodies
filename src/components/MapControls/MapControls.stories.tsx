@@ -17,9 +17,8 @@ export default {
 
 export const MapControlsDemo = () => {
   const [radius, setRadius] = useState(3);
-const [crimeSelector, setCrimeSelector] = useState(false)
-const [foodInspectionSelector, setFoodInspectionSelector] = useState(false)
-
+  const [crimeSelector, setCrimeSelector] = useState(false);
+  const [foodInspectionSelector, setFoodInspectionSelector] = useState(false);
 
   return (
     <MapControls

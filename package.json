@@ -15,9 +15,13 @@
     "prepare": "husky init"
   },
   "lint-staged": {
+    "**/*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "git add"
+    ],
     "**/*.{json,css,scss,md}": [
       "prettier --write",
-      "npm run format"
+      "git add"
     ]
   },
   "dependencies": {

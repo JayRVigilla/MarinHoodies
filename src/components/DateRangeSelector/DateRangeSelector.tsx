@@ -7,12 +7,12 @@ import { DropdownSelector } from "../DropdownSelector";
 import { Dispatch, SetStateAction } from "react";
 import "./styles.css";
 
-type tProps = {
+interface tProps {
   // dateFilter: string | number;
   // setDateFilter: Dispatch<SetStateAction<string | number >>;
   dateRange: [string, string];
   setDateRange: Dispatch<SetStateAction<[string, string]>>;
-};
+}
 
 export const DateRangeSelector = ({
   // dateFilter,
@@ -21,7 +21,7 @@ export const DateRangeSelector = ({
   setDateRange,
 }: tProps) => {
   const [dateFilter, setDateFilter] = useState(
-    DATE_RANGE_OPTIONS[DATE_RANGE_OPTIONS_LABELS.THIRTY_DAYS]
+    DATE_RANGE_OPTIONS[DATE_RANGE_OPTIONS_LABELS.THIRTY_DAYS],
   );
   return (
     <span className="DateRangeSelector date-range">
@@ -51,8 +51,8 @@ export const DateRangeSelector = ({
             value={dateRange[0]}
             onChange={(event) => {
               setDateRange([event.target.value, dateRange[1]]);
-              }}
-              />
+            }}
+          />
           <DatePicker
             label="max"
             value={dateRange[1]}

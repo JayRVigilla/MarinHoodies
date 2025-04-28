@@ -3,7 +3,6 @@
 import { ReactNode } from "react";
 import "./styles.css";
 
-
 export interface iButtonProps {
   "data-test-id"?: string;
   child?: ReactNode;
@@ -16,17 +15,18 @@ export const Button = ({
   child,
   label,
   onClick,
-  disabled = false
+  disabled = false,
 }: iButtonProps) => {
-
   return (
-    <button className="button root"
+    <button
+      className="button root"
       aria-label={label}
       tabIndex={0}
       disabled={disabled}
-      onClick={onClick}>
-        {child}
-        {label}
+      onClick={onClick}
+    >
+      {child}
+      {label}
     </button>
   );
 };

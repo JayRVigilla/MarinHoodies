@@ -1,10 +1,7 @@
 /** Marker documentation
  */
 
-import {
-  LocalDiningOutlined,
-  LocalPolice
-} from "@mui/icons-material";
+import { LocalDiningOutlined, LocalPolice } from "@mui/icons-material";
 import { Marker, Popup } from "react-leaflet";
 import { renderToStaticMarkup } from "react-dom/server";
 import startCase from "lodash/startCase";
@@ -60,7 +57,7 @@ export const CrimeMarker = ({
         {startCase(incident_street_address.toLowerCase())},{" "}
         {TOWN_ABBREVIATION_TO_NAME[incident_city_town]
           ? startCase(
-              TOWN_ABBREVIATION_TO_NAME[incident_city_town].toLowerCase()
+              TOWN_ABBREVIATION_TO_NAME[incident_city_town].toLowerCase(),
             )
           : startCase(incident_city_town.toLowerCase())}
       </Popup>
@@ -122,5 +119,5 @@ export const MaxMinMarker = ({
   longitude,
   // type = "max-min",
 }: iLocationMarker) => {
-  return <Marker opacity={0.4} position={[latitude, longitude]}></Marker>;
+  return <Marker opacity={0.4} position={[latitude, longitude]} />;
 };

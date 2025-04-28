@@ -1,18 +1,18 @@
-export type tImage = {
+export interface tImage {
   src: string;
   alt: string;
 }
 
-export type tContentObject = {
+export interface tContentObject {
   text: string[];
   img: tImage[];
 }
 
-export type tObjectStringToString = {
+export interface tObjectStringToString {
   [key: string]: string;
 }
 
-export type tObjectStringToStringArray = {
+export interface tObjectStringToStringArray {
   [key: string]: string[];
 }
 

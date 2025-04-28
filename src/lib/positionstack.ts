@@ -1,8 +1,8 @@
 // https://positionstack.com/documentation
 
-const BASE_URL = "http://api.positionstack.com/v1/forward"
+const BASE_URL = "http://api.positionstack.com/v1/forward";
 
-type tGetLongLatFromAddressProps = {
+interface tGetLongLatFromAddressProps {
   address: string;
   city: string;
   state: string;
@@ -10,23 +10,22 @@ type tGetLongLatFromAddressProps = {
 
 export const getLongLatFromAddress = async ({
   address,
-city,
-state,
-}:tGetLongLatFromAddressProps) => {
+  city,
+  state,
+}: tGetLongLatFromAddressProps) => {
   try {
-    const url = `${BASE_URL}?access_key=${process.env.NEXT_PUBLIC_POSITIONSTACK_API_KEY}&query=${address} ${city} ${state}`
+    const url = `${BASE_URL}?access_key=${process.env.NEXT_PUBLIC_POSITIONSTACK_API_KEY}&query=${address} ${city} ${state}`;
 
-    const response = await fetch(url, {cache: "no-store"})
-    const res = await response.json()
+    const response = await fetch(url, { cache: "no-store" });
+    const res = await response.json();
 
     if (res) {
-      const data = res?.data?.[0]
+      const data = res?.data?.[0];
 
-      const { longitude, latitude, postal_code } = data
-      return { lon: longitude, lat: latitude, zipCode: postal_code }
+      const { longitude, latitude, postal_code } = data;
+      return { lon: longitude, lat: latitude, zipCode: postal_code };
     }
-
   } catch (error) {
-    console.error(`ERROR getLongLatFromAddress (${address}): ${error}`)
+    console.error(`ERROR getLongLatFromAddress (${address}): ${error}`);
   }
-}
+};

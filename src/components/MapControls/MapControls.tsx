@@ -37,7 +37,6 @@ export const MapControls = ({
   foodInspectionSelector,
   setFoodInspectionSelector,
 }: iMapControlsProps) => {
-  
   const [crimeDateRange, setCrimeDateRange] = useState<tStringTuple>(["", ""]);
   const [foodInspectionDateRange, setFoodInspectionDateRange] =
     useState<tStringTuple>(["", ""]);

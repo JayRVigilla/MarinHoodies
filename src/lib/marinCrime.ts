@@ -3,7 +3,7 @@ import { MARIN_CRIME_BASE_URL, tCrime } from "../utils/marinAPI/marinCrimeAPI";
 import { calcMaxMinLatLong } from "../utils";
 import { iCrimeLocationMarker } from "../components/Map/Marker/types";
 
-export type tCrimeQueries = {
+export interface tCrimeQueries {
   crime?: string;
   crime_class?: string;
   incident_city_town?: string;
@@ -11,10 +11,10 @@ export type tCrimeQueries = {
   $where?: string;
   dateRange: [string, string]; // [MinISOString, MaxISOString]
   // focalLatLong?: [number, number]; // [lat,long] float strings
-};
+}
 
 export const getCrimes = (queries: tCrimeQueries) => {
-// export const getCrimes = async (queries: tCrimeQueries) => {
+  // export const getCrimes = async (queries: tCrimeQueries) => {
   try {
     const { dateRange } = queries;
 

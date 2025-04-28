@@ -4,7 +4,7 @@
 import "./styles.css";
 
 export interface HeaderProps {
-"data-test-id"?: string;
+  "data-test-id"?: string;
 }
 
 export const Header = () => {

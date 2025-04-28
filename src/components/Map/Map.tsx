@@ -83,7 +83,7 @@ export const Map = ({
 
       {crimes.length &&
         crimes.map((c) => {
-          if (c?.longitude && c?.latitude)
+          if (c?.longitude && c?.latitude) {
             return (
               <CrimeMarker
                 // type="crime"
@@ -98,10 +98,11 @@ export const Map = ({
                 key={c.unique_id}
               />
             );
+          }
         })}
       {foodInspections.length &&
         foodInspections.map((fi) => {
-          if (fi?.longitude && fi?.latitude)
+          if (fi?.longitude && fi?.latitude) {
             return (
               <RestaurantMarker
                 type="food-inspection"
@@ -125,6 +126,7 @@ export const Map = ({
                 key={`${fi.business_id}-${fi.row_id}`}
               />
             );
+          }
         })}
     </MapContainer>
   );

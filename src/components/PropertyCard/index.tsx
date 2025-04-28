@@ -1,3 +1,3 @@
-import { PropertyCard } from "./PropertyCard"
+import { PropertyCard } from "./PropertyCard";
 
-export {PropertyCard}
+export { PropertyCard };

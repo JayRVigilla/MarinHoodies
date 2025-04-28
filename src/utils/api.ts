@@ -1,4 +1,4 @@
-import { tObjectStringToString } from "../types"
+import { tObjectStringToString } from "../types";
 
 export const BASE_REQUEST: RequestInit = {
   // *GET, POST, PUT, DELETE, etc.
@@ -26,14 +26,16 @@ export const BASE_REQUEST: RequestInit = {
   referrerPolicy: "no-referrer",
   // body data type must match "Content-Type" header
   // body: JSON.stringify(data),
-}
+};
 
 // Some APIs don't handle empty values for queries
 // takes form queryObject, returns URLSearchParams with truthy values only
 export const validQueries = (queryObject: tObjectStringToString) => {
-      let result = new URLSearchParams()
-      for (let key in queryObject) {
-        if(queryObject[key]) result.append(key, queryObject[key])
-      }
-    return result
+  const result = new URLSearchParams();
+  for (const key in queryObject) {
+    if (queryObject[key]) {
+      result.append(key, queryObject[key]);
+    }
   }
+  return result;
+};

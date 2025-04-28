@@ -1,3 +1,3 @@
 import { IconLink } from "./IconLink";
 
-export {IconLink}
+export { IconLink };

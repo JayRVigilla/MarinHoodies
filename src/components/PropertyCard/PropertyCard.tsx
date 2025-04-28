@@ -3,7 +3,7 @@
 import { tImage } from "@/src/types";
 import { FeatureIcon } from "../FeatureIcon";
 import "./styles.css";
-import HouseIcon from '@mui/icons-material/House';
+import HouseIcon from "@mui/icons-material/House";
 export interface PropertyCardProps {
   "data-test-id"?: string;
   image?: tImage;
@@ -18,18 +18,16 @@ export const PropertyCard = ({
   address,
   city,
   bedrooms,
-  bathrooms
+  bathrooms,
 }: PropertyCardProps) => {
-
   return (
     <div className="property-card root">
-      {image?.src ?
-        <img
-        src={image.src}
-          alt={image.alt} /> :
-
-      <HouseIcon className="img" fontSize="large" />}
-    {/* container of icons depicting common features */}
+      {image?.src ? (
+        <img src={image.src} alt={image.alt} />
+      ) : (
+        <HouseIcon className="img" fontSize="large" />
+      )}
+      {/* container of icons depicting common features */}
 
       <div className="detail-icons">
         <FeatureIcon variant="bed" label={bedrooms} />
@@ -38,10 +36,9 @@ export const PropertyCard = ({
       </div>
 
       <div className="property-details">
-        <p className="property-address">{ address.toLowerCase() }</p>
-        <p className="property-city-state">{ city.toLowerCase() }</p>
+        <p className="property-address">{address.toLowerCase()}</p>
+        <p className="property-city-state">{city.toLowerCase()}</p>
       </div>
-
-  </div>
+    </div>
   );
 };
